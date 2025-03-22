@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d1b1cc59703da0844811e86d923c5abe
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 205835
+  packageName: 2D Flat World Map
+  packageVersion: 1.2
+  assetPath: Assets/2D Flat World Maps/2D Flat World Map Resources/Prefabs/Prefabs_World
+    Maps(2D Sprite)/Sprite_United States.prefab
+  uploadId: 686855

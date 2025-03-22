@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: aeab70a86c4d74847919436e8fbcf8f3
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 205835
+  packageName: 2D Flat World Map
+  packageVersion: 1.2
+  assetPath: Assets/2D Flat World Maps/2D Flat World Map Resources/Scripts/CircleSlider.cs
+  uploadId: 686855

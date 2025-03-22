@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 26dc229f75c9f8147bebef56ffd2d941
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 205835
+  packageName: 2D Flat World Map
+  packageVersion: 1.2
+  assetPath: Assets/2D Flat World Maps/2D Flat World Map Resources/Prefabs/Prefabs_World
+    Maps(2D Sprite)/Sprite_WordMap_Countries01.prefab
+  uploadId: 686855
