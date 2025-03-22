@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: f21eb4b73a9e25e4b884a27c8f7c17e0
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 205835
+  packageName: 2D Flat World Map
+  packageVersion: 1.2
+  assetPath: Assets/2D Flat World Maps/2D Flat World Map Resources/Scripts/RandomEnableAnimator.cs
+  uploadId: 686855
