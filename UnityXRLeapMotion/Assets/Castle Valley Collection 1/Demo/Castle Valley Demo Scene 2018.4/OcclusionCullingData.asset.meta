@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: ad60f60ab62355b46af01764af592258
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 36300000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 165032
+  packageName: Castle Valley Collection 1
+  packageVersion: 1.9
+  assetPath: Assets/Castle Valley Collection 1/Demo/Castle Valley Demo Scene 2018.4/OcclusionCullingData.asset
+  uploadId: 718872
