@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 79fdff156689d415a9265a2862265953
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 307506
+  packageName: Archaeology Tool Set
+  packageVersion: 1.0.0
+  assetPath: Assets/ALP_Studios/Archaeology_Tool_Set/Built-in/Materials/Margin_Trowel.mat
+  uploadId: 728255
