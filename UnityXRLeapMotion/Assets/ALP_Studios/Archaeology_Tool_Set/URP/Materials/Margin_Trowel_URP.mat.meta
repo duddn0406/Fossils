@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 56d78d79835564b82878921613446a1e
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 307506
+  packageName: Archaeology Tool Set
+  packageVersion: 1.0.0
+  assetPath: Assets/ALP_Studios/Archaeology_Tool_Set/URP/Materials/Margin_Trowel_URP.mat
+  uploadId: 728255

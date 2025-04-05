@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 8d58cf37cff1f41cdbe455e898633f9f
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 307506
+  packageName: Archaeology Tool Set
+  packageVersion: 1.0.0
+  assetPath: Assets/ALP_Studios/Archaeology_Tool_Set/HDRP/Materials/Sm_Brush.mat
+  uploadId: 728255

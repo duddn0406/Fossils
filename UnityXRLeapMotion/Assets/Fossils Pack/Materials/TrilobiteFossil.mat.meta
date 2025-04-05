@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: c701564405d39154fb4fbf653e969b52
+timeCreated: 1537925146
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 129393
+  packageName: Fossils Pack
+  packageVersion: 1.0
+  assetPath: Assets/Fossils Pack/Materials/TrilobiteFossil.mat
+  uploadId: 269159
