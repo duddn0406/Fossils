@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using TMPro;
 
-public class PointUI : MonoBehaviour
+public class PointPresenter : MonoBehaviour
 {
     [SerializeField] private GameObject _pointDescriptionParent;
     [SerializeField] private TextMeshProUGUI _pointDescriptionText;
