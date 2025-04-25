@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 
 public class ContinentModel : MonoBehaviour
 {
+    [SerializeField] private ContinentData _continentData;
     [SerializeField] private SpriteRenderer[] childSprites;
     [SerializeField] private GameObject[] childPoints;
     [SerializeField] private Vector3 _startPos;
@@ -11,6 +12,7 @@ public class ContinentModel : MonoBehaviour
     [SerializeField] private Vector3 _targetPos;
     [SerializeField] private Vector3 _targetSize;
 
+    public ContinentData ContinentData => _continentData;
     public Vector3 StartPos => _startPos;
     public Vector3 StartSize => _startSize;
     public Vector3 TargetPos => _targetPos;

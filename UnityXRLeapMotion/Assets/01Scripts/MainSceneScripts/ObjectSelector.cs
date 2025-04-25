@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class ObjectSelector : MonoBehaviour
 {
+    [SerializeField] private MainMenuSceneUI _mainMenuSceneUI;
+
     [SerializeField] private Transform fingerTip;
     [SerializeField] private LayerMask selectableLayer;
     [SerializeField] private LeapServiceProvider leapProvider;
@@ -12,13 +14,12 @@ public class ObjectSelector : MonoBehaviour
 
     [SerializeField] private GameObject[] ContinentObjects;
 
-    private GameObject selectedObject;
+    private GameObject selectedContinent;
     private GameObject selectedPoint;
     private bool isAnimating = false;
 
     private float clapCooldown = 1f;
     private float lastClapTime = -10f;
-
 
     void Update()
     {
@@ -48,16 +49,14 @@ public class ObjectSelector : MonoBehaviour
 
                 if (distance < 0.1f &&
                  Vector3.Dot(relativeVelocity, (leftPos - rightPos).normalized) < -0.5f &&
-                 Time.time - lastClapTime > clapCooldown)
+                 Time.time - lastClapTime > clapCooldown) //박수칠 때
                 {
-                    //Debug.Log("박수");
                     lastClapTime = Time.time;
 
-                    if(selectedPoint != null)
+                    if(selectedPoint != null) //씬으로 넘어가며 정보 전달.
                     {
                         PointModel pointModel = selectedPoint.GetComponent<PointModel>();
-                        GameManager.instance.PointType = pointModel.PointType;
-                        GameManager.instance.PointIndex = pointModel.PointIndex;
+                        GameManager.instance.PointData = pointModel.PointData;
                         SceneManager.LoadScene("00Scenes/GameScene");
                     }
                 }
@@ -65,31 +64,29 @@ public class ObjectSelector : MonoBehaviour
 
             foreach (var hand in frame.Hands)
             {
-                if (hand.IsLeft && hand.GrabStrength > 0.8f && selectedObject != null)
+                if (hand.IsLeft && hand.GrabStrength > 0.8f && selectedContinent != null) //왼손 주먹 쥐었을 때
                 {
-                    DeSelectPoint();
-                    _ = ResetObjectAsync();
+                    DeSelectPoint(); //핑 초기화 
+                    _ = ResetObjectAsync(); //대륙 초기화
                     return;
                 }
             }
-
-            //Debug.DrawRay(fingerTip.position, fingerTip.right * 0.01f, Color.green);
 
             Ray ray = new Ray(fingerTip.position, fingerTip.right);
             if (Physics.Raycast(ray, out RaycastHit hit, 0.1f, selectableLayer))
             {
                 GameObject hitObject = hit.collider.gameObject;
 
-                if (selectedObject)
+                if (selectedContinent) //핑 선택
                 {
                     DeSelectPoint();
                     selectedPoint = hitObject;
                     SelectPoint();
                 }
-                else
+                else //대륙 선택
                 {
                     _ = ResetObjectAsync();
-                    selectedObject = hitObject;
+                    selectedContinent = hitObject;
                     _ = SelectObjectAsync();
                 }
             }
@@ -97,22 +94,24 @@ public class ObjectSelector : MonoBehaviour
     }
     async Task SelectObjectAsync()
     {
-        if (selectedObject == null) return;
+        if (selectedContinent == null) return;
 
         isAnimating = true;
 
-        var selectedModel = selectedObject.transform.parent.GetComponent<ContinentModel>();
-        if (selectedModel == null)
+        var continentModel = selectedContinent.transform.parent.GetComponent<ContinentModel>();
+        if (continentModel == null)
         {
             isAnimating = false;
             return;
         }
-        selectedObject.layer = 0;
+        _mainMenuSceneUI.InitializeContinentView(continentModel.ContinentData);
+
+        selectedContinent.layer = 0;
         var fadeOutTasks = new Task[ContinentObjects.Length - 1];
         int i = 0;
         foreach (GameObject continent in ContinentObjects)
         {
-            if (continent == selectedObject.transform.parent.gameObject) continue; 
+            if (continent == selectedContinent.transform.parent.gameObject) continue; 
 
             var model = continent.transform.GetComponent<ContinentModel>();
             if (model != null)
@@ -125,9 +124,9 @@ public class ObjectSelector : MonoBehaviour
             1f
         );
 
-        var objTask = selectedModel.MoveToTargetAsync(
-            selectedModel.TargetPos,
-            selectedModel.TargetSize,
+        var objTask = continentModel.MoveToTargetAsync(
+            continentModel.TargetPos,
+            continentModel.TargetSize,
             0.5f
         );
 
@@ -138,11 +137,11 @@ public class ObjectSelector : MonoBehaviour
 
     async Task ResetObjectAsync()
     {
-        if (selectedObject == null) return;
+        if (selectedContinent == null) return;
 
         isAnimating = true;
 
-        var selectedModel = selectedObject.transform.parent.GetComponent<ContinentModel>();
+        var selectedModel = selectedContinent.transform.parent.GetComponent<ContinentModel>();
         if (selectedModel == null)
         {
             isAnimating = false;
@@ -153,7 +152,7 @@ public class ObjectSelector : MonoBehaviour
         int i = 0;
         foreach (GameObject continent in ContinentObjects)
         {
-            if (continent == selectedObject.transform.parent.gameObject) continue;
+            if (continent == selectedContinent.transform.parent.gameObject) continue;
 
             var model = continent.transform.GetComponent<ContinentModel>();
             if (model != null)
@@ -174,9 +173,11 @@ public class ObjectSelector : MonoBehaviour
 
         await Task.WhenAll(camReset, objReset, Task.WhenAll(fadeInTasks));
 
-        selectedObject.layer = 15;
+        _mainMenuSceneUI.ResetContinentView();
 
-        selectedObject = null;
+        selectedContinent.layer = 15;
+
+        selectedContinent = null;
         isAnimating = false;
     }
 
@@ -185,6 +186,10 @@ public class ObjectSelector : MonoBehaviour
         if (selectedPoint == null) return;
         SpriteRenderer sprite = selectedPoint.GetComponent<SpriteRenderer>();
         sprite.color = Color.red;
+
+        PointModel pointModel = selectedPoint.GetComponent<PointModel>();
+        //선택한 핑 ui활성화
+        _mainMenuSceneUI.InitializePointView(pointModel.PointData);
     }
     void DeSelectPoint()
     {
@@ -192,5 +197,8 @@ public class ObjectSelector : MonoBehaviour
         SpriteRenderer sprite = selectedPoint.GetComponent<SpriteRenderer>();
         sprite.color = Color.white;
         selectedPoint = null;
+
+        //핑 UI 비활성화
+        _mainMenuSceneUI.ResetContinentView();
     }
 }

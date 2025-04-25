@@ -2,6 +2,7 @@
 
 public class GameManager : Singleton<GameManager>
 {
-    public PointType PointType;
-    public int PointIndex;
+    [SerializeField] private PointData _pointData;
+
+    public PointData PointData { get => _pointData; set=>_pointData = value; }
 }
