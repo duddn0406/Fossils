@@ -4,27 +4,29 @@ public class MainMenuSceneUI : MonoBehaviour
 {
     [SerializeField] private ContinentPresenter _continentPresenter;
     [SerializeField] private PointPresenter _pointPresenter;
+    [SerializeField] private GameObject _continentViewPanel;
+    [SerializeField] private GameObject _pointViewPanel;
 
     public void InitializeContinentView(ContinentData continentData)
     {
-        _continentPresenter.gameObject.SetActive(true);
+        _continentViewPanel.SetActive(true);
         _continentPresenter.Initialize(continentData);
     }
 
     public void InitializePointView(PointData pointData)
     {
-        _pointPresenter.gameObject.SetActive(true);
+        _pointViewPanel.SetActive(true);
         _pointPresenter.Initialize(pointData);
     }
 
     public void  ResetContinentView()
     {
-        _continentPresenter.gameObject.SetActive(false);
+        _continentViewPanel.SetActive(false);
         _continentPresenter.Initialize(null);
     }
     public void ResetPointView()
     {
-        _pointPresenter.gameObject.SetActive(false);
+        _pointViewPanel.SetActive(false);
         _pointPresenter.Initialize(null);
     }
 }

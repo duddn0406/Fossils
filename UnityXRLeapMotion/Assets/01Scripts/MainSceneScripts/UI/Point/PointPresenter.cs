@@ -7,6 +7,9 @@ public class PointPresenter : MonoBehaviour
 
     public void Initialize(PointData pointData)
     {
+        if(pointData == null) 
+            return;
+
         _view.SetImageSprite((int)PointView.Images.PointImage, pointData.Sprite);
         _view.SetTmpText((int)PointView.Tmps.DescriptionText, pointData.Description);
     }

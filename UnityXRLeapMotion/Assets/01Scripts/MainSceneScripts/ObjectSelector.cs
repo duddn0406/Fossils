@@ -21,6 +21,13 @@ public class ObjectSelector : MonoBehaviour
     private float clapCooldown = 1f;
     private float lastClapTime = -10f;
 
+    private void Start()
+    {
+        //Debug.Log(fingerTip ? $"{fingerTip.name}ON" : $"{fingerTip.name}OFF");
+        //Debug.Log(leapProvider ? $"{leapProvider.name}ON": $"{leapProvider.name}OFF");
+        //Debug.Log(cameraModel ? $"{cameraModel.name}ON" : $"{cameraModel.name}OFF");
+    }
+
     void Update()
     {
         if (!isAnimating)
@@ -73,6 +80,7 @@ public class ObjectSelector : MonoBehaviour
             }
 
             Ray ray = new Ray(fingerTip.position, fingerTip.right);
+            Debug.DrawRay(fingerTip.position, fingerTip.right * 1f, Color.red);
             if (Physics.Raycast(ray, out RaycastHit hit, 0.1f, selectableLayer))
             {
                 GameObject hitObject = hit.collider.gameObject;
@@ -98,7 +106,7 @@ public class ObjectSelector : MonoBehaviour
 
         isAnimating = true;
 
-        var continentModel = selectedContinent.transform.parent.GetComponent<ContinentModel>();
+        var continentModel = selectedContinent.GetComponentInParent<ContinentModel>();
         if (continentModel == null)
         {
             isAnimating = false;
@@ -141,7 +149,8 @@ public class ObjectSelector : MonoBehaviour
 
         isAnimating = true;
 
-        var selectedModel = selectedContinent.transform.parent.GetComponent<ContinentModel>();
+        var selectedModel = selectedContinent.GetComponentInParent<ContinentModel>();
+        //Debug.Log(selectedModel ? $"{selectedModel.name}ON" : $"{selectedModel.name}OFF");
         if (selectedModel == null)
         {
             isAnimating = false;
@@ -171,9 +180,9 @@ public class ObjectSelector : MonoBehaviour
             1f
         );
 
-        await Task.WhenAll(camReset, objReset, Task.WhenAll(fadeInTasks));
-
         _mainMenuSceneUI.ResetContinentView();
+
+        await Task.WhenAll(camReset, objReset, Task.WhenAll(fadeInTasks));
 
         selectedContinent.layer = 15;
 
@@ -199,6 +208,6 @@ public class ObjectSelector : MonoBehaviour
         selectedPoint = null;
 
         //핑 UI 비활성화
-        _mainMenuSceneUI.ResetContinentView();
+        _mainMenuSceneUI.ResetPointView();
     }
 }

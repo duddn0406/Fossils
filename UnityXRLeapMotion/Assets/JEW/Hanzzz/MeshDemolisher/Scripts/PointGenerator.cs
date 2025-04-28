@@ -1,4 +1,4 @@
-using System.Linq;
+﻿using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -48,7 +48,13 @@ public class PointGenerator : MonoBehaviour
     public void Generate()
     {
         Clear();
-        for(int i=0; i<pointCount; i++)
+
+        if (pointDomainType == PointDomainType.MESH)
+        {
+            PrepareDelaunay();
+        }
+            
+        for (int i=0; i<pointCount; i++)
         {
             GenerateNewPoint(i);
         }
@@ -60,7 +66,7 @@ public class PointGenerator : MonoBehaviour
     {
         GetCurrentPoints();
         foreach(Transform point in tempPoints)
-        {
+        {               
             DestroyImmediate(point.gameObject);
         }
     }
@@ -251,6 +257,47 @@ public class PointGenerator : MonoBehaviour
         
         np.localPosition = newPoint;
     }
-}
+        private void PrepareDelaunay()
+        {
+            if (domainGameObject == null)
+            {
+                Debug.LogError("Domain GameObject가 설정되어 있지 않습니다!");
+                return;
+            }
+
+            dt = new DelaunayTetrahedralization();
+            dtIsClean = false;
+
+            List<Vector3> meshVertices = new List<Vector3>();
+            List<int> meshTriangles = new List<int>();
+            MeshFilter mf = domainGameObject.GetComponent<MeshFilter>();
+            if (mf == null || mf.sharedMesh == null)
+            {
+                Debug.LogError("Domain GameObject에 유효한 MeshFilter 또는 Mesh가 없습니다!");
+                return;
+            }
+
+            mf.sharedMesh.GetVertices(meshVertices);
+            meshTriangles = mf.sharedMesh.triangles.ToList();
+            Transform domainTransform = domainGameObject.transform;
+            meshVertices = meshVertices.Select(x => domainTransform.TransformPoint(x)).ToList();
+
+            lowerBound = meshVertices[0];
+            upperBound = meshVertices[0];
+            for (int i = 1; i < meshVertices.Count; i++)
+            {
+                float x = meshVertices[i].x;
+                float y = meshVertices[i].y;
+                float z = meshVertices[i].z;
+
+                lowerBound = new Vector3(Mathf.Min(lowerBound.x, x), Mathf.Min(lowerBound.y, y), Mathf.Min(lowerBound.z, z));
+                upperBound = new Vector3(Mathf.Max(upperBound.x, x), Mathf.Max(upperBound.y, y), Mathf.Max(upperBound.z, z));
+            }
+
+            // 삼각분할 실행
+            dt.ConstrainedDelaunayTetrahedralize(meshVertices, meshTriangles);
+        }
+
+    }
 
 }
