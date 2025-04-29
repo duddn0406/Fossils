@@ -9,7 +9,7 @@ public class RockModel : MonoBehaviour
     [SerializeField] private float _demolishScale;
 
     [Header("PointGenerator ÇÊµå")]
-    [SerializeField] private 
+    [SerializeField] private int _pointCount;
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -18,7 +18,7 @@ public class RockModel : MonoBehaviour
             _hitCount++;
             if(_hitCount == 5)
             {
-                _controller.DemolishObject(this.gameObject, _demolishScale);
+                _controller.GeneratePointAndDemolish(this.gameObject, _pointCount, _demolishScale);
             }
         }
     }

@@ -23,6 +23,8 @@ public class MeshDemolisherExample : MonoBehaviour
     public GameObject TargetGameObject { get => targetGameObject;set=> targetGameObject = value; }
     public Material InteriorMaterial { get => interiorMaterial; set => interiorMaterial = value; }
     public float ResultScale { get => resultScale; set=> resultScale = value; }
+    public Transform BreakPointsParent { get => breakPointsParent; set => breakPointsParent = value; }
+    public Transform ResultParent { get=>resultParent; set => resultParent = value; }
 
     private static MeshDemolisher meshDemolisher = new MeshDemolisher();
 
