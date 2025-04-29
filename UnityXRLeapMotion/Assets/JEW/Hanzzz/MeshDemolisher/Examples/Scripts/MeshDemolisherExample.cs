@@ -19,26 +19,12 @@ public class MeshDemolisherExample : MonoBehaviour
     [SerializeField] [Range(0f,1f)] private float resultScale;
     [SerializeField] private Transform resultParent;
 
-    [SerializeField] private TMP_Text logText;
+    //[SerializeField] private TMP_Text logText;
+    public GameObject TargetGameObject { get => targetGameObject;set=> targetGameObject = value; }
+    public Material InteriorMaterial { get => interiorMaterial; set => interiorMaterial = value; }
+    public float ResultScale { get => resultScale; set=> resultScale = value; }
 
     private static MeshDemolisher meshDemolisher = new MeshDemolisher();
-
-    private void Update()
-    {
-        if(!Input.GetKeyDown(demolishKey))
-        {
-            return;
-        }
-
-        if(targetGameObject.activeSelf)
-        {
-            Demolish();
-        }
-        else
-        {
-            Reset();
-        }
-    }
 
     [ContextMenu("Verify Demolish Input")]
     public void VerifyDemolishInput()
@@ -63,7 +49,7 @@ public class MeshDemolisherExample : MonoBehaviour
         var watch = System.Diagnostics.Stopwatch.StartNew();
         List<GameObject> res = meshDemolisher.Demolish(targetGameObject, breakPoints, interiorMaterial);
         watch.Stop();
-        logText.text = $"Demolish time: {watch.ElapsedMilliseconds}ms.";
+        //logText.text = $"Demolish time: {watch.ElapsedMilliseconds}ms.";
 
         res.ForEach(x=>x.transform.SetParent(resultParent, true));
         Enumerable.Range(0,resultParent.childCount).Select(i=>resultParent.GetChild(i)).ToList().ForEach(x=>x.localScale=resultScale*Vector3.one);
@@ -80,7 +66,7 @@ public class MeshDemolisherExample : MonoBehaviour
         var watch = System.Diagnostics.Stopwatch.StartNew();
         List<GameObject> res = await meshDemolisher.DemolishAsync(targetGameObject, breakPoints, interiorMaterial);
         watch.Stop();
-        logText.text = $"Demolish time: {watch.ElapsedMilliseconds}ms.";
+        //logText.text = $"Demolish time: {watch.ElapsedMilliseconds}ms.";
 
         res.ForEach(x=>x.transform.SetParent(resultParent, true));
         Enumerable.Range(0,resultParent.childCount).Select(i=>resultParent.GetChild(i)).ToList().ForEach(x=>x.localScale=resultScale*Vector3.one);
