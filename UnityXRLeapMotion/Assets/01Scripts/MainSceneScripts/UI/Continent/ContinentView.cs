@@ -1,6 +1,4 @@
-﻿using TMPro;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
 public class ContinentView : ViewBase
 {
@@ -12,11 +10,5 @@ public class ContinentView : ViewBase
     public enum Images
     {
         ContinentImage
-    }
-
-    private void Awake()
-    {
-        Bind<TextMeshProUGUI>(typeof(Tmps));
-        Bind<Image>(typeof(Images));
     }
 }
