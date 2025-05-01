@@ -19,6 +19,7 @@ public class RockModel : MonoBehaviour
             if(_hitCount == 5)
             {
                 _controller.GeneratePointAndDemolish(this.gameObject, _pointCount, _demolishScale);
+                Destroy(this.gameObject);
             }
         }
     }

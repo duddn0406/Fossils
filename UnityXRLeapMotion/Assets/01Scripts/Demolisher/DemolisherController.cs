@@ -35,10 +35,13 @@ public class DemolisherController : MonoBehaviour
 
         pointClone.SetActive(false);
 
+        Material mat = targetObject.GetComponent<MeshRenderer>().material;
+
         _demolisher.TargetGameObject = targetObject;
         _demolisher.ResultScale = demolishScale;
         _demolisher.BreakPointsParent = pointClone.transform;
         _demolisher.ResultParent = resultClone.transform;
+        _demolisher.InteriorMaterial = mat;
 
         _demolisher.Demolish();
     }
