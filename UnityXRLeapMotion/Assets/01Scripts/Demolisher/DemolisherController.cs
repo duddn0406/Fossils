@@ -1,5 +1,6 @@
-using Hanzzz.MeshDemolisher;
+﻿using Hanzzz.MeshDemolisher;
 using JetBrains.Annotations;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class DemolisherController : MonoBehaviour
@@ -21,8 +22,11 @@ public class DemolisherController : MonoBehaviour
         Debug.Log("Hi");
 
         GameObject clone = new GameObject();
+        clone.name = "RockDemolished";
         GameObject pointClone = new GameObject();
+        pointClone.name = "Point";
         GameObject resultClone = new GameObject();
+        resultClone.name = "Result";
 
         pointClone.transform.SetParent(clone.transform);
         resultClone.transform.SetParent(clone.transform);
@@ -43,6 +47,15 @@ public class DemolisherController : MonoBehaviour
         _demolisher.ResultParent = resultClone.transform;
         _demolisher.InteriorMaterial = mat;
 
-        _demolisher.Demolish();
+        _demolisher.Demolish();  
+    }
+
+    private void AddModelByRockType(GameObject resultClone)
+    {
+        switch()
+        for (int i = 0; i < resultClone.transform.childCount; i++)
+        {
+            resultClone.transform.GetChild(i).AddComponent<>
+        }
     }
 }
