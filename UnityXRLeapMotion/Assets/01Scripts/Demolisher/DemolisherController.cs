@@ -5,10 +5,18 @@ using UnityEngine;
 
 public class DemolisherController : MonoBehaviour
 {
+    public static DemolisherController instance;
+
     [SerializeField] private MeshDemolisherExample _demolisher;
     [SerializeField] private PointGenerator _pointGenerator;
 
     [SerializeField] private GameObject targetObject;
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.A))
@@ -47,15 +55,44 @@ public class DemolisherController : MonoBehaviour
         _demolisher.ResultParent = resultClone.transform;
         _demolisher.InteriorMaterial = mat;
 
-        _demolisher.Demolish();  
-    }
+        _demolisher.Demolish();
 
-    private void AddModelByRockType(GameObject resultClone)
-    {
-        switch()
+        //SoftRock 컴퍼넌트 부착
         for (int i = 0; i < resultClone.transform.childCount; i++)
         {
-            resultClone.transform.GetChild(i).AddComponent<>
+            GameObject piece = resultClone.transform.GetChild(i).gameObject;
+
+            piece.AddComponent<SoftRockModel>();
         }
+    }
+
+    private void AddModelByRockType(GameObject targetObject, GameObject resultClone)
+    {
+        for (int i = 0; i < resultClone.transform.childCount; i++)
+        {
+            GameObject piece = resultClone.transform.GetChild(i).gameObject;
+
+            piece.AddComponent<SoftRockModel>();
+        }
+
+        //RockModel rock = targetObject.GetComponent<RockModel>();
+        //
+        //bool isHard = rock is HardRockModel;
+        //bool isSoft = rock is SoftRockModel;
+        //
+        //for (int i = 0; i < resultClone.transform.childCount; i++)
+        //{
+        //    GameObject piece = resultClone.transform.GetChild(i).gameObject;
+        //
+        //    if (isHard)
+        //    {
+        //        piece.AddComponent<SoftRockModel>();
+        //    }
+        //    else if (isSoft)
+        //    {
+        //        piece.AddComponent<SoilModel>();
+        //    }
+        //}
+
     }
 }
