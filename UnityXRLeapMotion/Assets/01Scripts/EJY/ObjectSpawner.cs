@@ -30,4 +30,9 @@ public class ObjectSpawner : MonoBehaviour
         // 새 프리팹 소환
         currentInstance = Instantiate(prefabList[index], spawnTarget.position, rotation);
     }
+
+    public GameObject GetCurrentSpawnedObject()
+    {
+        return currentInstance;
+    }
 }

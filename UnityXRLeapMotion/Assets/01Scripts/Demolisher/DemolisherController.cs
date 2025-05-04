@@ -50,12 +50,12 @@ public class DemolisherController : MonoBehaviour
         _demolisher.Demolish();  
     }
 
-    private void AddModelByRockType(GameObject resultClone)
+    /*private void AddModelByRockType(GameObject resultClone)
     {
         switch()
         for (int i = 0; i < resultClone.transform.childCount; i++)
         {
-            resultClone.transform.GetChild(i).AddComponent<>
+            resultClone.transform.GetChild(i).AddComponent<>;
         }
-    }
+    }*/
 }

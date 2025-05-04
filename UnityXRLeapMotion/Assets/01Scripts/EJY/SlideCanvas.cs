@@ -6,7 +6,9 @@ public class SlideCanvas : MonoBehaviour
     public Vector2 onScreenPos = new Vector2(0f, 0f);
     public Vector2 offScreenPos = new Vector2(-1000f, 0f);
     public float slideSpeed = 5f;
-    public float moveThreshold = 0.1f;
+    // °æ°è°ª
+    public float showThreshold = 0.3f;  // ¿À¸¥ÂÊ ÀÌµ¿: UI º¸ÀÓ
+    public float hideThreshold = -0.2f; // ¿ÞÂÊ ÀÌµ¿: UI ¼û±è
 
     public Transform handTrackPoint;
 
@@ -44,11 +46,11 @@ public class SlideCanvas : MonoBehaviour
         Vector3 currentHandPosition = handTrackPoint.position;
         float handMovement = currentHandPosition.x - initialHandPosition.x;
 
-        if (handMovement > moveThreshold && !isCanvasVisible)
+        if (handMovement > showThreshold && !isCanvasVisible)
         {
             isCanvasVisible = true;
         }
-        else if (handMovement < -moveThreshold && isCanvasVisible)
+        else if (handMovement < hideThreshold && isCanvasVisible)
         {
             isCanvasVisible = false;
         }
