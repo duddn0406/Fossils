@@ -15,7 +15,7 @@ public class RightHandAttacher : MonoBehaviour
     public ObjectSpawner spawner; // Inspector에서 연결
 
     [Header("손 기준 오프셋 위치")]
-    public Vector3 toolOffset = new Vector3(0f, -0.03f, 0.07f); // 손 아래, 약간 앞으로
+    public Vector3 toolOffset = new Vector3(0f, -0.03f, 0.0f); // 손 아래, 약간 앞으로
 
     private GameObject currentTool;
     private bool wasFist = false;
@@ -59,17 +59,44 @@ public class RightHandAttacher : MonoBehaviour
         if (spawned == null) return;
 
         currentTool = spawned;
-
         currentTool.transform.SetParent(palmCenter);
-        currentTool.transform.localPosition = toolOffset;
-        currentTool.transform.localRotation = Quaternion.Euler(0, 90, 90);
+        
 
-        // 중력 영향 제거
+        // 태그별 회전값 설정
+        Quaternion rotation = Quaternion.identity;
+
+        switch (currentTool.tag)
+        {
+            case "hand_pick":
+                rotation = Quaternion.Euler(-90, 0, 90);
+                break;
+            case "hand_shovel":
+                rotation = Quaternion.Euler(0, 0, 270);
+                toolOffset = new Vector3(-0.7f, -0.03f, 0f);
+                break;
+            case "margin_trowel":
+                rotation = Quaternion.Euler(0, 0, 90);
+                break;
+            case "sm_brush":
+                rotation = Quaternion.Euler(90, 0, 90);
+                break;
+            case "trowel":
+                rotation = Quaternion.Euler(0, 0, 90);
+                break;
+            default:
+                rotation = Quaternion.identity;
+                break;
+        }
+        currentTool.transform.localPosition = toolOffset;
+        currentTool.transform.localRotation = rotation;
+
+        // 중력 제거
         Rigidbody rb = currentTool.GetComponent<Rigidbody>();
         if (rb != null)
         {
             rb.isKinematic = true;
         }
+        toolOffset = new Vector3(0f, -0.03f, 0.0f);
     }
 
     private void DetachTool()

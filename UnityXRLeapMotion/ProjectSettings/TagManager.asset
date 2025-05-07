@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 3
   tags:
   - PhysicalHand
+  - hand_pick
+  - hand_shovel
+  - margin_trowel
+  - sm_brush
+  - trowel
   layers:
   - Default
   - TransparentFX
