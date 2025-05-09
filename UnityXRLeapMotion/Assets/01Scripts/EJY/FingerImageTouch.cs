@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class FingerImageTouch : MonoBehaviour
 {
-    [Header("5개의 이미지 오브젝트")]
-    public Transform[] imageObjects = new Transform[5];  // 이미지 5개
+    [Header("6개의 이미지 오브젝트")]
+    public Transform[] imageObjects = new Transform[6];  // 이미지 5개
 
     [Header("손가락 끝 위치")]
     public Transform indexTip;
@@ -12,8 +12,8 @@ public class FingerImageTouch : MonoBehaviour
     public float touchDistance = 0.02f;
     public float touchCooldown = 1.0f; // 1초 동안 재터치 금지
 
-    private bool[] hasTriggered = new bool[5];
-    private float[] lastTouchTime = new float[5];
+    private bool[] hasTriggered = new bool[7];
+    private float[] lastTouchTime = new float[7];
 
     public ObjectSpawner spawner; // Inspector에서 연결
 

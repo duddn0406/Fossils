@@ -10,6 +10,8 @@ TagManager:
   - margin_trowel
   - sm_brush
   - trowel
+  - chisel
+  - hammer
   layers:
   - Default
   - TransparentFX
