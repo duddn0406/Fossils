@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6927592504028886578}
   - component: {fileID: 467761328128174237}
   - component: {fileID: 7234511423149416983}
-  m_Layer: 18
+  m_Layer: 0
   m_Name: TriggerZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -81,7 +81,7 @@ GameObject:
   - component: {fileID: 7729054897645738638}
   - component: {fileID: 2193153561741239929}
   - component: {fileID: 1926227698728075921}
-  m_Layer: 18
+  m_Layer: 0
   m_Name: hammer
   m_TagString: hammer
   m_Icon: {fileID: 0}
