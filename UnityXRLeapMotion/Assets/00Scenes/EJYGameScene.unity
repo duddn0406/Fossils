@@ -540,8 +540,8 @@ MonoBehaviour:
   - {fileID: 8371229610632757634, guid: ff032cc510d9b364ca7d1ff617432a1e, type: 3}
   - {fileID: 6158577833135191962, guid: 069fba58b2c02914db137dde77bba9f9, type: 3}
   - {fileID: 6926223589129552592, guid: 74c6593cad28b044ba8e73354c282d12, type: 3}
-  - {fileID: 6045982427529924493, guid: e77a60808f9d8fd45936235fc78739d3, type: 3}
-  - {fileID: 100000, guid: ba40d73140c2d564eb42bd3203ceebd9, type: 3}
+  - {fileID: 2074888791672066054, guid: 3d29268f1e93fbb4996518116371bfba, type: 3}
+  - {fileID: 4141741130335380274, guid: ef9417c9efdb5444bb7d3699e803c3c9, type: 3}
   spawnTarget: {fileID: 573351335}
 --- !u!4 &294611214
 Transform:
