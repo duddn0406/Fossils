@@ -12,6 +12,8 @@ TagManager:
   - trowel
   - chisel
   - hammer
+  - Rock5
+  - Rock6
   layers:
   - Default
   - TransparentFX
@@ -29,9 +31,9 @@ TagManager:
   - 
   - 
   - Selectable
-  - 
-  - 
-  - 
+  - Hand
+  - Tool
+  - Tool_Hammer
   - 
   - 
   - 
