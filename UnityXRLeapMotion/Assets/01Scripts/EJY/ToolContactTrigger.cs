@@ -1,12 +1,12 @@
-using System.Collections.Generic;
+ï»¿using System.Collections.Generic;
 using UnityEngine;
 
 public class ToolContactTrigger : MonoBehaviour
 {
-    /*[Tooltip("ÀÌ µµ±¸°¡ ¹İÀÀÇÒ ´ë»ó ¿ÀºêÁ§Æ®ÀÇ ÅÂ±×")]
-    public string targetTag = "Rock1";  // µµ±¸¿¡ µû¶ó ´Ù¸¥ ÅÂ±× ¼³Á¤*/
+    /*[Tooltip("ì´ ë„êµ¬ê°€ ë°˜ì‘í•  ëŒ€ìƒ ì˜¤ë¸Œì íŠ¸ì˜ íƒœê·¸")]
+    public string targetTag = "Rock1";  // ë„êµ¬ì— ë”°ë¼ ë‹¤ë¥¸ íƒœê·¸ ì„¤ì •*/
 
-    // µµ±¸ ÅÂ±× ¡æ ¹İÀÀÇÒ ¾Ï¼® ÅÂ±× ¸ÅÇÎ
+    // ë„êµ¬ íƒœê·¸ â†’ ë°˜ì‘í•  ì•”ì„ íƒœê·¸ ë§¤í•‘
     private Dictionary<string, string> toolToTargetTag = new Dictionary<string, string>
     {
         { "hand_pick",      "Rock1" },
@@ -17,7 +17,7 @@ public class ToolContactTrigger : MonoBehaviour
     };
 
     private string targetTag;
-    private HashSet<Collider> triggeredColliders = new HashSet<Collider>(); //ÀÌ¹Ì µµ±¸¿Í »óÈ£ÀÛ¿ëÇÑ ¿ÀºêÁ§Æ®´Â ´õ »óÈ£ÀÛ¿ë ¸øÇÏ°Ô ÇÔ
+    private HashSet<Collider> triggeredColliders = new HashSet<Collider>(); //ì´ë¯¸ ë„êµ¬ì™€ ìƒí˜¸ì‘ìš©í•œ ì˜¤ë¸Œì íŠ¸ëŠ” ë” ìƒí˜¸ì‘ìš© ëª»í•˜ê²Œ í•¨
 
     private void Start()
     {
@@ -26,25 +26,26 @@ public class ToolContactTrigger : MonoBehaviour
         if (toolToTargetTag.TryGetValue(myTag, out string mappedTag))
         {
             targetTag = mappedTag;
-            Debug.Log($"[{name}] ³» ÅÂ±×: '{myTag}' ¡æ ¹İÀÀÇÒ ´ë»ó ÅÂ±×: '{targetTag}'");
+            Debug.Log($"[{name}] ë‚´ íƒœê·¸: '{myTag}' â†’ ë°˜ì‘í•  ëŒ€ìƒ íƒœê·¸: '{targetTag}'");
         }
         else
         {
-            Debug.LogWarning($"[{name}] '{myTag}' ÅÂ±×´Â ¸ÅÇÎµÇ¾î ÀÖÁö ¾Ê½À´Ï´Ù. Æ®¸®°Å ÀÛµ¿ ¾È ÇÔ.");
+            Debug.LogWarning($"[{name}] '{myTag}' íƒœê·¸ëŠ” ë§¤í•‘ë˜ì–´ ìˆì§€ ì•ŠìŠµë‹ˆë‹¤. íŠ¸ë¦¬ê±° ì‘ë™ ì•ˆ í•¨.");
             enabled = false;
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        return; //ì´ê±° ì¶”ê°€
         if (triggeredColliders.Contains(other)) return;
 
         if (other.CompareTag(targetTag))
         {
             triggeredColliders.Add(other);
-            Debug.Log($"[{name}] {targetTag} ÅÂ±×ÀÇ {other.name} °ú Ãæµ¹! ÀÌº¥Æ® ¹ß»ı!");
+            Debug.Log($"[{name}] {targetTag} íƒœê·¸ì˜ {other.name} ê³¼ ì¶©ëŒ! ì´ë²¤íŠ¸ ë°œìƒ!");
 
-            // TODO: ¿©±â¿¡ ½ÇÁ¦ ÀÌº¥Æ® (¿¹: ÆÄ±«, È¿°ú, Á¡¼ö µî)
+            // TODO: ì—¬ê¸°ì— ì‹¤ì œ ì´ë²¤íŠ¸ (ì˜ˆ: íŒŒê´´, íš¨ê³¼, ì ìˆ˜ ë“±)
         }
     }
 }

@@ -2,10 +2,12 @@
 
 public class HardRockModel : MonoBehaviour
 {
+    [SerializeField] private GameObject _dirtParticlePrefab;
+
     private int _hitCount;
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Test")
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Test"))
         {
             _hitCount++;
             if (_hitCount == 5)
@@ -16,8 +18,22 @@ public class HardRockModel : MonoBehaviour
         }
     }
 
+    //못 정?으로 닿았을 때 이거 호출
+    public void GetDamage()
+    {
+        _hitCount++;
+        if (_hitCount == 5)
+        {
+            CreateSoils();
+            Destroy(this.gameObject);
+        }
+    }
+
     private void CreateSoils()
     {
+        GameObject clone = Instantiate(_dirtParticlePrefab);
+        clone.transform.position = this.transform.position;
+
         int randomSoilCount = Random.Range(5, 20);
         for (int i = 0; i < randomSoilCount; i++)
         {

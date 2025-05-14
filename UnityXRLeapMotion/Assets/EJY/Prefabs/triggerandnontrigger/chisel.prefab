@@ -82,7 +82,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 2a354211d5cd73f44b59735b0df8a272, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 2a354211d5cd73f44b59735b0df8a272, type: 3}
       propertyPath: m_TagString
@@ -186,10 +186,10 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!65 &7574251667990833737
 BoxCollider:
