@@ -1,8 +1,8 @@
-ï»¿using UnityEngine;
+using UnityEngine;
 
 public class RightHandAttacher : MonoBehaviour
 {
-    [Header("ì˜¤ë¥¸ì† ê¸°ì¤€ íŠ¸ëœìŠ¤í¼")]
+    [Header("¿À¸¥¼Õ ±âÁØ Æ®·£½ºÆû")]
     public Transform palmCenter;
 
     public Transform thumbTip;
@@ -11,11 +11,11 @@ public class RightHandAttacher : MonoBehaviour
     public Transform ringTip;
     public Transform pinkyTip;
 
-    [Header("ì†Œí™˜í•  ë„êµ¬ í”„ë¦¬íŒ¹ UI")]
-    public ObjectSpawner spawner; // Inspectorì—ì„œ ì—°ê²°
+    [Header("¼ÒÈ¯ÇÒ µµ±¸ ÇÁ¸®ÆÕ UI")]
+    public ObjectSpawner spawner; // Inspector¿¡¼­ ¿¬°á
 
-    [Header("ì† ê¸°ì¤€ ì˜¤í”„ì…‹ ìœ„ì¹˜")]
-    public Vector3 toolOffset = new Vector3(0f, -0.03f, 0.0f); // ì† ì•„ë˜, ì•½ê°„ ì•ìœ¼ë¡œ
+    [Header("¼Õ ±âÁØ ¿ÀÇÁ¼Â À§Ä¡")]
+    public Vector3 toolOffset = new Vector3(0f, 0.03f, 0.0f); // ¼Õ ¾Æ·¡, ¾à°£ ¾ÕÀ¸·Î
 
     private GameObject currentTool;
     private bool wasFist = false;
@@ -46,12 +46,12 @@ public class RightHandAttacher : MonoBehaviour
         float d4 = Vector3.Distance(ringTip.position, palmCenter.position);
         float d5 = Vector3.Distance(pinkyTip.position, palmCenter.position);
 
-        //Debug.Log($"ê±°ë¦¬ thumb={d1}, index={d2}, middle={d3}, ring={d4}, pinky={d5}");
+        //Debug.Log($"°Å¸® thumb={d1}, index={d2}, middle={d3}, ring={d4}, pinky={d5}");
 
         return d1 < threshold && d2 < threshold && d3 < threshold && d4 < threshold && d5 < threshold;
     }
 
-    public void AttachToolToPalm()
+    private void AttachToolToPalm()
     {
         if (currentTool != null) return;
 
@@ -67,13 +67,9 @@ public class RightHandAttacher : MonoBehaviour
 
         
         currentTool.transform.SetParent(palmCenter);
-        //ë¬¼ë¦¬ê°’ íšŒì „ê°’ ì´ˆê¸°í™”
-        Rigidbody rigid = currentTool.GetComponent<Rigidbody>();
-        rigid.linearVelocity = Vector3.zero;
-        rigid.angularVelocity = Vector3.zero;
         
 
-        // íƒœê·¸ë³„ íšŒì „ê°’ ì„¤ì •
+        // ÅÂ±×º° È¸Àü°ª ¼³Á¤
         Quaternion rotation = Quaternion.identity;
 
         switch (currentTool.tag)
@@ -83,19 +79,21 @@ public class RightHandAttacher : MonoBehaviour
                 break;
             case "hand_shovel":
                 rotation = Quaternion.Euler(0, 0, 270);
-                toolOffset = new Vector3(-0.7f, -0.03f, 0f);
+                toolOffset = new Vector3(-0.35f, 0.03f, 0f);
                 break;
             case "margin_trowel":
                 rotation = Quaternion.Euler(0, 0, 90);
                 break;
             case "sm_brush":
                 rotation = Quaternion.Euler(90, 0, 90);
+                toolOffset = new Vector3(-0.05f, 0.03f, 0f);
                 break;
             case "trowel":
                 rotation = Quaternion.Euler(0, 0, 90);
                 break;
             case "hammer":
-                rotation = Quaternion.Euler(0, 0, 90);
+                rotation = Quaternion.Euler(90, 0, 0);
+                toolOffset = new Vector3(-0.25f, 0.03f, 0f);
                 break;
             default:
                 rotation = Quaternion.identity;
@@ -104,28 +102,28 @@ public class RightHandAttacher : MonoBehaviour
         currentTool.transform.localPosition = toolOffset;
         currentTool.transform.localRotation = rotation;
 
-        // ì¤‘ë ¥ ì œê±°
-        //Rigidbody rb = currentTool.GetComponent<Rigidbody>();
-        //if (rb != null)
-        //{
-        //    rb.isKinematic = true;
-        //}
-        toolOffset = new Vector3(0f, -0.03f, 0.0f);
+        // Áß·Â Á¦°Å
+        Rigidbody rb = currentTool.GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            rb.isKinematic = true;
+        }
+        toolOffset = new Vector3(0f, 0.03f, 0.0f);
     }
 
     private void DetachTool()
     {
         if (currentTool == null) return;
 
-        // ë¬¼ë¦¬ ë‹¤ì‹œ ì ìš©
-        //Rigidbody rb = currentTool.GetComponent<Rigidbody>();
-        //if (rb != null)
-        //{
-        //    rb.isKinematic = false;
-        //}
+        // ¹°¸® ´Ù½Ã Àû¿ë
+        Rigidbody rb = currentTool.GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            rb.isKinematic = false;
+        }
 
-        currentTool.transform.SetParent(null); // ë¶€ëª¨ ê´€ê³„ í•´ì œ
-        Debug.Log("ì†ì„ ë†“ìŒ");
+        currentTool.transform.SetParent(null); // ºÎ¸ğ °ü°è ÇØÁ¦
+        Debug.Log("¼ÕÀ» ³õÀ½");
         currentTool = null;
     }
 }
