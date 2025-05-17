@@ -15,7 +15,7 @@ public class RightHandAttacher : MonoBehaviour
     public ObjectSpawner spawner; // Inspector에서 연결
 
     [Header("손 기준 오프셋 위치")]
-    public Vector3 toolOffset = new Vector3(0f, -0.03f, 0.0f); // 손 아래, 약간 앞으로
+    public Vector3 toolOffset = new Vector3(0f, 0.03f, 0.0f); // 손 아래, 약간 앞으로
 
     private GameObject currentTool;
     private bool wasFist = false;
@@ -79,19 +79,21 @@ public class RightHandAttacher : MonoBehaviour
                 break;
             case "hand_shovel":
                 rotation = Quaternion.Euler(0, 0, 270);
-                toolOffset = new Vector3(-0.7f, -0.03f, 0f);
+                toolOffset = new Vector3(-0.35f, 0.03f, 0f);
                 break;
             case "margin_trowel":
                 rotation = Quaternion.Euler(0, 0, 90);
                 break;
             case "sm_brush":
                 rotation = Quaternion.Euler(90, 0, 90);
+                toolOffset = new Vector3(-0.05f, 0.03f, 0f);
                 break;
             case "trowel":
                 rotation = Quaternion.Euler(0, 0, 90);
                 break;
             case "hammer":
-                rotation = Quaternion.Euler(0, 0, 90);
+                rotation = Quaternion.Euler(90, 0, 0);
+                toolOffset = new Vector3(-0.25f, 0.03f, 0f);
                 break;
             default:
                 rotation = Quaternion.identity;
@@ -106,7 +108,7 @@ public class RightHandAttacher : MonoBehaviour
         {
             rb.isKinematic = true;
         }
-        toolOffset = new Vector3(0f, -0.03f, 0.0f);
+        toolOffset = new Vector3(0f, 0.03f, 0.0f);
     }
 
     private void DetachTool()

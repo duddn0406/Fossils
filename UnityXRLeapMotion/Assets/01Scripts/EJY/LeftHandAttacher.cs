@@ -74,8 +74,8 @@ public class LeftHandAttacher : MonoBehaviour
         switch (currentTool.tag)
         {
             case "chisel":
-                rotation = Quaternion.Euler(0, 0, 0);
-                toolOffset = new Vector3(0f, -0.02f, 0.06f);
+                rotation = Quaternion.Euler(0, 90, 90);
+                toolOffset = new Vector3(-0.07f, 0.04f, 0f);
                 break;
             default:
                 rotation = Quaternion.identity;
@@ -92,7 +92,7 @@ public class LeftHandAttacher : MonoBehaviour
         }
 
         // 오프셋 초기화
-        toolOffset = new Vector3(0f, -0.03f, 0f);
+        toolOffset = new Vector3(0f, 0.03f, 0f);
     }
 
     private void DetachTool()
