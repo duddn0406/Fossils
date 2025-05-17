@@ -45,6 +45,7 @@ public class ToolContactTrigger : MonoBehaviour
             triggeredColliders.Add(other);
             Debug.Log($"[{name}] {targetTag} 태그의 {other.name} 과 충돌! 이벤트 발생!");
 
+            
             // TODO: 여기에 실제 이벤트 (예: 파괴, 효과, 점수 등)
         }
     }

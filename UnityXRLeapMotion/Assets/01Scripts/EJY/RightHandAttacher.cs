@@ -51,7 +51,7 @@ public class RightHandAttacher : MonoBehaviour
         return d1 < threshold && d2 < threshold && d3 < threshold && d4 < threshold && d5 < threshold;
     }
 
-    private void AttachToolToPalm()
+    public void AttachToolToPalm()
     {
         if (currentTool != null) return;
 

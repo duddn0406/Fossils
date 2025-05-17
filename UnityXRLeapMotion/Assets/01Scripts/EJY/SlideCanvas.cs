@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class SlideCanvas : MonoBehaviour
 {
@@ -6,9 +6,9 @@ public class SlideCanvas : MonoBehaviour
     public Vector2 onScreenPos = new Vector2(0f, 0f);
     public Vector2 offScreenPos = new Vector2(-1000f, 0f);
     public float slideSpeed = 5f;
-    // °æ°è°ª
-    public float showThreshold = 0.3f;  // ¿À¸¥ÂÊ ÀÌµ¿: UI º¸ÀÓ
-    public float hideThreshold = -0.2f; // ¿ŞÂÊ ÀÌµ¿: UI ¼û±è
+    // ê²½ê³„ê°’
+    public float showThreshold = 0.3f;  // ì˜¤ë¥¸ìª½ ì´ë™: UI ë³´ì„
+    public float hideThreshold = -0.2f; // ì™¼ìª½ ì´ë™: UI ìˆ¨ê¹€
 
     public Transform handTrackPoint;
 
@@ -29,14 +29,14 @@ public class SlideCanvas : MonoBehaviour
         if (handTrackPoint == null)
             return;
 
-        //  ¼ÕÀÌ ¹ş¾î³µ´Ù°¡ ´Ù½Ã µé¾î¿Â °æ¿ì¸¦ ÀÚµ¿ Ã³¸®
-        if (!IsHandTracked()) // Æ®·¡Å· ¾È µÇ¸é ÃÊ±âÈ­ »óÅÂ·Î µÇµ¹¸²
+        //  ì†ì´ ë²—ì–´ë‚¬ë‹¤ê°€ ë‹¤ì‹œ ë“¤ì–´ì˜¨ ê²½ìš°ë¥¼ ìë™ ì²˜ë¦¬
+        if (!IsHandTracked()) // íŠ¸ë˜í‚¹ ì•ˆ ë˜ë©´ ì´ˆê¸°í™” ìƒíƒœë¡œ ë˜ëŒë¦¼
         {
             initialized = false;
             return;
         }
 
-        //  ¼ÕÀÌ »õ·Î ÀÎ½ÄµÈ °æ¿ì ¡æ ±âÁØ À§Ä¡ »õ·Î ¼³Á¤
+        //  ì†ì´ ìƒˆë¡œ ì¸ì‹ëœ ê²½ìš° â†’ ê¸°ì¤€ ìœ„ì¹˜ ìƒˆë¡œ ì„¤ì •
         if (!initialized)
         {
             initialHandPosition = handTrackPoint.position;
@@ -59,10 +59,10 @@ public class SlideCanvas : MonoBehaviour
         uiCanvas.anchoredPosition = Vector2.Lerp(uiCanvas.anchoredPosition, targetPos, Time.deltaTime * slideSpeed);
     }
 
-    //  Æ®·¡Å· »óÅÂ ÆÇº° ÇÔ¼ö
+    //  íŠ¸ë˜í‚¹ ìƒíƒœ íŒë³„ í•¨ìˆ˜
     private bool IsHandTracked()
     {
-        // °¡Àå °£´ÜÇÑ ¹æ½Ä: ¼ÕÀÇ À§Ä¡°¡ (0,0,0)ÀÌ ¾Æ´Ñ °æ¿ì Æ®·¡Å· ÁßÀÌ¶ó ÆÇ´Ü
+        // ê°€ì¥ ê°„ë‹¨í•œ ë°©ì‹: ì†ì˜ ìœ„ì¹˜ê°€ (0,0,0)ì´ ì•„ë‹Œ ê²½ìš° íŠ¸ë˜í‚¹ ì¤‘ì´ë¼ íŒë‹¨
         return handTrackPoint.position != Vector3.zero;
     }
 }
