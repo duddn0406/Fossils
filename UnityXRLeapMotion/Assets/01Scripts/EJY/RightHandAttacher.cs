@@ -79,7 +79,7 @@ public class RightHandAttacher : MonoBehaviour
                 break;
             case "hand_shovel":
                 rotation = Quaternion.Euler(0, 0, 270);
-                toolOffset = new Vector3(-0.35f, 0.03f, 0f);
+                toolOffset = new Vector3(-0.3f, 0.03f, 0f);
                 break;
             case "margin_trowel":
                 rotation = Quaternion.Euler(0, 0, 90);
@@ -92,8 +92,8 @@ public class RightHandAttacher : MonoBehaviour
                 rotation = Quaternion.Euler(0, 0, 90);
                 break;
             case "hammer":
-                rotation = Quaternion.Euler(90, 0, 0);
-                toolOffset = new Vector3(-0.25f, 0.03f, 0f);
+                rotation = Quaternion.Euler(0, 0, 0);
+                toolOffset = new Vector3(-0.15f, 0.03f, 0f);
                 break;
             default:
                 rotation = Quaternion.identity;
