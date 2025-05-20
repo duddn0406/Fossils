@@ -25,7 +25,15 @@ public class ContinentModel : MonoBehaviour
     {
         _startPos = transform.position;
         _startSize = transform.localScale;
-    }
+
+        // ✅ 지도가 올라간 만큼 _targetPos를 동적으로 설정 (1.402f 보정)
+        _targetPos = new Vector3(
+            transform.position.x,
+            transform.position.y,
+            transform.position.z   // 필요 시 카메라 방향으로 살짝 이동
+        );
+    
+}
 
     public async Task MoveToTargetAsync(Vector3 targetPos, Vector3 _targetSize, float duration)
     {
