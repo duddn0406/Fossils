@@ -12,7 +12,7 @@ public class BoneModel : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Test")
+        if(other.gameObject.layer == LayerMask.NameToLayer("Test"))
         {
             _hitCount++;
             if (_hitCount == 5)

@@ -1,68 +1,73 @@
 ﻿using UnityEngine;
+using Leap;
 
 public class SlideCanvas : MonoBehaviour
 {
-    public RectTransform uiCanvas;
+    public Transform uiCanvas;
     public Vector2 onScreenPos = new Vector2(0f, 0f);
     public Vector2 offScreenPos = new Vector2(-1000f, 0f);
     public float slideSpeed = 5f;
-    // 경계값
-    public float showThreshold = 0.3f;  // 오른쪽 이동: UI 보임
-    public float hideThreshold = -0.2f; // 왼쪽 이동: UI 숨김
 
-    public Transform handTrackPoint;
+    public float clapCooldown = 0.8f;
+    public float preClapMinDistance = 0.25f; // 박수 전 손 간 거리 조건
 
-    private Vector3 initialHandPosition;
-    private bool initialized = false;
+    private float lastClapTime = -10f;
     private bool isCanvasVisible = false;
+    private bool isReadyToClap = false;
 
-    private void Start()
+    private Controller controller;
+
+    void Start()
     {
+        controller = new Controller();
+
         if (uiCanvas != null)
         {
-            uiCanvas.anchoredPosition = offScreenPos;
+            uiCanvas.transform.position = offScreenPos;
         }
     }
 
     void Update()
     {
-        if (handTrackPoint == null)
-            return;
+        Frame frame = controller.Frame();
+        Hand leftHand = null;
+        Hand rightHand = null;
 
-        //  손이 벗어났다가 다시 들어온 경우를 자동 처리
-        if (!IsHandTracked()) // 트래킹 안 되면 초기화 상태로 되돌림
+        foreach (var hand in frame.Hands)
         {
-            initialized = false;
-            return;
+            if (hand.IsLeft) leftHand = hand;
+            if (hand.IsRight) rightHand = hand;
         }
 
-        //  손이 새로 인식된 경우 → 기준 위치 새로 설정
-        if (!initialized)
+        if (leftHand != null && rightHand != null)
         {
-            initialHandPosition = handTrackPoint.position;
-            initialized = true;
-        }
+            Vector3 leftPos = new Vector3(leftHand.PalmPosition.x, leftHand.PalmPosition.y, leftHand.PalmPosition.z);
+            Vector3 rightPos = new Vector3(rightHand.PalmPosition.x, rightHand.PalmPosition.y, rightHand.PalmPosition.z);
+            float distance = Vector3.Distance(leftPos, rightPos);
 
-        Vector3 currentHandPosition = handTrackPoint.position;
-        float handMovement = currentHandPosition.x - initialHandPosition.x;
+            Vector3 leftVel = new Vector3(leftHand.PalmVelocity.x, leftHand.PalmVelocity.y, leftHand.PalmVelocity.z);
+            Vector3 rightVel = new Vector3(rightHand.PalmVelocity.x, rightHand.PalmVelocity.y, rightHand.PalmVelocity.z);
+            Vector3 relativeVelocity = leftVel - rightVel;
 
-        if (handMovement > showThreshold && !isCanvasVisible)
-        {
-            isCanvasVisible = true;
-        }
-        else if (handMovement < hideThreshold && isCanvasVisible)
-        {
-            isCanvasVisible = false;
+            // 박수 준비 조건: 손이 충분히 떨어져 있을 때
+            if (distance > preClapMinDistance)
+            {
+                isReadyToClap = true;
+            }
+
+            // 박수 감지 조건
+            if (isReadyToClap &&
+                distance < 0.1f &&
+                Vector3.Dot(relativeVelocity, (leftPos - rightPos).normalized) < -0.5f &&
+                Time.time - lastClapTime > clapCooldown)
+            {
+                lastClapTime = Time.time;
+                isCanvasVisible = !isCanvasVisible;
+                isReadyToClap = false; // 박수 처리 후 초기화
+            }
         }
 
         Vector2 targetPos = isCanvasVisible ? onScreenPos : offScreenPos;
-        uiCanvas.anchoredPosition = Vector2.Lerp(uiCanvas.anchoredPosition, targetPos, Time.deltaTime * slideSpeed);
-    }
-
-    //  트래킹 상태 판별 함수
-    private bool IsHandTracked()
-    {
-        // 가장 간단한 방식: 손의 위치가 (0,0,0)이 아닌 경우 트래킹 중이라 판단
-        return handTrackPoint.position != Vector3.zero;
+        uiCanvas.transform.position = Vector2.Lerp(uiCanvas.transform.position, targetPos, Time.deltaTime * slideSpeed);
     }
 }
