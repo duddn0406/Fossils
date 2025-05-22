@@ -1,8 +1,8 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class LeftHandAttacher : MonoBehaviour
 {
-    [Header("¿Ş¼Õ ±âÁØ Æ®·£½ºÆû")]
+    [Header("ì™¼ì† ê¸°ì¤€ íŠ¸ëœìŠ¤í¼")]
     public Transform palmCenter;
 
     public Transform thumbTip;
@@ -11,10 +11,10 @@ public class LeftHandAttacher : MonoBehaviour
     public Transform ringTip;
     public Transform pinkyTip;
 
-    [Header("¼ÒÈ¯ÇÒ µµ±¸ ÇÁ¸®ÆÕ UI")]
-    public ObjectSpawner spawner; // Inspector¿¡¼­ ¿¬°á
+    [Header("ì†Œí™˜í•  ë„êµ¬ í”„ë¦¬íŒ¹ UI")]
+    public ObjectSpawner spawner; // Inspectorì—ì„œ ì—°ê²°
 
-    [Header("¼Õ ±âÁØ ¿ÀÇÁ¼Â À§Ä¡")]
+    [Header("ì† ê¸°ì¤€ ì˜¤í”„ì…‹ ìœ„ì¹˜")]
     public Vector3 toolOffset = new Vector3(0f, -0.03f, 0f);
 
     private GameObject currentTool;
@@ -54,7 +54,7 @@ public class LeftHandAttacher : MonoBehaviour
     {
         if (currentTool != null) return;
 
-        // chisel¸¸ ¿Ş¼Õ¿¡ ºÙÀÌµµ·Ï Á¦ÇÑ
+        // chiselë§Œ ì™¼ì†ì— ë¶™ì´ë„ë¡ ì œí•œ
         foreach (GameObject obj in spawner.GetCurrentSpawnedObjects())
         {
             if (obj != null && obj.tag == "chisel")
@@ -68,15 +68,15 @@ public class LeftHandAttacher : MonoBehaviour
 
         currentTool.transform.SetParent(palmCenter);
 
-        // ÅÂ±×º° È¸Àü°ª ¹× ¿ÀÇÁ¼Â
+        // íƒœê·¸ë³„ íšŒì „ê°’ ë° ì˜¤í”„ì…‹
         Quaternion rotation = Quaternion.identity;
 
         switch (currentTool.tag)
         {
-            case "chisel":
-                rotation = Quaternion.Euler(0, 90, 90);
-                toolOffset = new Vector3(-0.07f, 0.04f, 0f);
-                break;
+            //case "chisel":
+            //    rotation = Quaternion.Euler(0, 90, 90);
+            //    toolOffset = new Vector3(-0.07f, 0.04f, 0f);
+            //    break;
             default:
                 rotation = Quaternion.identity;
                 break;
@@ -91,7 +91,7 @@ public class LeftHandAttacher : MonoBehaviour
             rb.isKinematic = true;
         }
 
-        // ¿ÀÇÁ¼Â ÃÊ±âÈ­
+        // ì˜¤í”„ì…‹ ì´ˆê¸°í™”
         toolOffset = new Vector3(0f, 0.03f, 0f);
     }
 

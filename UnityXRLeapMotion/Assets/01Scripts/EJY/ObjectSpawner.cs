@@ -1,13 +1,13 @@
-using System.Collections.Generic;
+ï»¿using System.Collections.Generic;
 using UnityEngine;
 
 public class ObjectSpawner : MonoBehaviour
 {
-    [Header("¼ÒÈ¯ÇÒ ÇÁ¸®ÆÕ ¸®½ºÆ® (indexº°)")]
+    [Header("ì†Œí™˜í•  í”„ë¦¬íŒ¹ ë¦¬ìŠ¤íŠ¸ (indexë³„)")]
     public GameObject[] prefabList = new GameObject[7];
 
-    [Header("ÇÁ¸®ÆÕÀ» ¼ÒÈ¯ÇÒ À§Ä¡")]
-    public Transform spawnTarget; // Hierarchy¿¡ ÀÖ´Â ºó ¿ÀºêÁ§Æ® À§Ä¡
+    [Header("í”„ë¦¬íŒ¹ì„ ì†Œí™˜í•  ìœ„ì¹˜")]
+    public Transform spawnTarget; // Hierarchyì— ìˆëŠ” ë¹ˆ ì˜¤ë¸Œì íŠ¸ ìœ„ì¹˜
 
     private GameObject currentInstance;
     private List<GameObject> currentInstances = new List<GameObject>();
@@ -16,18 +16,18 @@ public class ObjectSpawner : MonoBehaviour
     {
         if (index < 0 || index >= prefabList.Length || prefabList[index] == null)
         {
-            Debug.LogWarning("Àß¸øµÈ ÇÁ¸®ÆÕ ÀÎµ¦½º ¶Ç´Â ¹Ìµî·ÏµÈ ÇÁ¸®ÆÕ!");
+            Debug.LogWarning("ì˜ëª»ëœ í”„ë¦¬íŒ¹ ì¸ë±ìŠ¤ ë˜ëŠ” ë¯¸ë“±ë¡ëœ í”„ë¦¬íŒ¹!");
             return;
         }
 
-        // ±âÁ¸ ¿ÀºêÁ§Æ® Á¦°Å
+        // ê¸°ì¡´ ì˜¤ë¸Œì íŠ¸ ì œê±°
         if (currentInstance != null)
         {
             Destroy(currentInstance);
             currentInstance = null;
         }
 
-        // ÀÌÀü ÀÎ½ºÅÏ½º ¸®½ºÆ® ÃÊ±âÈ­
+        // ì´ì „ ì¸ìŠ¤í„´ìŠ¤ ë¦¬ìŠ¤íŠ¸ ì´ˆê¸°í™”
         foreach (var obj in currentInstances)
         {
             if (obj != null)
@@ -35,41 +35,15 @@ public class ObjectSpawner : MonoBehaviour
         }
         currentInstances.Clear();
 
-        // index 5 ¡æ 6¹øÂ°¿Í 7¹øÂ° ÇÁ¸®ÆÕ µÑ ´Ù ¼ÒÈ¯
-        if (index == 5)
-        {
-            if (prefabList.Length < 7 || prefabList[5] == null || prefabList[6] == null)
-            {
-                Debug.LogWarning("6¹ø/7¹ø ÇÁ¸®ÆÕÀÌ ¾ø½À´Ï´Ù.");
-                return;
-            }
+        Quaternion rotation = Quaternion.Euler(0f, 90f, 90f);
+        GameObject obje = Instantiate(prefabList[index], spawnTarget.position, rotation);
+        currentInstance = obje;
+        currentInstances.Add(obje); // ë¦¬ìŠ¤íŠ¸ì— ì¶”ê°€!
 
-            // Ã¹ ¹øÂ° ÇÁ¸®ÆÕ ¼ÒÈ¯
-            GameObject first = Instantiate(prefabList[5], spawnTarget.position, Quaternion.Euler(0f, 90f, 90f));
-
-            // µÎ ¹øÂ° ÇÁ¸®ÆÕ ¼ÒÈ¯ (À§Ä¡ ¿ÀÇÁ¼Â)
-            Vector3 offsetPos = spawnTarget.position + new Vector3(0.1f, 0f, 0f); // xÃàÀ¸·Î 0.1m ¿·
-            GameObject second = Instantiate(prefabList[6], offsetPos, Quaternion.Euler(0f, 90f, 90f));
-
-            // Ã¹ ¹øÂ° °Í¸¸ currentInstance·Î °ü¸® (¿øÇÑ´Ù¸é ¸®½ºÆ®·Î °ü¸® °¡´É)
-            currentInstance = first;
-
-            // ¸®½ºÆ®¿¡ Ãß°¡!
-            currentInstances.Add(first);
-            currentInstances.Add(second);
-        }
-        else
-        {
-            Quaternion rotation = Quaternion.Euler(0f, 90f, 90f);
-            GameObject obj = Instantiate(prefabList[index], spawnTarget.position, rotation);
-            currentInstance = obj;
-            currentInstances.Add(obj); // ¸®½ºÆ®¿¡ Ãß°¡!
-        }
-
-        /*// È¸Àü ÁöÁ¤ (Y: 90µµ, Z: 90µµ)
+        /*// íšŒì „ ì§€ì • (Y: 90ë„, Z: 90ë„)
         Quaternion rotation = Quaternion.Euler(0f, 90f, 90f);
 
-        // »õ ÇÁ¸®ÆÕ ¼ÒÈ¯
+        // ìƒˆ í”„ë¦¬íŒ¹ ì†Œí™˜
         currentInstance = Instantiate(prefabList[index], spawnTarget.position, rotation);*/
     }
 

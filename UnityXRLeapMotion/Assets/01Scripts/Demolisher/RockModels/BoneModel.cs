@@ -3,11 +3,13 @@
 public class BoneModel : MonoBehaviour
 {
     [SerializeField] private int _hitCount;
-    [SerializeField] private Rigidbody _rigid;
+    private Rigidbody _rigid;
+    private MeshCollider _col;
 
     private void Awake()
     {
         _rigid = GetComponent<Rigidbody>();
+        _col = GetComponent<MeshCollider>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -19,7 +21,8 @@ public class BoneModel : MonoBehaviour
             {
                 Debug.Log("break");
                 _rigid.useGravity = true;
-                Destroy(this.gameObject);
+                _col.isTrigger = false;
+                //Destroy(this.gameObject);
             }
         }
     }

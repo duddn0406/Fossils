@@ -57,11 +57,12 @@ public class RightHandAttacher : MonoBehaviour
 
         foreach (GameObject obj in spawner.GetCurrentSpawnedObjects())
         {
-            if (obj != null && obj.tag != "chisel")
-            {
-                currentTool = obj;
-                break;
-            }
+            currentTool = obj;
+            //if (obj != null && obj.tag != "chisel")
+            //{
+            //    currentTool = obj;
+            //    break;
+            //}
         }
         if (currentTool == null) return;
 
@@ -94,6 +95,10 @@ public class RightHandAttacher : MonoBehaviour
             case "hammer":
                 rotation = Quaternion.Euler(90, 0, 0);
                 toolOffset = new Vector3(-0.25f, 0.03f, 0f);
+                break;
+            case "chisel":
+                rotation = Quaternion.Euler(0, 90, 90);
+                toolOffset = new Vector3(-0.07f, 0.04f, 0f);
                 break;
             default:
                 rotation = Quaternion.identity;
