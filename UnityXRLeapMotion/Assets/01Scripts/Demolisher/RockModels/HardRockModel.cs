@@ -52,11 +52,11 @@ public class HardRockModel : MonoBehaviour
         for (int i = 0; i < randomSoilCount; i++)
         {
             float randomScale = Random.Range(0.003f, 0.008f);
-            Vector3 randomPos = new Vector3(Random.Range(0.001f, 0.003f), Random.Range(0.001f, 0.003f), Random.Range(0.001f, 0.003f));
+            Vector3 randomPos = this.transform.position + new Vector3(Random.Range(-0.003f, 0.003f), Random.Range(-0.003f, 0.003f), Random.Range(-0.003f, 0.003f));
 
             GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
 
-            sphere.transform.position = this.transform.position;
+            sphere.transform.position = randomPos;
             sphere.transform.localScale = new Vector3(randomScale, randomScale, randomScale);
             var rend = sphere.GetComponent<Renderer>();
             rend.material = new Material(rend.material);

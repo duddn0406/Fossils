@@ -57,18 +57,17 @@ public class RightHandAttacher : MonoBehaviour
 
         foreach (GameObject obj in spawner.GetCurrentSpawnedObjects())
         {
-            currentTool = obj;
-            //if (obj != null && obj.tag != "chisel")
-            //{
-            //    currentTool = obj;
-            //    break;
-            //}
+            if (obj != null && obj.tag != "hammer")
+            {
+                currentTool = obj;
+                break;
+            }
         }
         if (currentTool == null) return;
 
-        
+
         currentTool.transform.SetParent(palmCenter);
-        
+
 
         // 태그별 회전값 설정
         Quaternion rotation = Quaternion.identity;
@@ -76,25 +75,22 @@ public class RightHandAttacher : MonoBehaviour
         switch (currentTool.tag)
         {
             case "hand_pick":
-                rotation = Quaternion.Euler(-90, 0, 90);
+                rotation = Quaternion.Euler(0, 0, 90);
                 break;
             case "hand_shovel":
                 rotation = Quaternion.Euler(0, 0, 270);
-                toolOffset = new Vector3(-0.35f, 0.03f, 0f);
+                toolOffset = new Vector3(-0.3f, 0.03f, 0f);
                 break;
             case "margin_trowel":
                 rotation = Quaternion.Euler(0, 0, 90);
                 break;
             case "sm_brush":
-                rotation = Quaternion.Euler(90, 0, 90);
-                toolOffset = new Vector3(-0.05f, 0.03f, 0f);
+                rotation = Quaternion.Euler(0, 0, 0);
+                toolOffset = new Vector3(-0.08f, -0.03f, -0.04f);
                 break;
             case "trowel":
-                rotation = Quaternion.Euler(0, 0, 90);
-                break;
-            case "hammer":
-                rotation = Quaternion.Euler(90, 0, 0);
-                toolOffset = new Vector3(-0.25f, 0.03f, 0f);
+                rotation = Quaternion.Euler(0, 0, 20);
+                toolOffset = new Vector3(-0.04f, -0.08f, -0.04f);
                 break;
             case "chisel":
                 rotation = Quaternion.Euler(0, 90, 90);
@@ -107,6 +103,11 @@ public class RightHandAttacher : MonoBehaviour
         currentTool.transform.localPosition = toolOffset;
         currentTool.transform.localRotation = rotation;
 
+        Rigidbody rigid = currentTool.GetComponent<Rigidbody>();
+        rigid.useGravity = false;
+        rigid.angularVelocity = Vector3.zero;
+        rigid.linearVelocity = Vector3.zero;
+
         toolOffset = new Vector3(0f, 0.03f, 0.0f);
     }
 
@@ -115,6 +116,7 @@ public class RightHandAttacher : MonoBehaviour
         if (currentTool == null) return;
 
         currentTool.transform.SetParent(null); // 부모 관계 해제
+        currentTool.GetComponent<Rigidbody>().useGravity = true;
         Debug.Log("손을 놓음");
         currentTool = null;
     }

@@ -11,13 +11,10 @@ public class DirtModel : MonoBehaviour
     {
         if (collision.gameObject.tag == "sm_brush") //붓
         {
-            Rigidbody rigid = GetComponent<Rigidbody>();
-            rigid.useGravity = true;
-            rigid.constraints = RigidbodyConstraints.None;
-            GetComponent<SphereCollider>().isTrigger = false;
-            this.gameObject.transform.parent = null;
+            GetDamage();
         }
-        else if(collision.gameObject.layer == LayerMask.NameToLayer("Bone"))
+
+        if(collision.gameObject.layer == LayerMask.NameToLayer("Bone"))
         {
             Rigidbody rigid = GetComponent<Rigidbody>();
             rigid.useGravity = false;
