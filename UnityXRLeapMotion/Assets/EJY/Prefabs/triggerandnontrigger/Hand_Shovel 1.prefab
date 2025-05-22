@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7188056358085814524}
   - component: {fileID: 1788065646067399744}
   - component: {fileID: 3395247420871457821}
-  m_Layer: 17
+  m_Layer: 0
   m_Name: TriggerZone
   m_TagString: hand_shovel
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2260749814272043731}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cc396400667faf54ea6abcfe49ef27e5, type: 3}
   m_Name: 
@@ -62,7 +62,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -136,7 +136,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 25154abe4dc19434392ce771212c787d, type: 3}
       propertyPath: m_Layer
-      value: 17
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 25154abe4dc19434392ce771212c787d, type: 3}
       propertyPath: m_TagString
@@ -194,7 +194,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 122
   m_CollisionDetection: 0
 --- !u!65 &326313214530281650
 BoxCollider:

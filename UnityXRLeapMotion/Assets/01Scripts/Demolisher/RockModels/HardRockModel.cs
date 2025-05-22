@@ -1,31 +1,45 @@
-﻿using UnityEngine;
+﻿using Unity.VisualScripting;
+using UnityEngine;
 
 public class HardRockModel : MonoBehaviour
 {
     [SerializeField] private GameObject _dirtParticlePrefab;
 
-    private int _hitCount;
+    private int _destroyHitCount;
+    private int _breakHitCount;
+
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Test"))
+        if (collision.gameObject.tag == "hand_pick"
+            || collision.gameObject.tag == "chisel")
         {
-            _hitCount++;
-            if (_hitCount == 5)
-            {
-                CreateSoils();
-                Destroy(this.gameObject);
-            }
+            GetDamage(collision.gameObject);
         }
     }
 
-    //못 정?으로 닿았을 때 이거 호출
-    public void GetDamage()
+    //못 정?으로 닿았을 때 이거 호출 아예 부술 때
+    public void GetDamage(GameObject collisionObject)
     {
-        _hitCount++;
-        if (_hitCount == 5)
+        if(collisionObject.tag == "hand_pick") //곡괭이
         {
-            CreateSoils();
-            Destroy(this.gameObject);
+            _breakHitCount++;
+            if(_breakHitCount ==5)
+            {
+                CreateSoils();
+                this.AddComponent<Rigidbody>();
+            }
+        }
+        else if(collisionObject.tag == "chisel") //끌
+        {
+            if(_breakHitCount > 4)
+            {
+                _destroyHitCount++;
+                if (_destroyHitCount == 5)
+                {
+                    CreateSoils();
+                    Destroy(this.gameObject);
+                }
+            }
         }
     }
 
@@ -38,18 +52,18 @@ public class HardRockModel : MonoBehaviour
         for (int i = 0; i < randomSoilCount; i++)
         {
             float randomScale = Random.Range(0.003f, 0.008f);
-            Vector3 randomPos = new Vector3(Random.Range(0.001f, 0.003f), Random.Range(0.001f, 0.003f), Random.Range(0.001f, 0.003f));
+            Vector3 randomPos = this.transform.position + new Vector3(Random.Range(-0.003f, 0.003f), Random.Range(-0.003f, 0.003f), Random.Range(-0.003f, 0.003f));
 
             GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
 
-            sphere.transform.position = this.transform.position;
+            sphere.transform.position = randomPos;
             sphere.transform.localScale = new Vector3(randomScale, randomScale, randomScale);
-
             var rend = sphere.GetComponent<Renderer>();
             rend.material = new Material(rend.material);
             rend.material.color = new Color(153f / 255f, 102f / 255f, 51f / 255f);
 
             sphere.AddComponent<Rigidbody>();
+            sphere.AddComponent<DirtModel>();
         }
     }
 }

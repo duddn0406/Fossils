@@ -1,8 +1,8 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class RightHandAttacher : MonoBehaviour
 {
-    [Header("¿À¸¥¼Õ ±âÁØ Æ®·£½ºÆû")]
+    [Header("ì˜¤ë¥¸ì† ê¸°ì¤€ íŠ¸ëœìŠ¤í¼")]
     public Transform palmCenter;
 
     public Transform thumbTip;
@@ -11,11 +11,11 @@ public class RightHandAttacher : MonoBehaviour
     public Transform ringTip;
     public Transform pinkyTip;
 
-    [Header("¼ÒÈ¯ÇÒ µµ±¸ ÇÁ¸®ÆÕ UI")]
-    public ObjectSpawner spawner; // Inspector¿¡¼­ ¿¬°á
+    [Header("ì†Œí™˜í•  ë„êµ¬ í”„ë¦¬íŒ¹ UI")]
+    public ObjectSpawner spawner; // Inspectorì—ì„œ ì—°ê²°
 
-    [Header("¼Õ ±âÁØ ¿ÀÇÁ¼Â À§Ä¡")]
-    public Vector3 toolOffset = new Vector3(0f, 0.03f, 0.0f); // ¼Õ ¾Æ·¡, ¾à°£ ¾ÕÀ¸·Î
+    [Header("ì† ê¸°ì¤€ ì˜¤í”„ì…‹ ìœ„ì¹˜")]
+    public Vector3 toolOffset = new Vector3(0f, 0.03f, 0.0f); // ì† ì•„ë˜, ì•½ê°„ ì•ìœ¼ë¡œ
 
     private GameObject currentTool;
     private bool wasFist = false;
@@ -46,7 +46,7 @@ public class RightHandAttacher : MonoBehaviour
         float d4 = Vector3.Distance(ringTip.position, palmCenter.position);
         float d5 = Vector3.Distance(pinkyTip.position, palmCenter.position);
 
-        //Debug.Log($"°Å¸® thumb={d1}, index={d2}, middle={d3}, ring={d4}, pinky={d5}");
+        //Debug.Log($"ê±°ë¦¬ thumb={d1}, index={d2}, middle={d3}, ring={d4}, pinky={d5}");
 
         return d1 < threshold && d2 < threshold && d3 < threshold && d4 < threshold && d5 < threshold;
     }
@@ -65,11 +65,11 @@ public class RightHandAttacher : MonoBehaviour
         }
         if (currentTool == null) return;
 
-        
-        currentTool.transform.SetParent(palmCenter);
-        
 
-        // ÅÂ±×º° È¸Àü°ª ¼³Á¤
+        currentTool.transform.SetParent(palmCenter);
+
+
+        // íƒœê·¸ë³„ íšŒì „ê°’ ì„¤ì •
         Quaternion rotation = Quaternion.identity;
 
         switch (currentTool.tag)
@@ -103,12 +103,11 @@ public class RightHandAttacher : MonoBehaviour
         currentTool.transform.localPosition = toolOffset;
         currentTool.transform.localRotation = rotation;
 
-        // Áß·Â Á¦°Å
-        Rigidbody rb = currentTool.GetComponent<Rigidbody>();
-        if (rb != null)
-        {
-            rb.isKinematic = true;
-        }
+        Rigidbody rigid = currentTool.GetComponent<Rigidbody>();
+        rigid.useGravity = false;
+        rigid.angularVelocity = Vector3.zero;
+        rigid.linearVelocity = Vector3.zero;
+
         toolOffset = new Vector3(0f, 0.03f, 0.0f);
     }
 
@@ -116,15 +115,9 @@ public class RightHandAttacher : MonoBehaviour
     {
         if (currentTool == null) return;
 
-        // ¹°¸® ´Ù½Ã Àû¿ë
-        Rigidbody rb = currentTool.GetComponent<Rigidbody>();
-        if (rb != null)
-        {
-            rb.isKinematic = false;
-        }
-
-        currentTool.transform.SetParent(null); // ºÎ¸ğ °ü°è ÇØÁ¦
-        Debug.Log("¼ÕÀ» ³õÀ½");
+        currentTool.transform.SetParent(null); // ë¶€ëª¨ ê´€ê³„ í•´ì œ
+        currentTool.GetComponent<Rigidbody>().useGravity = true;
+        Debug.Log("ì†ì„ ë†“ìŒ");
         currentTool = null;
     }
 }

@@ -1,18 +1,29 @@
-﻿using UnityEngine;
+﻿using Unity.VisualScripting;
+using UnityEngine;
 
 public class DirtModel : MonoBehaviour
 {
     private int _hitCount;
+
+    private bool _canAttach;
+
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Test"))
+        if (collision.gameObject.tag == "sm_brush") //붓
         {
-            _hitCount++;
-            if (_hitCount == 5)
-            {
-                //CreateSoils();
-                Destroy(this.gameObject);
-            }
+            GetDamage();
+        }
+
+        if(collision.gameObject.layer == LayerMask.NameToLayer("Bone"))
+        {
+            Rigidbody rigid = GetComponent<Rigidbody>();
+            rigid.useGravity = false;
+            rigid.constraints = RigidbodyConstraints.FreezeAll;
+            rigid.angularVelocity = Vector3.zero;
+            rigid.linearVelocity = Vector3.zero;
+            GetComponent<SphereCollider>().isTrigger = true;
+            this.gameObject.transform.parent = collision.transform;
+            //this.transform.position -= new Vector3(0, -0.05f, 0);
         }
     }
 

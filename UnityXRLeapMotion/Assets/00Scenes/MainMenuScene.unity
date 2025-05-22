@@ -3409,7 +3409,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4db3f70a4dd7dc4478c1ab0e6ce20f58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mainMenuSceneUI: {fileID: 0}
+  _mainMenuSceneUI: {fileID: 150507286}
   fingerTip: {fileID: 1430788204}
   selectableLayer:
     serializedVersion: 2

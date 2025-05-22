@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5258896040117347153}
   - component: {fileID: 2710814578088790689}
   - component: {fileID: 1753890488340862955}
-  m_Layer: 17
+  m_Layer: 0
   m_Name: TriggerZone
   m_TagString: chisel
   m_Icon: {fileID: 0}
@@ -48,12 +48,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.2, y: 0.88369846, z: 0.2}
+  m_Center: {x: 0, y: 0.095612496, z: 0}
 --- !u!114 &1753890488340862955
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61,7 +61,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7616748751137093187}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d249aceca74b2f64a8ae8b259e7ab36f, type: 3}
   m_Name: 
@@ -82,7 +82,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 2a354211d5cd73f44b59735b0df8a272, type: 3}
       propertyPath: m_Layer
-      value: 17
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 2a354211d5cd73f44b59735b0df8a272, type: 3}
       propertyPath: m_TagString
@@ -189,7 +189,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 122
   m_CollisionDetection: 0
 --- !u!65 &8088400021176015250
 BoxCollider:
@@ -210,5 +210,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.23225473, y: 2.4, z: 0.23225483}
-  m_Center: {x: 0.000000014901161, y: 0.8039184, z: -0.000000026077032}
+  m_Size: {x: 0.23225473, y: 1.2068236, z: 0.1}
+  m_Center: {x: 0.000000018626451, y: 1.4005094, z: -0.000000027939677}
