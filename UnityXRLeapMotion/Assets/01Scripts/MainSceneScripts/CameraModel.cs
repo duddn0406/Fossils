@@ -13,8 +13,8 @@ public class CameraModel : MonoBehaviour
 
     void Awake()
     {
-        _startPos = transform.position;
-        _startRot = transform.rotation;
+        //_startPos = transform.position;
+        //_startRot = transform.rotation;
     }
 
     public async Task MoveToTargetAsync(Vector3 targetPos, Quaternion targetRot, float duration)

@@ -119,8 +119,9 @@ public class ObjectSelector : MonoBehaviour
                 fadeOutTasks[i++] = model.FadeInAndOutAsync(false, 0.5f);
         }
 
+        var targetContinentPosition = continentModel.transform.position;
         var camTask = cameraModel.MoveToTargetAsync(
-            new Vector3(0, 0.7f, 0),
+             new Vector3(targetContinentPosition.x, 2.102f, targetContinentPosition.z),
             Quaternion.Euler(90f, 0f, 0f),
             1f
         );
