@@ -57,7 +57,7 @@ public class RightHandAttacher : MonoBehaviour
 
         foreach (GameObject obj in spawner.GetCurrentSpawnedObjects())
         {
-            if (obj != null && obj.tag != "chisel")
+            if (obj != null && obj.tag != "hammer")
             {
                 currentTool = obj;
                 break;
@@ -75,7 +75,7 @@ public class RightHandAttacher : MonoBehaviour
         switch (currentTool.tag)
         {
             case "hand_pick":
-                rotation = Quaternion.Euler(-90, 0, 90);
+                rotation = Quaternion.Euler(0, 0, 90);
                 break;
             case "hand_shovel":
                 rotation = Quaternion.Euler(0, 0, 270);
@@ -85,15 +85,16 @@ public class RightHandAttacher : MonoBehaviour
                 rotation = Quaternion.Euler(0, 0, 90);
                 break;
             case "sm_brush":
-                rotation = Quaternion.Euler(90, 0, 90);
-                toolOffset = new Vector3(-0.05f, 0.03f, 0f);
+                rotation = Quaternion.Euler(0, 0, 0);
+                toolOffset = new Vector3(-0.08f, -0.03f, -0.04f);
                 break;
             case "trowel":
-                rotation = Quaternion.Euler(0, 0, 90);
+                rotation = Quaternion.Euler(0, 0, 20);
+                toolOffset = new Vector3(-0.04f, -0.08f, -0.04f);
                 break;
-            case "hammer":
-                rotation = Quaternion.Euler(0, 0, 0);
-                toolOffset = new Vector3(-0.15f, 0.03f, 0f);
+            case "chisel":
+                rotation = Quaternion.Euler(0, 90, 90);
+                toolOffset = new Vector3(-0.07f, 0.04f, 0f);
                 break;
             default:
                 rotation = Quaternion.identity;

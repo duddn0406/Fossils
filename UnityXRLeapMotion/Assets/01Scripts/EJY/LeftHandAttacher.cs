@@ -57,7 +57,7 @@ public class LeftHandAttacher : MonoBehaviour
         // chisel만 왼손에 붙이도록 제한
         foreach (GameObject obj in spawner.GetCurrentSpawnedObjects())
         {
-            if (obj != null && obj.tag == "chisel")
+            if (obj != null && obj.tag == "hammer")
             {
                 currentTool = obj;
                 break;
@@ -73,9 +73,10 @@ public class LeftHandAttacher : MonoBehaviour
 
         switch (currentTool.tag)
         {
-            case "chisel":
-                rotation = Quaternion.Euler(0, 90, 90);
-                toolOffset = new Vector3(-0.07f, 0.04f, 0f);
+            
+            case "hammer":
+                rotation = Quaternion.Euler(0, 0, 0);
+                toolOffset = new Vector3(-0.15f, 0.03f, 0f);
                 break;
             default:
                 rotation = Quaternion.identity;
