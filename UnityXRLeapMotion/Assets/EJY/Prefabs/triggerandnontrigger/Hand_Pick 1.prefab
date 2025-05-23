@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7910882650497722411}
   - component: {fileID: 8377013487146104752}
-  - component: {fileID: 4529832694404887509}
   m_Layer: 0
   m_Name: TriggerZone
   m_TagString: hand_pick
@@ -54,18 +53,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.1807887, y: 0.44484508, z: 0.10984274}
   m_Center: {x: 0.0026002314, y: -0.27758178, z: 0.0009341724}
---- !u!114 &4529832694404887509
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8056717606572229059}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc396400667faf54ea6abcfe49ef27e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &2036564609928094455
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -155,9 +142,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0efa0621a938d409d9f6bb20345685bf, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4473826385173212421}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0efa0621a938d409d9f6bb20345685bf, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4411409983483014532}
   m_SourcePrefab: {fileID: 100100000, guid: 0efa0621a938d409d9f6bb20345685bf, type: 3}
 --- !u!1 &1189580773245083558 stripped
 GameObject:
@@ -212,18 +196,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.0428335, y: 0.016263098, z: 0.28585553}
   m_Center: {x: -0.000021211803, y: 0.35342807, z: -0.0062943697}
---- !u!114 &4411409983483014532
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1189580773245083558}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc396400667faf54ea6abcfe49ef27e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &2002392941961151772 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0efa0621a938d409d9f6bb20345685bf, type: 3}

@@ -54,7 +54,7 @@ public class RightHandAttacher : MonoBehaviour
     private void AttachToolToPalm()
     {
         if (currentTool != null) return;
-
+        
         foreach (GameObject obj in spawner.GetCurrentSpawnedObjects())
         {
             if (obj != null && obj.tag != "hammer")
@@ -111,7 +111,20 @@ public class RightHandAttacher : MonoBehaviour
         toolOffset = new Vector3(0f, 0.03f, 0.0f);
     }
 
-    private void DetachTool()
+    public void AttackTool()
+    {
+        foreach (GameObject obj in spawner.GetCurrentSpawnedObjects())
+        {
+            if (obj != null && obj.tag != "hammer")
+            {
+                currentTool = obj;
+                break;
+            }
+        }
+        if (currentTool == null) return;
+    }
+
+    public void DetachTool()
     {
         if (currentTool == null) return;
 

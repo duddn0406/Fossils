@@ -1,5 +1,6 @@
 ﻿using Unity.VisualScripting;
 using UnityEngine;
+using System;
 
 public class HardRockModel : MonoBehaviour
 {
@@ -7,6 +8,8 @@ public class HardRockModel : MonoBehaviour
 
     private int _destroyHitCount;
     private int _breakHitCount;
+
+    public event Action OnRockDestroyed;
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -26,6 +29,7 @@ public class HardRockModel : MonoBehaviour
             if(_breakHitCount ==5)
             {
                 CreateSoils();
+                OnRockDestroyed?.Invoke();
                 this.AddComponent<Rigidbody>();
             }
         }
@@ -48,11 +52,11 @@ public class HardRockModel : MonoBehaviour
         GameObject clone = Instantiate(_dirtParticlePrefab);
         clone.transform.position = this.transform.position;
 
-        int randomSoilCount = Random.Range(5, 20);
+        int randomSoilCount = UnityEngine.Random.Range(5, 20);
         for (int i = 0; i < randomSoilCount; i++)
         {
-            float randomScale = Random.Range(0.003f, 0.008f);
-            Vector3 randomPos = this.transform.position + new Vector3(Random.Range(-0.003f, 0.003f), Random.Range(-0.003f, 0.003f), Random.Range(-0.003f, 0.003f));
+            float randomScale = UnityEngine.Random.Range(0.003f, 0.008f);
+            Vector3 randomPos = this.transform.position + new Vector3(UnityEngine.Random.Range(-0.003f, 0.003f), UnityEngine.Random.Range(-0.003f, 0.003f), UnityEngine.Random.Range(-0.003f, 0.003f));
 
             GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
 

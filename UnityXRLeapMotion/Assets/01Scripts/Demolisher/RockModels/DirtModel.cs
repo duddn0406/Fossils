@@ -7,7 +7,7 @@ public class DirtModel : MonoBehaviour
 
     private bool _canAttach;
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.tag == "sm_brush") //붓
         {

@@ -1,11 +1,14 @@
 ﻿using Unity.VisualScripting;
 using UnityEngine;
+using System;
 
 public class BoneModel : MonoBehaviour
 {
     [SerializeField] private int _health;
     private Rigidbody _rigid;
     private MeshCollider _col;
+
+    public event Action OnBoneDestroyed;
 
     private void Awake()
     {
@@ -25,6 +28,7 @@ public class BoneModel : MonoBehaviour
                 Debug.Log("break");
                 _rigid.useGravity = true;
                 _col.isTrigger = false;
+                OnBoneDestroyed?.Invoke();
                 //Destroy(this.gameObject);
             }
         }
