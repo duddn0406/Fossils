@@ -9,7 +9,7 @@ public class HardRockModel : MonoBehaviour
     private int _destroyHitCount;
     private int _breakHitCount;
 
-    public event Action OnRockDestroyed;
+    public event Action<int> OnRockDestroyed;
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -29,7 +29,7 @@ public class HardRockModel : MonoBehaviour
             if(_breakHitCount ==5)
             {
                 CreateSoils();
-                OnRockDestroyed?.Invoke();
+                OnRockDestroyed?.Invoke(-1);
                 this.AddComponent<Rigidbody>();
             }
         }

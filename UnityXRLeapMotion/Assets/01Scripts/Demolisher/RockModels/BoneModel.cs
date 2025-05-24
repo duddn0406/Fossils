@@ -8,7 +8,7 @@ public class BoneModel : MonoBehaviour
     private Rigidbody _rigid;
     private MeshCollider _col;
 
-    public event Action OnBoneDestroyed;
+    public event Action<int> OnBoneDestroyed;
 
     private void Awake()
     {
@@ -28,7 +28,7 @@ public class BoneModel : MonoBehaviour
                 Debug.Log("break");
                 _rigid.useGravity = true;
                 _col.isTrigger = false;
-                OnBoneDestroyed?.Invoke();
+                OnBoneDestroyed?.Invoke(-1);
                 //Destroy(this.gameObject);
             }
         }
