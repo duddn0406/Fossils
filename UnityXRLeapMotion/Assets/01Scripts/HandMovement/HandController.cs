@@ -34,7 +34,7 @@ public class HandController : MonoBehaviour
     void FixedUpdate()
     {
         _leftHandDetector.UpdateWithHand(_leapHandTracker.LeftHand, Time.fixedDeltaTime);
-        if (_leftHandDetector.IsVisible)
+        if (_leftHandDetector.IsVisible && _leftHandDetector.IsLeftFist(_leapHandTracker.LeftHand))
             _rightHandRotator.RotateWithHand(_leapHandTracker.RightHand, Time.fixedDeltaTime);
     }
 }

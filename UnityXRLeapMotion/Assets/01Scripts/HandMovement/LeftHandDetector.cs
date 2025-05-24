@@ -59,6 +59,20 @@ public class LeftHandDetector
         MoveCanvas(deltaTime);
     }
 
+    public bool IsLeftFist(Hand leftHand)
+    {
+        if (leftHand == null)
+            return false;
+
+        foreach (var finger in leftHand.fingers)
+        {
+            if (finger.IsExtended) return false; 
+        }
+
+        return leftHand.GrabStrength > 0.9f;
+        // 또는 return currentLeftHand.GrabStrength > 0.9f;
+    }
+
     private void MoveCanvas(float deltaTime)
     {
         Vector2 targetPos = isVisible ? onScreenPos : offScreenPos;
