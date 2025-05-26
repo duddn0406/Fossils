@@ -18,7 +18,8 @@ public class FossilView : ViewBase
     {
         BoneStateImage,
         RockStateImage,
-        FossilStateImage
+        DirtStateImage,
+        FossilStateImage,
     }
 
     private void Awake()

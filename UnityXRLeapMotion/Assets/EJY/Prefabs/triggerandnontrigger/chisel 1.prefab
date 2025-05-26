@@ -138,6 +138,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 100000, guid: 2a354211d5cd73f44b59735b0df8a272, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8088400021176015250}
+    - targetCorrespondingSourceObject: {fileID: 100000, guid: 2a354211d5cd73f44b59735b0df8a272, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -8807282286324446542}
   m_SourcePrefab: {fileID: 100100000, guid: 2a354211d5cd73f44b59735b0df8a272, type: 3}
 --- !u!4 &2074888791671835686 stripped
 Transform:
@@ -197,3 +200,21 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.23225473, y: 1.2068236, z: 0.1}
   m_Center: {x: 0.000000018626451, y: 1.4005094, z: -0.000000027939677}
+--- !u!114 &-8807282286324446542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2074888791672066054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74bd98b46a0deb942ab6bad72e5d760d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gripTarget: {fileID: 0}
+  gripOffset: {x: 0, y: 0, z: 0}
+  gripRotationOffset: {x: 0, y: 90, z: 90}
+  positionThreshold: 0.05
+  rotationThreshold: 10
+  returnSpeed: 5

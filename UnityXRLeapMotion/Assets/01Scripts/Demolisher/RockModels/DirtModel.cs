@@ -3,6 +3,15 @@ using UnityEngine;
 
 public class DirtModel : MonoBehaviour
 {
+    private void OnEnable()
+    {
+        FossilModel.instance.UpdateDirtCount(1);
+    }
+    private void OnDestroy()
+    {
+        FossilModel.instance.UpdateDirtCount(-2);
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "sm_brush") //붓
@@ -42,6 +51,7 @@ public class DirtModel : MonoBehaviour
             rigid.angularVelocity = Vector3.zero;
             rigid.linearVelocity = Vector3.zero;
             GetComponent<SphereCollider>().isTrigger = true;
+
             //this.gameObject.transform.parent = collision.transform;
             //this.transform.position -= new Vector3(0, -0.05f, 0);
         }

@@ -6,6 +6,7 @@ using System;
 
 public class FossilPresenter : MonoBehaviour
 {
+
     [SerializeField] private FossilView _view;
     [SerializeField] private FossilModel _model;
 
@@ -14,6 +15,7 @@ public class FossilPresenter : MonoBehaviour
         _model.OnBoneCountChanged += UpdateBoneCount;
         _model.OnBoneCountChanged += UpdateFossilState;
         _model.OnRockCountChanged += UpdateRockCount;
+        _model.OnDirtCountChanged += UpdateDirtCount;
     }
 
     public void UpdateBoneCount(int value)
@@ -28,6 +30,13 @@ public class FossilPresenter : MonoBehaviour
         Image image = _view.GetImage((int)FossilView.Images.RockStateImage);
         Debug.Log(value);
         image.fillAmount = value / (float)_model.RockSize;
+    }
+
+    public void UpdateDirtCount(int value)
+    {
+        Image image = _view.GetImage((int)FossilView.Images.DirtStateImage);
+        Debug.Log(value);
+        image.fillAmount = value / 1000.0f;
     }
 
     private void UpdateFossilState(int value)

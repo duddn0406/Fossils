@@ -1,20 +1,34 @@
 ﻿using UnityEngine;
 using System;
+using NUnit.Framework;
+using System.Collections.Generic;
 
 public class FossilModel : MonoBehaviour
 {
+    public static FossilModel instance;
+
     [SerializeField] private BoneModel[] _bones;
     [SerializeField] private HardRockModel[] _rocks;
 
     private int _boneCount = 0;
     private int _rockCount = 0;
+    private int _dirtCount = 0;
 
     public event Action<int> OnBoneCountChanged;
     public event Action<int> OnRockCountChanged;
+    public event Action<int> OnDirtCountChanged;
+
     public int BrokenBoneCount => _boneCount;
     public int BrokenRockCount => _rockCount;
+    public int DirtCount => _dirtCount;
+
     public int BoneSize => _bones.Length;
     public int RockSize => _rocks.Length;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     private void Start()
     {
@@ -41,5 +55,11 @@ public class FossilModel : MonoBehaviour
     {
         _rockCount = Mathf.Clamp(_rockCount + value, 0, _rocks.Length);
         OnRockCountChanged?.Invoke(_rockCount);
+    }
+
+    public void UpdateDirtCount(int value)
+    {
+        _dirtCount = Mathf.Clamp(_dirtCount + value, 0, 1000);
+        OnDirtCountChanged?.Invoke(_dirtCount);
     }
 }
