@@ -53,8 +53,10 @@ public class RightHandAttacher : MonoBehaviour
 
     private void AttachToolToPalm()
     {
+        toolOffset = new Vector3(0f, 0.03f, 0.0f);
+
         if (currentTool != null) return;
-        
+
         foreach (GameObject obj in spawner.GetCurrentSpawnedObjects())
         {
             if (obj != null && obj.tag != "hammer")
@@ -108,25 +110,25 @@ public class RightHandAttacher : MonoBehaviour
         rigid.angularVelocity = Vector3.zero;
         rigid.linearVelocity = Vector3.zero;
 
-        toolOffset = new Vector3(0f, 0.03f, 0.0f);
-    }
-
-    public void AttackTool()
-    {
-        foreach (GameObject obj in spawner.GetCurrentSpawnedObjects())
+        ToolReturnToGrip tracker = currentTool.GetComponent<ToolReturnToGrip>();
+        if (tracker != null)
         {
-            if (obj != null && obj.tag != "hammer")
-            {
-                currentTool = obj;
-                break;
-            }
+            tracker.gripTarget = palmCenter;
+            tracker.gripOffset = toolOffset; // 도구별 오프셋 전달
+            tracker.gripRotationOffset = rotation.eulerAngles; // 회전값도 전달 (선택 사항)
+            tracker.StartTracking();
         }
-        if (currentTool == null) return;
     }
 
     public void DetachTool()
     {
         if (currentTool == null) return;
+
+        ToolReturnToGrip tracker = currentTool.GetComponent<ToolReturnToGrip>();
+        if (tracker != null)
+        {
+            tracker.StopTracking();
+        }
 
         currentTool.transform.SetParent(null); // 부모 관계 해제
         currentTool.GetComponent<Rigidbody>().useGravity = true;

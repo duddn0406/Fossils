@@ -14,7 +14,8 @@ public class HardRockModel : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "hand_pick"
-            || collision.gameObject.tag == "chisel")
+            || collision.gameObject.tag == "chisel"
+            || collision.gameObject.tag == "trowel")
         {
             GetDamage(collision.gameObject);
         }
@@ -26,11 +27,17 @@ public class HardRockModel : MonoBehaviour
         if(collisionObject.tag == "hand_pick") //곡괭이
         {
             _breakHitCount++;
-            if(_breakHitCount ==5)
+            _destroyHitCount++;
+            if (_breakHitCount == 5)
             {
                 CreateSoils();
                 OnRockDestroyed?.Invoke(-1);
                 this.AddComponent<Rigidbody>();
+            }
+            if (_breakHitCount > 4 && _destroyHitCount == 5)
+            {
+                Destroy(this.gameObject);
+                CreateSoils();
             }
         }
         else if(collisionObject.tag == "chisel") //끌
@@ -40,9 +47,19 @@ public class HardRockModel : MonoBehaviour
                 _destroyHitCount++;
                 if (_destroyHitCount == 5)
                 {
-                    CreateSoils();
                     Destroy(this.gameObject);
+                    CreateSoils();     
                 }
+            }
+        }
+        else if(collisionObject.tag == "trowel") //모종삽
+        {
+            _breakHitCount++;
+            if(_breakHitCount ==5)
+            {
+                CreateSoils();
+                OnRockDestroyed?.Invoke(-1);
+                this.AddComponent<Rigidbody>();
             }
         }
     }

@@ -20,7 +20,7 @@ public class BoneModel : MonoBehaviour
     {
         if (other.gameObject.tag == "hand_pick" 
             || other.gameObject.tag == "chisel"
-            || other.gameObject.tag == "sm_brush")
+            || other.gameObject.tag == "trowel")
         {
             _health++;
             if (_health == 5)
@@ -43,11 +43,11 @@ public class BoneModel : MonoBehaviour
         }
         else if (collisionObject.tag == "chisel") //끌
         {
-            _health -= 3;
+            _health --;
         }
-        else if(collisionObject.tag == "sm_brush") //붓
+        else if(collisionObject.tag == "trowel") //모종삽
         {
-            _health--;
+            _health-=3;
         }
 
         if (_health < 0)
