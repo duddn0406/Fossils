@@ -32,10 +32,18 @@ public class ToolReturnToGrip : MonoBehaviour
         {
             transform.localPosition = Vector3.Lerp(currentLocalPos, gripOffset, Time.deltaTime * returnSpeed);
         }
+        else if (posDiff < 0.002f)
+        {
+            transform.localPosition = gripOffset;
+        }
 
         if (rotDiff > rotationThreshold)
         {
             transform.localRotation = Quaternion.Slerp(currentLocalRot, Quaternion.Euler(gripRotationOffset), Time.deltaTime * returnSpeed);
+        }
+        else if (rotDiff < 1f) // 거의 같은 경우만
+        {
+            transform.localRotation = Quaternion.Euler(gripRotationOffset);
         }
     }
 
