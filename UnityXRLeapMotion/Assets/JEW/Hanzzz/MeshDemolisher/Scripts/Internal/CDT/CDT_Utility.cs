@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,7 +26,6 @@ public partial class DelaunayTetrahedralization
         }
         return orientCache[p0];
     }
-
     private Sign InCircumsphere(int a, int b, int c, int d, int e)
     {
         return PointComputation.InCircumsphere(points[a], points[b], points[c], points[d], points[e]);
