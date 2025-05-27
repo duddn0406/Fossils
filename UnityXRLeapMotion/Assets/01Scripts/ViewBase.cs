@@ -12,7 +12,7 @@ public abstract class ViewBase : MonoBehaviour
         = new Dictionary<Type, Component[]>();
 
     protected void Bind<T>(Type type) where T : Component
-    { 
+    {
         string[] names = Enum.GetNames(type);
         Dictionary<string, int> nameMap = new Dictionary<string, int>();
         for (int i = 0; i < names.Length; i++)
@@ -28,6 +28,18 @@ public abstract class ViewBase : MonoBehaviour
                 components[idx] = found;
         }
     }
+
+    // ✅ 여기 추가됨
+    protected void BindTextMeshProUGUI(Type type)
+    {
+        Bind<TextMeshProUGUI>(type);
+    }
+
+    protected void BindImage(Type type)
+    {
+        Bind<Image>(type);
+    }
+
     public T Get<T>(int idx) where T : Component
     {
         if (_components.TryGetValue(typeof(T), out var components) == this
@@ -38,10 +50,11 @@ public abstract class ViewBase : MonoBehaviour
 
         return null;
     }
+
     public void SetTextText(int idx, string str)
     {
         Text text = GetText(idx);
-        if (text != null)      
+        if (text != null)
             text.text = str;
     }
 
@@ -51,18 +64,21 @@ public abstract class ViewBase : MonoBehaviour
         if (tmp != null)
             tmp.text = str;
     }
+
     public void SetImageSprite(int idx, Sprite sprite)
     {
         Image image = GetImage(idx);
         if (image != null)
             image.sprite = sprite;
     }
+
     public void AddButtonListener(int idx, UnityAction action)
     {
         Button button = GetButton(idx);
         if (button != null)
             button.onClick.AddListener(action);
     }
+
     public void SetTransformActive(int idx, bool isActive)
     {
         Transform transform = GetTransform(idx);
@@ -70,31 +86,36 @@ public abstract class ViewBase : MonoBehaviour
             transform.gameObject.SetActive(isActive);
     }
 
-
     public Text GetText(int idx)
     {
         return Get<Text>(idx);
     }
+
     public Button GetButton(int idx)
     {
         return Get<Button>(idx);
     }
+
     public Slider GetSlider(int idx)
     {
         return Get<Slider>(idx);
     }
+
     public Image GetImage(int idx)
     {
         return Get<Image>(idx);
     }
+
     public TextMeshProUGUI GetTmp(int idx)
     {
         return Get<TextMeshProUGUI>(idx);
     }
+
     public TMP_InputField GetTMPInputField(int idx)
     {
         return Get<TMP_InputField>(idx);
     }
+
     public Transform GetTransform(int idx)
     {
         return Get<Transform>(idx);

@@ -52,155 +52,158 @@ public class ObjectSelector : MonoBehaviour
                  Time.time - lastClapTime > clapCooldown) //박수칠 때
                 {
                     lastClapTime = Time.time;
-
-                    if(selectedPoint != null) //씬으로 넘어가며 정보 전달.
+                    if (selectedPoint != null)//씬으로 넘어가며 정보 전달.
                     {
-                        PointModel pointModel = selectedPoint.GetComponent<PointModel>();
-                        GameManager.instance.PointData = pointModel.PointData;
-                        SceneManager.LoadScene("00Scenes/GameScene");
+                        {
+                            PointModel pointModel = selectedPoint.GetComponent<PointModel>();
+                            GameManager.instance.PointData = pointModel.PointData;
+                            SceneManager.LoadScene("00Scenes/GameScene");
+                        }
+
+                    }
+                }
+
+                foreach (var hand in frame.Hands)
+                {
+                    if (hand.IsLeft && hand.GrabStrength > 0.8f && selectedContinent != null) //왼손 주먹 쥐었을 때
+                    {
+                        DeSelectPoint(); //핑 초기화 
+                        _ = ResetObjectAsync(); //대륙 초기화
+                        return;
+                    }
+                }
+
+                Ray ray = new Ray(fingerTip.position, fingerTip.right);
+                //Debug.DrawRay(fingerTip.position, ray.direction * 5f, Color.red);
+                if (Physics.Raycast(ray, out RaycastHit hit, 0.1f, selectableLayer))
+                {
+                    GameObject hitObject = hit.collider.gameObject;
+
+                    if (selectedContinent) //핑 선택
+                    {
+                        selectedPoint = hitObject;
+                        SelectPoint();
+                        _mainMenuSceneUI.ResetContinentView();
+                    }
+                    else //대륙 선택
+                    {
+                        _ = ResetObjectAsync();
+                        selectedContinent = hitObject;
+                        _ = SelectObjectAsync();
                     }
                 }
             }
+        }
+        async Task SelectObjectAsync()
+        {
+            if (selectedContinent == null) return;
 
-            foreach (var hand in frame.Hands)
+            isAnimating = true;
+
+            var continentModel = selectedContinent.transform.parent.GetComponent<ContinentModel>();
+            if (continentModel == null)
             {
-                if (hand.IsLeft && hand.GrabStrength > 0.8f && selectedContinent != null) //왼손 주먹 쥐었을 때
-                {
-                    DeSelectPoint(); //핑 초기화 
-                    _ = ResetObjectAsync(); //대륙 초기화
-                    return;
-                }
+                isAnimating = false;
+                return;
+            }
+            _mainMenuSceneUI.InitializeContinentView(continentModel.ContinentData);
+
+            selectedContinent.layer = 0;
+            var fadeOutTasks = new Task[ContinentObjects.Length - 1];
+            int i = 0;
+            foreach (GameObject continent in ContinentObjects)
+            {
+                if (continent == selectedContinent.transform.parent.gameObject) continue;
+
+                var model = continent.transform.GetComponent<ContinentModel>();
+                if (model != null)
+                    fadeOutTasks[i++] = model.FadeInAndOutAsync(false, 0.5f);
             }
 
-            Ray ray = new Ray(fingerTip.position, fingerTip.right);
-            //Debug.DrawRay(fingerTip.position, ray.direction * 5f, Color.red);
-            if (Physics.Raycast(ray, out RaycastHit hit, 0.1f, selectableLayer))
+            var targetContinentPosition = continentModel.transform.position;
+            var camTask = cameraModel.MoveToTargetAsync(
+                 new Vector3(targetContinentPosition.x, 2.102f, targetContinentPosition.z),
+                Quaternion.Euler(90f, 0f, 0f),
+                1f
+            );
+
+            var objTask = continentModel.MoveToTargetAsync(
+                continentModel.TargetPos,
+                continentModel.TargetSize,
+                0.5f
+            );
+
+            await Task.WhenAll(camTask, objTask, Task.WhenAll(fadeOutTasks));
+
+            isAnimating = false;
+        }
+
+        async Task ResetObjectAsync()
+        {
+            if (selectedContinent == null) return;
+
+            isAnimating = true;
+
+            var selectedModel = selectedContinent.transform.parent.GetComponent<ContinentModel>();
+            if (selectedModel == null)
             {
-                GameObject hitObject = hit.collider.gameObject;
-
-                if (selectedContinent) //핑 선택
-                {
-                    DeSelectPoint();
-                    selectedPoint = hitObject;
-                    SelectPoint();
-                }
-                else //대륙 선택
-                {
-                    _ = ResetObjectAsync();
-                    selectedContinent = hitObject;
-                    _ = SelectObjectAsync();
-                }
+                isAnimating = false;
+                return;
             }
-        }
-    }
-    async Task SelectObjectAsync()
-    {
-        if (selectedContinent == null) return;
 
-        isAnimating = true;
+            var fadeInTasks = new Task[ContinentObjects.Length - 1];
+            int i = 0;
+            foreach (GameObject continent in ContinentObjects)
+            {
+                if (continent == selectedContinent.transform.parent.gameObject) continue;
 
-        var continentModel = selectedContinent.transform.parent.GetComponent<ContinentModel>();
-        if (continentModel == null)
-        {
+                var model = continent.transform.GetComponent<ContinentModel>();
+                if (model != null)
+                    fadeInTasks[i++] = model.FadeInAndOutAsync(true, 0.5f);
+            }
+
+            var camReset = cameraModel.MoveToTargetAsync(
+                cameraModel.StartPos,
+                cameraModel.StartRot,
+                1f
+            );
+
+            var objReset = selectedModel.MoveToTargetAsync(
+                selectedModel.StartPos,
+                selectedModel.StartSize,
+                1f
+            );
+
+            await Task.WhenAll(camReset, objReset, Task.WhenAll(fadeInTasks));
+
+            _mainMenuSceneUI.ResetContinentView();
+
+            selectedContinent.layer = 15;
+
+            selectedContinent = null;
             isAnimating = false;
-            return;
         }
-        _mainMenuSceneUI.InitializeContinentView(continentModel.ContinentData);
 
-        selectedContinent.layer = 0;
-        var fadeOutTasks = new Task[ContinentObjects.Length - 1];
-        int i = 0;
-        foreach (GameObject continent in ContinentObjects)
+        void SelectPoint()
         {
-            if (continent == selectedContinent.transform.parent.gameObject) continue; 
+            if (selectedPoint == null) return;
+            SpriteRenderer sprite = selectedPoint.GetComponent<SpriteRenderer>();
+            sprite.color = Color.red;
 
-            var model = continent.transform.GetComponent<ContinentModel>();
-            if (model != null)
-                fadeOutTasks[i++] = model.FadeInAndOutAsync(false, 0.5f);
+            PointModel pointModel = selectedPoint.GetComponent<PointModel>();
+            //선택한 핑 ui활성화
+            _mainMenuSceneUI.InitializePointView(pointModel.PointData);
         }
-
-        var targetContinentPosition = continentModel.transform.position;
-        var camTask = cameraModel.MoveToTargetAsync(
-             new Vector3(targetContinentPosition.x, 2.102f, targetContinentPosition.z),
-            Quaternion.Euler(90f, 0f, 0f),
-            1f
-        );
-
-        var objTask = continentModel.MoveToTargetAsync(
-            continentModel.TargetPos,
-            continentModel.TargetSize,
-            0.5f
-        );
-
-        await Task.WhenAll(camTask, objTask, Task.WhenAll(fadeOutTasks));
-
-        isAnimating = false;
-    }
-
-    async Task ResetObjectAsync()
-    {
-        if (selectedContinent == null) return;
-
-        isAnimating = true;
-
-        var selectedModel = selectedContinent.transform.parent.GetComponent<ContinentModel>();
-        if (selectedModel == null)
+        void DeSelectPoint()
         {
-            isAnimating = false;
-            return;
+            if (selectedPoint == null) return;
+            SpriteRenderer sprite = selectedPoint.GetComponent<SpriteRenderer>();
+            sprite.color = Color.white;
+            selectedPoint = null;
+
+            //핑 UI 비활성화
+            _mainMenuSceneUI.ResetPointView();
         }
-
-        var fadeInTasks = new Task[ContinentObjects.Length - 1];
-        int i = 0;
-        foreach (GameObject continent in ContinentObjects)
-        {
-            if (continent == selectedContinent.transform.parent.gameObject) continue;
-
-            var model = continent.transform.GetComponent<ContinentModel>();
-            if (model != null)
-                fadeInTasks[i++] = model.FadeInAndOutAsync(true, 0.5f);
-        }
-
-        var camReset = cameraModel.MoveToTargetAsync(
-            cameraModel.StartPos,
-            cameraModel.StartRot,
-            1f
-        );
-
-        var objReset = selectedModel.MoveToTargetAsync(
-            selectedModel.StartPos,
-            selectedModel.StartSize,
-            1f
-        );
-
-        await Task.WhenAll(camReset, objReset, Task.WhenAll(fadeInTasks));
-
-        _mainMenuSceneUI.ResetContinentView();
-
-        selectedContinent.layer = 15;
-
-        selectedContinent = null;
-        isAnimating = false;
     }
 
-    void SelectPoint()
-    {
-        if (selectedPoint == null) return;
-        SpriteRenderer sprite = selectedPoint.GetComponent<SpriteRenderer>();
-        sprite.color = Color.red;
-
-        PointModel pointModel = selectedPoint.GetComponent<PointModel>();
-        //선택한 핑 ui활성화
-        _mainMenuSceneUI.InitializePointView(pointModel.PointData);
-    }
-    void DeSelectPoint()
-    {
-        if (selectedPoint == null) return;
-        SpriteRenderer sprite = selectedPoint.GetComponent<SpriteRenderer>();
-        sprite.color = Color.white;
-        selectedPoint = null;
-
-        //핑 UI 비활성화
-        _mainMenuSceneUI.ResetContinentView();
-    }
 }
