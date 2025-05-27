@@ -18,8 +18,8 @@ public class ResultUI : MonoBehaviour
         var gm = GameManager.instance;
 
         // UI에 반영
-        dinoImage.sprite = gm.DinoSprite;
-        dinoDescriptionText.text = gm.DinoDescription;
+        dinoImage.sprite = gm.PointData.ResultSprite;
+        dinoDescriptionText.text = gm.PointData.ResultDescription;
 
         // 상태에 따라 텍스트 또는 이미지 변경
         switch (gm.state)
