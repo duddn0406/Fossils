@@ -6,44 +6,51 @@ public class ToolReturnToGrip : MonoBehaviour
     public Vector3 gripOffset = Vector3.zero;
     public Vector3 gripRotationOffset = new Vector3(0, 90, 90); // 예시
 
-    public float positionThreshold = 0.05f; // 5cm
-    public float rotationThreshold = 10f;    // 10도
+    public float positionThreshold = 0.03f; // 3cm
+    public float rotationThreshold = 5f;    // 5도
 
     public float returnSpeed = 5f;
 
     private Vector3 targetPosition;
     private Quaternion targetRotation;
-
+    private Rigidbody rb;
     private bool isTracking = false;
 
-    void Update()
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
+
+    void FixedUpdate()
     {
         if (!isTracking || gripTarget == null) return;
 
-        // local 기준으로 복원 위치 계산
-        Vector3 currentLocalPos = transform.localPosition;
-        Quaternion currentLocalRot = transform.localRotation;
+        targetPosition = gripTarget.TransformPoint(gripOffset);
+        targetRotation = gripTarget.rotation * Quaternion.Euler(gripRotationOffset);
 
-        // 차이 계산
-        float posDiff = Vector3.Distance(currentLocalPos, gripOffset);
-        float rotDiff = Quaternion.Angle(currentLocalRot, Quaternion.Euler(gripRotationOffset));
+        // 위치: 손 방향으로 부드럽게 빨려오게 힘 적용
+        Vector3 direction = (targetPosition - rb.position);
+        float distance = direction.magnitude;
 
-        if (posDiff > positionThreshold)
+        // 도착 판단 후 고정 (너무 가까우면 흔들림 제거)
+        if (distance < 0.01f)
         {
-            transform.localPosition = Vector3.Lerp(currentLocalPos, gripOffset, Time.deltaTime * returnSpeed);
+            rb.linearVelocity = Vector3.zero;
+            rb.MovePosition(targetPosition);
         }
-        else if (posDiff < 0.002f)
+        else
         {
-            transform.localPosition = gripOffset;
+            float forceAmount = returnSpeed * rb.mass; // 힘 크기 조절 가능
+            rb.AddForce(direction.normalized * forceAmount, ForceMode.Force);
         }
 
-        if (rotDiff > rotationThreshold)
+        // 회전: 스무스하게 돌아오도록 회전력 적용
+        Quaternion deltaRotation = targetRotation * Quaternion.Inverse(rb.rotation);
+        deltaRotation.ToAngleAxis(out float angle, out Vector3 axis);
+        if (angle > 0.01f)
         {
-            transform.localRotation = Quaternion.Slerp(currentLocalRot, Quaternion.Euler(gripRotationOffset), Time.deltaTime * returnSpeed);
-        }
-        else if (rotDiff < 1f) // 거의 같은 경우만
-        {
-            transform.localRotation = Quaternion.Euler(gripRotationOffset);
+            float torqueAmount = returnSpeed * angle;
+            rb.AddTorque(axis * torqueAmount, ForceMode.Force);
         }
     }
 
@@ -52,6 +59,7 @@ public class ToolReturnToGrip : MonoBehaviour
         if (gripTarget == null) return;
 
         isTracking = true;
+        //rb.useGravity = false;
 
         // 기준 위치 = palmCenter 위치 + 오프셋
         targetPosition = gripTarget.position + gripTarget.rotation * gripOffset;
@@ -60,6 +68,9 @@ public class ToolReturnToGrip : MonoBehaviour
 
     public void StopTracking()
     {
+        //rb.useGravity = true;
         isTracking = false;
+        rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
     }
 }
