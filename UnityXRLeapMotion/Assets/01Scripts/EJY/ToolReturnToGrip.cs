@@ -1,13 +1,13 @@
-ï»¿using UnityEngine;
+using UnityEngine;
 
 public class ToolReturnToGrip : MonoBehaviour
 {
-    public Transform gripTarget; // ì†ì˜ palmCenter
+    public Transform gripTarget; // ¼ÕÀÇ palmCenter
     public Vector3 gripOffset = Vector3.zero;
-    public Vector3 gripRotationOffset = new Vector3(0, 90, 90); // ì˜ˆì‹œ
+    public Vector3 gripRotationOffset = new Vector3(0, 90, 90); // ¿¹½Ã
 
     public float positionThreshold = 0.05f; // 5cm
-    public float rotationThreshold = 10f;    // 10ë„
+    public float rotationThreshold = 10f;    // 10µµ
 
     public float returnSpeed = 5f;
 
@@ -20,11 +20,11 @@ public class ToolReturnToGrip : MonoBehaviour
     {
         if (!isTracking || gripTarget == null) return;
 
-        // local ê¸°ì¤€ìœ¼ë¡œ ë³µì› ìœ„ì¹˜ ê³„ì‚°
+        // local ±âÁØÀ¸·Î º¹¿ø À§Ä¡ °è»ê
         Vector3 currentLocalPos = transform.localPosition;
         Quaternion currentLocalRot = transform.localRotation;
 
-        // ì°¨ì´ ê³„ì‚°
+        // Â÷ÀÌ °è»ê
         float posDiff = Vector3.Distance(currentLocalPos, gripOffset);
         float rotDiff = Quaternion.Angle(currentLocalRot, Quaternion.Euler(gripRotationOffset));
 
@@ -41,7 +41,7 @@ public class ToolReturnToGrip : MonoBehaviour
         {
             transform.localRotation = Quaternion.Slerp(currentLocalRot, Quaternion.Euler(gripRotationOffset), Time.deltaTime * returnSpeed);
         }
-        else if (rotDiff < 1f) // ê±°ì˜ ê°™ì€ ê²½ìš°ë§Œ
+        else if (rotDiff < 1f) // °ÅÀÇ °°Àº °æ¿ì¸¸
         {
             transform.localRotation = Quaternion.Euler(gripRotationOffset);
         }
@@ -53,7 +53,7 @@ public class ToolReturnToGrip : MonoBehaviour
 
         isTracking = true;
 
-        // ê¸°ì¤€ ìœ„ì¹˜ = palmCenter ìœ„ì¹˜ + ì˜¤í”„ì…‹
+        // ±âÁØ À§Ä¡ = palmCenter À§Ä¡ + ¿ÀÇÁ¼Â
         targetPosition = gripTarget.position + gripTarget.rotation * gripOffset;
         targetRotation = gripTarget.rotation * Quaternion.Euler(gripRotationOffset);
     }
