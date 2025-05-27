@@ -14,26 +14,27 @@ public class HandController : MonoBehaviour
     public float showThreshold = 0.2f;
     public float hideThreshold = -0.1f;
 
-    private LeapHandTracker handTracker;
-    private RightHandRotator rotator;
-    private LeftHandDetector slider;
+    private LeapHandTracker _leapHandTracker;
+    private RightHandRotator _rightHandRotator;
+    private LeftHandDetector _leftHandDetector;
+    [SerializeField] private RightHandAttacher _rightHandAttacher;
 
     void Start()
     {
-        handTracker = new LeapHandTracker();
-        rotator = new RightHandRotator(targetObject, rotationSensitivity);
-        slider = new LeftHandDetector(uiCanvas, onScreenPos, offScreenPos, slideSpeed, showThreshold, hideThreshold);
+        _leapHandTracker = new LeapHandTracker();
+        _rightHandRotator = new RightHandRotator(targetObject, rotationSensitivity);
+        _leftHandDetector = new LeftHandDetector(uiCanvas, onScreenPos, offScreenPos, slideSpeed, showThreshold, hideThreshold);
     }
 
     private void Update()
     {
-        handTracker.Update();
+        _leapHandTracker.Update();
     }
 
     void FixedUpdate()
     {
-        slider.UpdateWithHand(handTracker.LeftHand, Time.fixedDeltaTime);
-        if (slider.IsVisible)
-            rotator.RotateWithHand(handTracker.RightHand, Time.fixedDeltaTime);
+        _leftHandDetector.UpdateWithHand(_leapHandTracker.LeftHand, Time.fixedDeltaTime);
+        if (_leftHandDetector.IsVisible && _leftHandDetector.IsLeftFist(_leapHandTracker.LeftHand))
+            _rightHandRotator.RotateWithHand(_leapHandTracker.RightHand, Time.fixedDeltaTime);
     }
 }

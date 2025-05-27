@@ -1,11 +1,14 @@
 ﻿using Unity.VisualScripting;
 using UnityEngine;
+using System;
 
 public class BoneModel : MonoBehaviour
 {
     [SerializeField] private int _health;
     private Rigidbody _rigid;
     private MeshCollider _col;
+
+    public event Action<int> OnBoneDestroyed;
 
     private void Awake()
     {
@@ -17,7 +20,7 @@ public class BoneModel : MonoBehaviour
     {
         if (other.gameObject.tag == "hand_pick" 
             || other.gameObject.tag == "chisel"
-            || other.gameObject.tag == "sm_brush")
+            || other.gameObject.tag == "trowel")
         {
             _health++;
             if (_health == 5)
@@ -25,6 +28,7 @@ public class BoneModel : MonoBehaviour
                 Debug.Log("break");
                 _rigid.useGravity = true;
                 _col.isTrigger = false;
+                OnBoneDestroyed?.Invoke(-1);
                 //Destroy(this.gameObject);
             }
         }
@@ -39,11 +43,11 @@ public class BoneModel : MonoBehaviour
         }
         else if (collisionObject.tag == "chisel") //끌
         {
-            _health -= 3;
+            _health --;
         }
-        else if(collisionObject.tag == "sm_brush") //붓
+        else if(collisionObject.tag == "trowel") //모종삽
         {
-            _health--;
+            _health-=3;
         }
 
         if (_health < 0)

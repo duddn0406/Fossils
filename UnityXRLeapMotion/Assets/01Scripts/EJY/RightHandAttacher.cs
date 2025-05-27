@@ -108,9 +108,8 @@ public class RightHandAttacher : MonoBehaviour
         Rigidbody rigid = currentTool.GetComponent<Rigidbody>();
         rigid.useGravity = false;
         rigid.angularVelocity = Vector3.zero;
-        rigid.linearVelocity = Vector3.zero;        
+        rigid.linearVelocity = Vector3.zero;
 
-        //추가 작성
         ToolReturnToGrip tracker = currentTool.GetComponent<ToolReturnToGrip>();
         if (tracker != null)
         {
@@ -119,11 +118,9 @@ public class RightHandAttacher : MonoBehaviour
             tracker.gripRotationOffset = rotation.eulerAngles; // 회전값도 전달 (선택 사항)
             tracker.StartTracking();
         }
-
-        
     }
 
-    private void DetachTool()
+    public void DetachTool()
     {
         if (currentTool == null) return;
 

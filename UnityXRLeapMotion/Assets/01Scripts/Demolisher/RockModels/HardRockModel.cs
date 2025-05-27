@@ -1,5 +1,6 @@
 ﻿using Unity.VisualScripting;
 using UnityEngine;
+using System;
 
 public class HardRockModel : MonoBehaviour
 {
@@ -8,10 +9,13 @@ public class HardRockModel : MonoBehaviour
     private int _destroyHitCount;
     private int _breakHitCount;
 
+    public event Action<int> OnRockDestroyed;
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "hand_pick"
-            || collision.gameObject.tag == "chisel")
+            || collision.gameObject.tag == "chisel"
+            || collision.gameObject.tag == "trowel")
         {
             GetDamage(collision.gameObject);
         }
@@ -23,10 +27,17 @@ public class HardRockModel : MonoBehaviour
         if(collisionObject.tag == "hand_pick") //곡괭이
         {
             _breakHitCount++;
-            if(_breakHitCount ==5)
+            _destroyHitCount++;
+            if (_breakHitCount == 5)
             {
                 CreateSoils();
+                OnRockDestroyed?.Invoke(-1);
                 this.AddComponent<Rigidbody>();
+            }
+            if (_breakHitCount > 4 && _destroyHitCount == 5)
+            {
+                Destroy(this.gameObject);
+                CreateSoils();
             }
         }
         else if(collisionObject.tag == "chisel") //끌
@@ -36,9 +47,19 @@ public class HardRockModel : MonoBehaviour
                 _destroyHitCount++;
                 if (_destroyHitCount == 5)
                 {
-                    CreateSoils();
                     Destroy(this.gameObject);
+                    CreateSoils();     
                 }
+            }
+        }
+        else if(collisionObject.tag == "trowel") //모종삽
+        {
+            _breakHitCount++;
+            if(_breakHitCount ==5)
+            {
+                CreateSoils();
+                OnRockDestroyed?.Invoke(-1);
+                this.AddComponent<Rigidbody>();
             }
         }
     }
@@ -48,11 +69,11 @@ public class HardRockModel : MonoBehaviour
         GameObject clone = Instantiate(_dirtParticlePrefab);
         clone.transform.position = this.transform.position;
 
-        int randomSoilCount = Random.Range(5, 20);
+        int randomSoilCount = UnityEngine.Random.Range(5, 20);
         for (int i = 0; i < randomSoilCount; i++)
         {
-            float randomScale = Random.Range(0.003f, 0.008f);
-            Vector3 randomPos = this.transform.position + new Vector3(Random.Range(-0.003f, 0.003f), Random.Range(-0.003f, 0.003f), Random.Range(-0.003f, 0.003f));
+            float randomScale = UnityEngine.Random.Range(0.003f, 0.008f);
+            Vector3 randomPos = this.transform.position + new Vector3(UnityEngine.Random.Range(-0.003f, 0.003f), UnityEngine.Random.Range(-0.003f, 0.003f), UnityEngine.Random.Range(-0.003f, 0.003f));
 
             GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
 
