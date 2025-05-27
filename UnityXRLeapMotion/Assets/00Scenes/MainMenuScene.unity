@@ -740,9 +740,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pointData:
-    _sprite: {fileID: 21300000, guid: 3107bdcac6601e24387c30cadae81ef0, type: 3}
+    _name: Stego
+    _sprite: {fileID: 21300000, guid: dcb240d57d6fb344fad92ea19ee248d0, type: 3}
     _description: "\uB4F1\uC5D0 \uD070 \uBF08\uD310\uACFC \uAF2C\uB9AC\uC5D0 \uBFB0\uC871\uD55C
-      \uAC00\uC2DC\uB97C \uAC00\uC9C4, \uB290\uAE0B\uD55C \uCD08\uC2DD \uACF5\uB8E1\uC774\uC5D0\uC694. "
+      \uAC00\uC2DC\uB97C \uAC00\uC9C4, \uB290\uAE0B\uD55C \uCD08\uC2DD \uACF5\uB8E1\uC774\uC5D0\uC694."
+    _resultSprite: {fileID: 21300000, guid: 3107bdcac6601e24387c30cadae81ef0, type: 3}
+    _resultDescription: "\uB4F1 \uC704\uC5D0 \uD070 \uD310\uC744 \uC904\uC9C0\uC5B4
+      \uB2EC\uACE0, \uAF2C\uB9AC\uC5D4 \uBFB0\uC871\uD55C \uAC00\uC2DC\uB97C \uAC00\uC9C4
+      \uCD08\uC2DD \uACF5\uB8E1\uC774\uC5D0\uC694.  \uACF5\uACA9\uBCF4\uB2E4\uB294
+      \uBC29\uC5B4\uB97C \uC798\uD558\uB294 \uACF5\uB8E1\uC73C\uB85C,  \uC801\uC774
+      \uB2E4\uAC00\uC624\uBA74 \uAF2C\uB9AC\uB97C \uD718\uB458\uB7EC \uC790\uC2E0\uC744
+      \uC9C0\uCF30\uB2F5\uB2C8\uB2E4.  \uBAB8\uC740 \uBB34\uAC70\uC6E0\uC9C0\uB9CC
+      \uD480\uC744 \uCC9C\uCC9C\uD788 \uB72F\uC5B4 \uBA39\uC73C\uBA70 \uD3C9\uD654\uB86D\uAC8C
+      \uC0B4\uC558\uC5B4\uC694. "
 --- !u!65 &133808061
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1187,8 +1197,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pointData:
+    _name: 
     _sprite: {fileID: 0}
-    _description: 99999999999999999999999999
+    _description: 
+    _resultSprite: {fileID: 0}
+    _resultDescription: 
 --- !u!1 &230310449
 GameObject:
   m_ObjectHideFlags: 0
@@ -1645,8 +1658,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pointData:
+    _name: 
     _sprite: {fileID: 0}
-    _description: 14141414141414
+    _description: 
+    _resultSprite: {fileID: 0}
+    _resultDescription: 
 --- !u!1 &288324582
 GameObject:
   m_ObjectHideFlags: 0
@@ -1793,10 +1809,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pointData:
+    _name: Tirano
     _sprite: {fileID: 21300000, guid: c6c80591d3523d3489d5ffd06168da0f, type: 3}
     _description: "\uB0A0\uCE74\uB85C\uC6B4 \uC774\uBE68\uACFC \uAC15\uD55C \uD131\uC744
       \uAC00\uC9C4 \uC911\uC0DD\uB300\uC758 \uAC00\uC7A5 \uBB34\uC11C\uC6B4 \uC721\uC2DD
-      \uACF5\uB8E1\uC774\uC5D0\uC694. "
+      \uACF5\uB8E1\uC774\uC5D0\uC694."
+    _resultSprite: {fileID: 21300000, guid: 65c329142d5dbd146a9ca03ca2823a40, type: 3}
+    _resultDescription: "\uD2F0\uB77C\uB178\uC0AC\uC6B0\uB8E8\uC2A4\uB294 \uACF5\uB8E1
+      \uC2DC\uB300\uC758 \uC655\uC774\uB77C\uACE0 \uBD88\uB824\uC694. \uCEE4\uB2E4\uB780
+      \uBAB8\uACFC \uAC15\uD55C \uB2E4\uB9AC, \uBB34\uC5C7\uBCF4\uB2E4\uB3C4 \uB0A0\uCE74\uB85C\uC6B4
+      \uC774\uBE68\uB85C \uB2E4\uB978 \uB3D9\uBB3C\uC744 \uC0AC\uB0E5\uD588\uC9C0\uC694.
+      \uC55E\uBC1C\uC740 \uC791\uC9C0\uB9CC, \uC785 \uD558\uB098\uB85C \uBB50\uB4E0
+      \uD560 \uC218 \uC788\uC5C8\uB358 \uBB34\uC2DC\uBB34\uC2DC\uD55C \uC0AC\uB0E5\uAFBC\uC774\uC5D0\uC694! "
 --- !u!1 &296352711
 GameObject:
   m_ObjectHideFlags: 0
@@ -1943,9 +1967,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pointData:
+    _name: Step
     _sprite: {fileID: 21300000, guid: 8392f4cc3bd57fd40b03d8eb311b887c, type: 3}
     _description: "\uACF5\uB8E1\uC774 \uAC78\uC5B4\uB2E4\uB2CC \uD754\uC801\uC774
       \uAD73\uC5B4\uC838 \uB0A8\uC740, \uC2DC\uAC04 \uC18D\uC758 \uBC1C\uAC78\uC74C\uC774\uC5D0\uC694. "
+    _resultSprite: {fileID: 0}
+    _resultDescription: 
 --- !u!1 &370430551
 GameObject:
   m_ObjectHideFlags: 0
@@ -2236,9 +2263,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pointData:
+    _name: Tri
     _sprite: {fileID: 21300000, guid: f363d607891d69840a3aa627b347f469, type: 3}
     _description: "\uC5BC\uAD74\uC5D0 \uC138 \uAC1C\uC758 \uBFD4\uACFC \uCEE4\uB2E4\uB780
       \uD504\uB9B4\uC744 \uAC00\uC9C4 \uC6A9\uAC10\uD55C \uCD08\uC2DD \uACF5\uB8E1\uC774\uC5D0\uC694. "
+    _resultSprite: {fileID: 21300000, guid: ec9c15181bff1e447aa2dd145f38e7c7, type: 3}
+    _resultDescription: "\uD2B8\uB9AC\uCF00\uB77C\uD1B1\uC2A4\uB294 \uC138 \uAC1C\uC758
+      \uBFD4\uB85C \uC790\uC2E0\uC744 \uC9C0\uD0A4\uB358 \uBFD4 \uACF5\uB8E1\uC774\uC5D0\uC694.
+      \uBA38\uB9AC\uC5D0 \uB2EC\uB9B0 \uCEE4\uB2E4\uB780 \uBF08 \uC7A5\uC2DD\uC740
+      \uBC29\uD328\uCC98\uB7FC \uC0DD\uACBC\uACE0, \uD2F0\uB77C\uB178\uC0AC\uC6B0\uB8E8\uC2A4\uAC00
+      \uB2E4\uAC00\uC640\uB3C4 \uBFD4\uC744 \uB4E4\uC774\uBC00\uBA70 \uC6A9\uAC10\uD558\uAC8C
+      \uB9DE\uC130\uB300\uC694! "
 --- !u!1 &422189435
 GameObject:
   m_ObjectHideFlags: 0
@@ -2385,8 +2420,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pointData:
+    _name: 
     _sprite: {fileID: 0}
-    _description: 15151515151515
+    _description: 
+    _resultSprite: {fileID: 0}
+    _resultDescription: 
 --- !u!1 &429638970
 GameObject:
   m_ObjectHideFlags: 0
@@ -3476,8 +3514,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pointData:
+    _name: 
     _sprite: {fileID: 0}
     _description: 
+    _resultSprite: {fileID: 0}
+    _resultDescription: 
   DinoSprite: {fileID: 0}
   DinoDescription: 
   state: 0
@@ -3847,7 +3888,6 @@ MonoBehaviour:
   - {fileID: 1735256930}
   - {fileID: 1832957623}
   - {fileID: 1761165352}
-  testMode: 1
 --- !u!1 &1010478667
 GameObject:
   m_ObjectHideFlags: 0
@@ -4126,8 +4166,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pointData:
+    _name: 
     _sprite: {fileID: 0}
-    _description: tententententen
+    _description: 
+    _resultSprite: {fileID: 0}
+    _resultDescription: 
 --- !u!1 &1225435109
 GameObject:
   m_ObjectHideFlags: 0
@@ -4274,9 +4317,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pointData:
+    _name: Kechar
     _sprite: {fileID: 21300000, guid: ed2355fb9b5abb34f90ea3ebfeb7c8e4, type: 3}
     _description: "\uB0A0\uAC1C\uB97C \uD3B4\uBA74 \uBC84\uC2A4\uBCF4\uB2E4\uB3C4
-      \uD070, \uD558\uB298\uC744 \uC9C0\uBC30\uD558\uB358 \uAC70\uB300\uD55C \uC775\uB8E1\uC774\uC5D0\uC694. "
+      \uD070, \uD558\uB298\uC744 \uC9C0\uBC30\uD558\uB358 \uAC70\uB300\uD55C \uC775\uB8E1\uC774\uC5D0\uC694."
+    _resultSprite: {fileID: 21300000, guid: 2e2912abe1fa2a144a2c1d71f9e564f5, type: 3}
+    _resultDescription: "\uCF00\uCC30\uCF54\uC544\uD2C0\uB8E8\uC2A4\uB294 \uD558\uB298\uC744
+      \uB0A0\uB358 \uAC00\uC7A5 \uD070 \uC0DD\uBB3C \uC911 \uD558\uB098\uC608\uC694.
+      \uB0A0\uAC1C\uB97C \uD65C\uC9DD \uD3B4\uBA74 10\uBBF8\uD130\uAC00 \uB118\uACE0,
+      \uAE34 \uBAA9\uC73C\uB85C \uBB3C\uACE0\uAE30\uB97C \uB09A\uC544\uCC58\uC5B4\uC694. "
 --- !u!1 &1229082630
 GameObject:
   m_ObjectHideFlags: 0
@@ -4423,10 +4472,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pointData:
+    _name: Ankillo
     _sprite: {fileID: 21300000, guid: 8bc19c354adceb8449e9b05466214497, type: 3}
     _description: "\uBAB8 \uC804\uCCB4\uB97C \uAC11\uC637\uCC98\uB7FC \uB36E\uC740
       \uBF08\uB85C \uBCF4\uD638\uD558\uBA70 \uAF2C\uB9AC\uC758 \uB9DD\uCE58\uB85C
-      \uC801\uC744 \uBB3C\uB9AC\uCE5C \uACF5\uB8E1\uC774\uC5D0\uC694."
+      \uC801\uC744 \uBB3C\uB9AC\uCE5C \uACF5\uB8E1\uC774\uC5D0\uC694. "
+    _resultSprite: {fileID: 21300000, guid: 988237d1860677646a4c8a0bf87615c5, type: 3}
+    _resultDescription: "\uC548\uD0AC\uB85C\uC0AC\uC6B0\uB8E8\uC2A4\uB294 \uB9C8\uCE58
+      \uC804\uCC28\uCC98\uB7FC \uB2E8\uB2E8\uD55C \uBAB8\uC744 \uAC00\uC9C4 \uACF5\uB8E1\uC774\uC5D0\uC694.
+      \uB4F1\uC5D0\uB294 \uB3CC\uCC98\uB7FC \uB2E8\uB2E8\uD55C \uAC11\uC637\uC774
+      \uB36E\uC5EC \uC788\uACE0, \uAF2C\uB9AC \uB05D\uC5D4 \uBB34\uC11C\uC6B4 \uB9DD\uCE58\uAC00
+      \uB2EC\uB824 \uC788\uC5B4\uC11C \uD2F0\uB77C\uB178\uC0AC\uC6B0\uB8E8\uC2A4\uAC00
+      \uC640\uB3C4 \uC27D\uAC8C \uACF5\uACA9\uD558\uC9C0 \uBABB\uD588\uB2F5\uB2C8\uB2E4! "
 --- !u!1 &1359737104
 GameObject:
   m_ObjectHideFlags: 0
@@ -5039,10 +5096,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pointData:
+    _name: Ammonite
     _sprite: {fileID: 21300000, guid: e934e1ce2ff8c3441a06720b041774ef, type: 3}
     _description: "\uB098\uC120\uD615 \uAECD\uB370\uAE30\uB97C \uAC00\uC9C4 \uACE0\uB300
       \uBC14\uB2F7\uC18D \uC0DD\uBB3C\uB85C, \uC624\uC9D5\uC5B4\uCC98\uB7FC \uCD09\uC218\uAC00
       \uC788\uC5C8\uC5B4\uC694."
+    _resultSprite: {fileID: 21300000, guid: 0a247271fc8ffc94ab617ab9c6fbc17a, type: 3}
+    _resultDescription: "\uC218\uCC9C\uB9CC \uB144 \uC804 \uBC14\uB2E4\uB97C \uD5E4\uC5C4\uCE58\uB358
+      \uC554\uBAA8\uB098\uC774\uD2B8\uB97C \uCC3E\uC544\uB0C8\uC5B4\uC694. \uC774
+      \uB098\uC120 \uBAA8\uC591 \uAECD\uB370\uAE30 \uC548\uC5D0 \uBAB8\uC744 \uC228\uAE30\uACE0,
+      \uC624\uC9D5\uC5B4\uB098 \uBB38\uC5B4\uCC98\uB7FC \uCD09\uC218\uB97C \uBED7\uC5B4
+      \uBA39\uC774\uB97C \uC7A1\uC558\uB2F5\uB2C8\uB2E4. \uC554\uBAA8\uB098\uC774\uD2B8\uB294
+      \uC9C0\uC9C8 \uC2DC\uB300\uB97C \uC54C\uB824\uC8FC\uB294 \u2018\uC2DC\uAC04\uC758
+      \uC5F4\uC1E0\u2019\uC774\uAE30\uB3C4 \uD574\uC694. "
 --- !u!1 &1636423145
 GameObject:
   m_ObjectHideFlags: 0
@@ -5242,9 +5308,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pointData:
+    _name: Bronto
     _sprite: {fileID: 21300000, guid: 5e91cb23ad3ff3042ba8739ddf798703, type: 3}
     _description: "\uAE30\uB2E4\uB780 \uBAA9\uC73C\uB85C \uB192\uC740 \uB098\uBB47\uC78E\uC744
       \uBA39\uB358, \uAC70\uB300\uD55C \uCD08\uC2DD \uACF5\uB8E1\uC774\uC5D0\uC694. "
+    _resultSprite: {fileID: 21300000, guid: bc3e80c51335ba84fa2f8eba96fe4c4b, type: 3}
+    _resultDescription: "\uBE0C\uB860\uD1A0\uC0AC\uC6B0\uB8E8\uC2A4\uB294 \uCEE4\uB2E4\uB780
+      \uBAB8\uACFC \uAE30\uB2E4\uB780 \uBAA9\uC744 \uAC00\uC9C4 \uCD08\uC2DD \uACF5\uB8E1\uC774\uC5D0\uC694.
+      \uCC9C\uCC9C\uD788 \uC6C0\uC9C1\uC774\uBA70 \uB098\uBB34 \uC704\uC5D0 \uC788\uB294
+      \uC78E\uC744 \uBA39\uACE0 \uC0B4\uC558\uC8E0. "
 --- !u!1 &1663098872
 GameObject:
   m_ObjectHideFlags: 0
@@ -6427,8 +6499,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pointData:
+    _name: 
     _sprite: {fileID: 0}
-    _description: 8888888888888888888
+    _description: 
+    _resultSprite: {fileID: 0}
+    _resultDescription: 
 --- !u!1 &1871266265
 GameObject:
   m_ObjectHideFlags: 0
@@ -6575,9 +6650,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pointData:
+    _name: trilobite
     _sprite: {fileID: 21300000, guid: 26c749863018bbc47b28405d45146b5e, type: 3}
     _description: "\uBC14\uB2E4 \uBC14\uB2E5\uC744 \uAE30\uC5B4\uB2E4\uB2C8\uBA70
-      \uC0B4\uC558\uB358 \uC624\uB798\uB41C \uACE0\uB300 \uC0DD\uBB3C\uC774\uC5D0\uC694. "
+      \uC0B4\uC558\uB358 \uC624\uB798\uB41C \uACE0\uB300 \uC0DD\uBB3C\uC774\uC5D0\uC694."
+    _resultSprite: {fileID: 21300000, guid: 7a3158e423e36624c8a33c5e41cc3f57, type: 3}
+    _resultDescription: "\uC0BC\uC5FD\uCDA9\uC740 \uACF5\uB8E1\uBCF4\uB2E4 \uD6E8\uC52C
+      \uC624\uB798\uC804\uC5D0 \uBC14\uB2E4\uC5D0 \uC0B4\uB358 \uC791\uC740 \uC0DD\uBB3C\uC774\uC5D0\uC694.
+      \uB531\uB531\uD55C \uB4F1\uAECD\uC9C8\uC744 \uAC00\uC9C4 \uBAA8\uC2B5\uC774
+      \uBC14\uD034\uBC8C\uB808\uCC98\uB7FC \uC0DD\uACBC\uC9C0\uB9CC, \uADF8\uAC74
+      \uC544\uC8FC \uC624\uB798\uC804 \uC9C0\uAD6C\uC5D0 \uC0B4\uC558\uB358 \uC0DD\uBA85\uCCB4\uC758
+      \uCCAB \uAC78\uC74C \uC911 \uD558\uB098\uC600\uB2F5\uB2C8\uB2E4! "
 --- !u!1 &1898572166
 GameObject:
   m_ObjectHideFlags: 0
@@ -7094,8 +7177,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pointData:
+    _name: 
     _sprite: {fileID: 0}
-    _description: 1313131313131313
+    _description: 
+    _resultSprite: {fileID: 0}
+    _resultDescription: 
 --- !u!114 &375312834250538
 MonoBehaviour:
   m_ObjectHideFlags: 0
