@@ -39,7 +39,7 @@ public class ContinentModel : MonoBehaviour
     {
         if (isMoveAnimating) return;
 
-        if (targetPos.Equals(_startPos))
+        if (duration == 1f)
         {
             DeActivatePoints();
         }
@@ -63,7 +63,7 @@ public class ContinentModel : MonoBehaviour
         transform.localScale = _targetSize;
 
         isMoveAnimating = false;
-        if (targetPos.Equals(_targetPos))
+        if (duration == 0.5f)
         {
             ActivatePoints();
         }

@@ -73,7 +73,7 @@ public class ObjectSelector : MonoBehaviour
             }
 
             Ray ray = new Ray(fingerTip.position, fingerTip.right);
-            Debug.DrawRay(fingerTip.position, ray.direction * 5f, Color.red);
+            //Debug.DrawRay(fingerTip.position, ray.direction * 5f, Color.red);
             if (Physics.Raycast(ray, out RaycastHit hit, 0.1f, selectableLayer))
             {
                 GameObject hitObject = hit.collider.gameObject;
