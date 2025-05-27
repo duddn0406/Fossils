@@ -7,10 +7,5 @@ public class GameManager : Singleton<GameManager>
 
     public PointData PointData { get => _pointData; set=>_pointData = value; }
 
-    public int state; //0상 //1중 //2하
-
-    public void setState(int value)
-    {
-        state = value;
-    }
+    public Sprite state; //0상 //1중 //2하
 }

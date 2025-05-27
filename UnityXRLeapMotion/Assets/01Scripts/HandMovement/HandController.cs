@@ -3,7 +3,7 @@
 public class HandController : MonoBehaviour
 {
     [Header("오른손 회전 대상")]
-    public Transform targetObject;
+    public Transform _targetObject;
     public float rotationSensitivity = 100f;
 
     [Header("왼손 UI 설정")]
@@ -17,24 +17,30 @@ public class HandController : MonoBehaviour
     private LeapHandTracker _leapHandTracker;
     private RightHandRotator _rightHandRotator;
     private LeftHandDetector _leftHandDetector;
-    [SerializeField] private RightHandAttacher _rightHandAttacher;
-
-    void Start()
-    {
-        _leapHandTracker = new LeapHandTracker();
-        _rightHandRotator = new RightHandRotator(targetObject, rotationSensitivity);
-        _leftHandDetector = new LeftHandDetector(uiCanvas, onScreenPos, offScreenPos, slideSpeed, showThreshold, hideThreshold);
-    }
 
     private void Update()
     {
-        _leapHandTracker.Update();
+        if(_targetObject != null)
+            _leapHandTracker.Update();
     }
 
     void FixedUpdate()
     {
-        _leftHandDetector.UpdateWithHand(_leapHandTracker.LeftHand, Time.fixedDeltaTime);
-        if (_leftHandDetector.IsVisible && _leftHandDetector.IsLeftFist(_leapHandTracker.LeftHand))
-            _rightHandRotator.RotateWithHand(_leapHandTracker.RightHand, Time.fixedDeltaTime);
+        if(_targetObject != null)
+        {
+            _leftHandDetector.UpdateWithHand(_leapHandTracker.LeftHand, Time.fixedDeltaTime);
+            if (_leftHandDetector.IsVisible && _leftHandDetector.IsLeftFist(_leapHandTracker.LeftHand))
+                _rightHandRotator.RotateWithHand(_leapHandTracker.RightHand, Time.fixedDeltaTime);
+        }
+    }
+
+    public void Initialize(GameObject targetObject)
+    {
+        _targetObject = targetObject.transform;
+        _targetObject.gameObject.SetActive(true);
+
+        _leapHandTracker = new LeapHandTracker();
+        _rightHandRotator = new RightHandRotator(_targetObject, rotationSensitivity);
+        _leftHandDetector = new LeftHandDetector(uiCanvas, onScreenPos, offScreenPos, slideSpeed, showThreshold, hideThreshold);
     }
 }

@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
@@ -6,7 +6,7 @@ public class ResultUI : MonoBehaviour
 {
     public Image dinoImage;
     public TextMeshProUGUI dinoDescriptionText;
-    public int state; // »óÅÂ ÅØ½ºÆ® (¶Ç´Â ´Ù¸¥ UI)
+    public int state; // ìƒíƒœ í…ìŠ¤íŠ¸ (ë˜ëŠ” ë‹¤ë¥¸ UI)
     public Image stampImage;
     public Sprite stampHigh;
     public Sprite stampMid;
@@ -14,25 +14,25 @@ public class ResultUI : MonoBehaviour
 
     void Start()
     {
-        // GameManager¿¡¼­ °ª ¹Ş¾Æ¿À±â
+        // GameManagerì—ì„œ ê°’ ë°›ì•„ì˜¤ê¸°
         var gm = GameManager.instance;
 
-        // UI¿¡ ¹İ¿µ
+        // UIì— ë°˜ì˜
         dinoImage.sprite = gm.PointData.ResultSprite;
         dinoDescriptionText.text = gm.PointData.ResultDescription;
-
-        // »óÅÂ¿¡ µû¶ó ÅØ½ºÆ® ¶Ç´Â ÀÌ¹ÌÁö º¯°æ
-        switch (gm.state)
-        {
-            case 0: // »ó
-                stampImage.sprite = stampHigh;
-                break;
-            case 1: // Áß
-                stampImage.sprite = stampMid;
-                break;
-            case 2: // ÇÏ 
-                stampImage.sprite = stampLow;
-                break;
-        }
+        stampImage.sprite = gm.state;
+        // ìƒíƒœì— ë”°ë¼ í…ìŠ¤íŠ¸ ë˜ëŠ” ì´ë¯¸ì§€ ë³€ê²½
+        //switch (gm.state)
+        //{
+        //    case 0: // ìƒ
+        //        stampImage.sprite = stampHigh;
+        //        break;
+        //    case 1: // ì¤‘
+        //        stampImage.sprite = stampMid;
+        //        break;
+        //    case 2: // í•˜ 
+        //        stampImage.sprite = stampLow;
+        //        break;
+        //}
     }
 }

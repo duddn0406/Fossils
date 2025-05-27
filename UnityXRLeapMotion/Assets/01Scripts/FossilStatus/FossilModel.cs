@@ -18,20 +18,24 @@ public class FossilModel : MonoBehaviour
     public event Action<int> OnRockCountChanged;
     public event Action<int> OnDirtCountChanged;
 
-    public int BrokenBoneCount => _boneCount;
-    public int BrokenRockCount => _rockCount;
+    public int BoneCount => _boneCount;
+    public int RockCount => _rockCount;
     public int DirtCount => _dirtCount;
 
     public int BoneSize => _bones.Length;
     public int RockSize => _rocks.Length;
+    public int DirtSize = 300;
 
     private void Awake()
     {
         instance = this;
     }
 
-    private void Start()
+    public void Initialize(BoneModel[] boneModels, HardRockModel[] rockModels)
     {
+        _bones = boneModels;
+        _rocks = rockModels;
+
         _boneCount = _bones.Length;
         _rockCount = _rocks.Length;
 
@@ -59,7 +63,7 @@ public class FossilModel : MonoBehaviour
 
     public void UpdateDirtCount(int value)
     {
-        _dirtCount = Mathf.Clamp(_dirtCount + value, 0, 300);
+        _dirtCount = Mathf.Clamp(_dirtCount + value, 0, DirtSize);
         OnDirtCountChanged?.Invoke(_dirtCount);
     }
 }

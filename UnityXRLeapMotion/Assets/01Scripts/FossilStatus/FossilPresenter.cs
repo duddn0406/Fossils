@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 using System.Collections;
 using System;
+using UnityEngine.SceneManagement;
 
 public class FossilPresenter : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class FossilPresenter : MonoBehaviour
         Image image = _view.GetImage((int)FossilView.Images.BoneStateImage);
         Debug.Log(value);
         image.fillAmount = value / (float)_model.BoneSize;
+        CheckForSceneMove();
     }
 
     public void UpdateRockCount(int value)
@@ -29,13 +31,15 @@ public class FossilPresenter : MonoBehaviour
         Image image = _view.GetImage((int)FossilView.Images.RockStateImage);
         Debug.Log(value);
         image.fillAmount = value / (float)_model.RockSize;
+        CheckForSceneMove();
     }
 
     public void UpdateDirtCount(int value)
     {
         Image image = _view.GetImage((int)FossilView.Images.DirtStateImage);
         Debug.Log(value);
-        image.fillAmount = value / 300.0f;
+        image.fillAmount = value / (float)_model.DirtSize;
+        CheckForSceneMove();
     }
 
     private void UpdateFossilState(int value)
@@ -58,5 +62,27 @@ public class FossilPresenter : MonoBehaviour
         {
             image.sprite = _view.UpperFossilSprite;
         }
+    }
+
+    private void CheckForSceneMove()
+    {
+        int endRock = _model.RockSize * 10 / 100;
+        int endDirt = _model.DirtSize * 10 / 100;
+
+        int badEndDirt = _model.DirtSize * 90 / 100;
+        int badEndBone = _model.BoneSize * 50 / 100;
+
+        if (_model.RockCount < endRock && _model.DirtCount < endDirt)
+            MoveToResultScene();
+        if (_model.BoneCount < badEndBone || _model.DirtCount > badEndDirt)
+            MoveToResultScene();
+    }
+
+    private void MoveToResultScene()
+    {
+        Image image = _view.GetImage((int)FossilView.Images.FossilStateImage);
+
+        GameManager.instance.state = image.sprite;
+        SceneManager.LoadScene("00Scenes/ResultScene");
     }
 }
