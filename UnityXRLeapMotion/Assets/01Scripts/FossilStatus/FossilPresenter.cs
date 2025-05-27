@@ -35,7 +35,7 @@ public class FossilPresenter : MonoBehaviour
     {
         Image image = _view.GetImage((int)FossilView.Images.DirtStateImage);
         Debug.Log(value);
-        image.fillAmount = value / 1000.0f;
+        image.fillAmount = value / 300.0f;
     }
 
     private void UpdateFossilState(int value)

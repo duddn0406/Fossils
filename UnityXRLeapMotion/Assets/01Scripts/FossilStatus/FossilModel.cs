@@ -59,7 +59,7 @@ public class FossilModel : MonoBehaviour
 
     public void UpdateDirtCount(int value)
     {
-        _dirtCount = Mathf.Clamp(_dirtCount + value, 0, 1000);
+        _dirtCount = Mathf.Clamp(_dirtCount + value, 0, 300);
         OnDirtCountChanged?.Invoke(_dirtCount);
     }
 }
