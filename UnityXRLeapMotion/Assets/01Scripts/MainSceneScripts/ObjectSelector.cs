@@ -53,7 +53,7 @@ public class ObjectSelector : MonoBehaviour
                 {
                     lastClapTime = Time.time;
 
-                    if(selectedPoint != null) //씬으로 넘어가며 정보 전달.
+                    if (selectedPoint != null) //씬으로 넘어가며 정보 전달.
                     {
                         PointModel pointModel = selectedPoint.GetComponent<PointModel>();
                         GameManager.instance.PointData = pointModel.PointData;
@@ -112,7 +112,7 @@ public class ObjectSelector : MonoBehaviour
         int i = 0;
         foreach (GameObject continent in ContinentObjects)
         {
-            if (continent == selectedContinent.transform.parent.gameObject) continue; 
+            if (continent == selectedContinent.transform.parent.gameObject) continue;
 
             var model = continent.transform.GetComponent<ContinentModel>();
             if (model != null)
@@ -204,3 +204,4 @@ public class ObjectSelector : MonoBehaviour
         _mainMenuSceneUI.ResetPointView();
     }
 }
+
