@@ -6,7 +6,6 @@ using System;
 
 public class FossilPresenter : MonoBehaviour
 {
-
     [SerializeField] private FossilView _view;
     [SerializeField] private FossilModel _model;
 

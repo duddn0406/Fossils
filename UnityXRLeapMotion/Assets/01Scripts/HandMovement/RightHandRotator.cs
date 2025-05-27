@@ -18,6 +18,6 @@ public class RightHandRotator
 
         Vector3 direction = rightHand.Direction;
         float yaw = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
-        target.rotation = Quaternion.Euler(-40f, yaw * sensitivity * deltaTime, 0f);
+        target.rotation = Quaternion.Euler(0f, yaw * sensitivity * deltaTime, 0f);
     }
 }
