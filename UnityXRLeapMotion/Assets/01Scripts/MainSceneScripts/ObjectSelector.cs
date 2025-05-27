@@ -80,9 +80,9 @@ public class ObjectSelector : MonoBehaviour
 
                 if (selectedContinent) //핑 선택
                 {
-                    DeSelectPoint();
                     selectedPoint = hitObject;
                     SelectPoint();
+                    _mainMenuSceneUI.ResetContinentView();
                 }
                 else //대륙 선택
                 {
@@ -201,6 +201,6 @@ public class ObjectSelector : MonoBehaviour
         selectedPoint = null;
 
         //핑 UI 비활성화
-        _mainMenuSceneUI.ResetContinentView();
+        _mainMenuSceneUI.ResetPointView();
     }
 }

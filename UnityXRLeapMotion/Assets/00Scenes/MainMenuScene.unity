@@ -670,7 +670,7 @@ MonoBehaviour:
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
-  m_ScreenMatchMode: 0
+  m_ScreenMatchMode: 1
   m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
@@ -756,7 +756,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &156891653
 RectTransform:
   m_ObjectHideFlags: 0
@@ -962,8 +962,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pointData:
-    _id: 9
-    _name: 
     _sprite: {fileID: 0}
     _description: 99999999999999999999999999
 --- !u!1 &230310449
@@ -1422,8 +1420,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pointData:
-    _id: 14
-    _name: 
     _sprite: {fileID: 0}
     _description: 14141414141414
 --- !u!1 &288324582
@@ -1572,8 +1568,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pointData:
-    _id: 1
-    _name: 
     _sprite: {fileID: 0}
     _description: 111111111111111
 --- !u!1 &296352711
@@ -1722,8 +1716,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pointData:
-    _id: 12
-    _name: 
     _sprite: {fileID: 0}
     _description: 121212121212
 --- !u!1 &398063754
@@ -1872,8 +1864,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pointData:
-    _id: 4
-    _name: 
     _sprite: {fileID: 0}
     _description: 44444444444444444444
 --- !u!1 &422189435
@@ -2022,8 +2012,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pointData:
-    _id: 15
-    _name: 
     _sprite: {fileID: 0}
     _description: 15151515151515
 --- !u!1 &429638970
@@ -2397,7 +2385,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccd52cc33b860ea4fa4226eedafbdb14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  physicalHandsManager: {fileID: 0}
+  physicalHandsManager: {fileID: 1234652846911911048}
 --- !u!1 &571129700
 GameObject:
   m_ObjectHideFlags: 0
@@ -3099,10 +3087,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pointData:
-    _id: 0
-    _name: 
     _sprite: {fileID: 0}
     _description: 
+  DinoSprite: {fileID: 0}
+  DinoDescription: 
+  state: 0
 --- !u!1 &860001902
 GameObject:
   m_ObjectHideFlags: 0
@@ -3747,8 +3736,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pointData:
-    _id: 10
-    _name: 
     _sprite: {fileID: 0}
     _description: tententententen
 --- !u!1 &1225435109
@@ -3897,8 +3884,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pointData:
-    _id: 2
-    _name: 
     _sprite: {fileID: 0}
     _description: 2222222222222222222
 --- !u!1 &1229082630
@@ -4047,8 +4032,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pointData:
-    _id: 0
-    _name: 
     _sprite: {fileID: 0}
     _description: 0000000000000
 --- !u!1 &1359737104
@@ -4557,8 +4540,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pointData:
-    _id: 6
-    _name: 
     _sprite: {fileID: 0}
     _description: 666666666666666666666
 --- !u!1 &1538840753
@@ -4804,8 +4785,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pointData:
-    _id: 5
-    _name: 
     _sprite: {fileID: 0}
     _description: 55555555555555555555
 --- !u!1 &1636423145
@@ -5007,8 +4986,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pointData:
-    _id: 3
-    _name: 
     _sprite: {fileID: 0}
     _description: 3333333333333333333333
 --- !u!1 &1663098872
@@ -6116,8 +6093,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pointData:
-    _id: 8
-    _name: 
     _sprite: {fileID: 0}
     _description: 8888888888888888888
 --- !u!1 &1871266265
@@ -6266,8 +6241,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pointData:
-    _id: 11
-    _name: 
     _sprite: {fileID: 0}
     _description: elevelevelevelev
 --- !u!1 &1898572166
@@ -6622,8 +6595,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pointData:
-    _id: 7
-    _name: 
     _sprite: {fileID: 0}
     _description: 77777777777777777777
 --- !u!1001 &2062362233
@@ -6936,8 +6907,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pointData:
-    _id: 13
-    _name: 
     _sprite: {fileID: 0}
     _description: 1313131313131313
 --- !u!114 &375312834250538
