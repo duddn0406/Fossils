@@ -7,6 +7,8 @@ public class FossilModel : MonoBehaviour
 {
     public static FossilModel instance;
 
+    [SerializeField] private ReturnToScene _returnToMainMenuScene;
+
     [SerializeField] private BoneModel[] _bones;
     [SerializeField] private HardRockModel[] _rocks;
 
@@ -53,17 +55,20 @@ public class FossilModel : MonoBehaviour
     {
         _boneCount = Mathf.Clamp(_boneCount + value, 0, _bones.Length);
         OnBoneCountChanged?.Invoke(_boneCount);
+        _returnToMainMenuScene.SetCurTime(0f);
     }
 
     public void UpdateRockCount(int value)
     {
         _rockCount = Mathf.Clamp(_rockCount + value, 0, _rocks.Length);
         OnRockCountChanged?.Invoke(_rockCount);
+        _returnToMainMenuScene.SetCurTime(0f);
     }
 
     public void UpdateDirtCount(int value)
     {
         _dirtCount = Mathf.Clamp(_dirtCount + value, 0, DirtSize);
         OnDirtCountChanged?.Invoke(_dirtCount);
+        _returnToMainMenuScene.SetCurTime(0f);
     }
 }

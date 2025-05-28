@@ -10,6 +10,8 @@ public class FossilPresenter : MonoBehaviour
     [SerializeField] private FossilView _view;
     [SerializeField] private FossilModel _model;
 
+    [SerializeField] private FadeManager _fadeManager;
+
     private void Awake()
     {
         _model.OnBoneCountChanged += UpdateBoneCount;
@@ -47,7 +49,7 @@ public class FossilPresenter : MonoBehaviour
         Image image = _view.GetImage((int)FossilView.Images.FossilStateImage);
         int max = _model.BoneSize;
 
-        int lowerBound = max * 20 / 100;
+        int lowerBound = max * 40 / 100;
         int upperBound = max * 80 / 100;
 
         if (value < lowerBound)
@@ -70,7 +72,7 @@ public class FossilPresenter : MonoBehaviour
         int endDirt = _model.DirtSize * 10 / 100;
 
         int badEndDirt = _model.DirtSize * 90 / 100;
-        int badEndBone = _model.BoneSize * 50 / 100;
+        int badEndBone = _model.BoneSize * 40 / 100;
 
         if (_model.RockCount < endRock && _model.DirtCount < endDirt)
             MoveToResultScene();
@@ -83,6 +85,6 @@ public class FossilPresenter : MonoBehaviour
         Image image = _view.GetImage((int)FossilView.Images.FossilStateImage);
 
         GameManager.instance.state = image.sprite;
-        SceneManager.LoadScene("00Scenes/ResultScene");
+        _fadeManager.FadeOutAndLoadScene("00Scenes/ResultScene");
     }
 }
