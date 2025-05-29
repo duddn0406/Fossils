@@ -295,7 +295,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3132,7 +3132,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pointData:
-    _name: 1
+    _name: 7
     _sprite: {fileID: 21300000, guid: 8bc19c354adceb8449e9b05466214497, type: 3}
     _description: "\uBAB8 \uC804\uCCB4\uB97C \uAC11\uC637\uCC98\uB7FC \uB36E\uC740
       \uBF08\uB85C \uBCF4\uD638\uD558\uBA70 \uAF2C\uB9AC\uC758 \uB9DD\uCE58\uB85C

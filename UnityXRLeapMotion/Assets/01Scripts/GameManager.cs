@@ -15,6 +15,8 @@ public class GameManager : Singleton<GameManager>
     public string ResultDescription => _resultDescription;
     public Sprite State => _state;
 
+    public bool GameOver;
+
     public void SetPointData(string name, Sprite resultSprite, string resultDescription)
     {
         _name = name;

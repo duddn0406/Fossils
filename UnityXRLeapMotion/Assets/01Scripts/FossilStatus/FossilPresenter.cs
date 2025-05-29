@@ -22,6 +22,8 @@ public class FossilPresenter : MonoBehaviour
 
     public void UpdateBoneCount(int value)
     {
+        if (GameManager.instance.GameOver)
+            return;
         Image image = _view.GetImage((int)FossilView.Images.BoneStateImage);
         Debug.Log(value);
         image.fillAmount = value / (float)_model.BoneSize;
@@ -30,6 +32,8 @@ public class FossilPresenter : MonoBehaviour
 
     public void UpdateRockCount(int value)
     {
+        if (GameManager.instance.GameOver)
+            return;
         Image image = _view.GetImage((int)FossilView.Images.RockStateImage);
         Debug.Log(value);
         image.fillAmount = value / (float)_model.RockSize;
@@ -38,6 +42,8 @@ public class FossilPresenter : MonoBehaviour
 
     public void UpdateDirtCount(int value)
     {
+        if (GameManager.instance.GameOver)
+            return;
         Image image = _view.GetImage((int)FossilView.Images.DirtStateImage);
         Debug.Log(value);
         image.fillAmount = value / (float)_model.DirtSize;
@@ -46,6 +52,8 @@ public class FossilPresenter : MonoBehaviour
 
     private void UpdateFossilState(int value)
     {
+        if (GameManager.instance.GameOver)
+            return;
         Image image = _view.GetImage((int)FossilView.Images.FossilStateImage);
         int max = _model.BoneSize;
 
@@ -78,11 +86,16 @@ public class FossilPresenter : MonoBehaviour
 
         //if (_model.RockCount < endRock && _model.DirtCount < endDirt)
         if (_model.RockCount < endRock)
+        {
             ShowResult();
+            GameManager.instance.GameOver = true;
+        }
+   
         if (_model.BoneCount < badEndBone || _model.DirtCount > badEndDirt)
         {
             image.sprite = _view.LowerFossilSprite;
             ShowResult();
+            GameManager.instance.GameOver = true;
         }
     }
 

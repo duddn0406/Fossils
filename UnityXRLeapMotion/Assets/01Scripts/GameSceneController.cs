@@ -25,6 +25,14 @@ public class GameSceneController : MonoBehaviour
     [SerializeField] private BoneModel[] _stegoBoneModels;
     [SerializeField] private HardRockModel[] _stegoHardRockModels;
 
+    [SerializeField] private GameObject _ankiloBone;
+    [SerializeField] private BoneModel[] _ankiloBoneModels;
+    [SerializeField] private HardRockModel[] _ankiloHardRockModels;
+
+    [SerializeField] private GameObject _rexBone;
+    [SerializeField] private BoneModel[] _rexBoneModels;
+    [SerializeField] private HardRockModel[] _rexHardRockModels;
+
     public string num;
 
     private void Start()
@@ -57,6 +65,12 @@ public class GameSceneController : MonoBehaviour
                 _fossilModel.Initialize(_stegoBoneModels, _stegoHardRockModels);
                 break;
             case "6":
+                _handController.Initialize(_ankiloBone);
+                _fossilModel.Initialize(_ankiloBoneModels, _ankiloHardRockModels);
+                break;
+            case "7":
+                _handController.Initialize(_rexBone);
+                _fossilModel.Initialize(_rexBoneModels, _rexHardRockModels);
                 break;
         }
     }

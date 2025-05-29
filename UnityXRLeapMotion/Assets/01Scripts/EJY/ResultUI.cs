@@ -22,13 +22,13 @@ public class ResultUI : MonoBehaviour
         stampImage.sprite = gm.State;
         stampImage.gameObject.SetActive(false);
 
-        StartCoroutine(ShowStampAfterDelay(gm.state));
+        StartCoroutine(ShowStampAfterDelay(gm.State));
     }
     IEnumerator ShowStampAfterDelay(Sprite stamp)
     {
         yield return new WaitForSeconds(1f);
         stampImage.sprite = stamp;
         stampImage.gameObject.SetActive(true);
-        SoundManager.Instance.PlaySFX("Stamp");
+        SoundManager.Instance.PlaySFX("Dojang");
     }
 }
