@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections;
 
 public class ResultUI : MonoBehaviour
 {
@@ -15,9 +16,19 @@ public class ResultUI : MonoBehaviour
         ResultGroup.SetActive(true);
 
         var gm = GameManager.instance;
-
+            
         dinoImage.sprite = gm.ResultSprite;
         dinoDescriptionText.text = gm.ResultDescription;
         stampImage.sprite = gm.State;
+        stampImage.gameObject.SetActive(false);
+
+        StartCoroutine(ShowStampAfterDelay(gm.state));
+    }
+    IEnumerator ShowStampAfterDelay(Sprite stamp)
+    {
+        yield return new WaitForSeconds(1f);
+        stampImage.sprite = stamp;
+        stampImage.gameObject.SetActive(true);
+        SoundManager.Instance.PlaySFX("Stamp");
     }
 }
