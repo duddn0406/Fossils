@@ -17,6 +17,7 @@ public class CameraMoveController : MonoBehaviour
     private LeapServiceProvider leapProvider;
 
     [SerializeField] private AudioSource audioSource;
+    [SerializeField] private GameObject titleTextObject; // ✅ 텍스트 오브젝트 연결
 
     void Start()
     {
@@ -30,12 +31,16 @@ public class CameraMoveController : MonoBehaviour
     {
         Frame frame = leapProvider.CurrentFrame;
 
-        // 👋 손이 감지되고, 한 번도 이동한 적 없으면 이동 시작
+        // 👋 손 감지 + 이동 시작
         if (!hasMovedOnce && frame.Hands.Count > 0)
         {
             isMoving = true;
             hasMovedOnce = true;
             moveTimer = 0f;
+
+            // ✅ 텍스트 끄기
+            if (titleTextObject != null)
+                titleTextObject.SetActive(false);
 
             if (audioSource != null)
             {
