@@ -460,7 +460,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pointData:
-    _name: Stego
+    _name: 5
     _sprite: {fileID: 21300000, guid: dcb240d57d6fb344fad92ea19ee248d0, type: 3}
     _description: "\uB4F1\uC5D0 \uD070 \uBF08\uD310\uACFC \uAF2C\uB9AC\uC5D0 \uBFB0\uC871\uD55C
       \uAC00\uC2DC\uB97C \uAC00\uC9C4, \uB290\uAE0B\uD55C \uCD08\uC2DD \uACF5\uB8E1\uC774\uC5D0\uC694."
@@ -1067,7 +1067,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pointData:
-    _name: 2
+    _name: 7
     _sprite: {fileID: 21300000, guid: c6c80591d3523d3489d5ffd06168da0f, type: 3}
     _description: "\uB0A0\uCE74\uB85C\uC6B4 \uC774\uBE68\uACFC \uAC15\uD55C \uD131\uC744
       \uAC00\uC9C4 \uC911\uC0DD\uB300\uC758 \uAC00\uC7A5 \uBB34\uC11C\uC6B4 \uC721\uC2DD
@@ -1377,7 +1377,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pointData:
-    _name: Tri
+    _name: 3
     _sprite: {fileID: 21300000, guid: f363d607891d69840a3aa627b347f469, type: 3}
     _description: "\uC5BC\uAD74\uC5D0 \uC138 \uAC1C\uC758 \uBFD4\uACFC \uCEE4\uB2E4\uB780
       \uD504\uB9B4\uC744 \uAC00\uC9C4 \uC6A9\uAC10\uD55C \uCD08\uC2DD \uACF5\uB8E1\uC774\uC5D0\uC694. "
@@ -2977,7 +2977,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pointData:
-    _name: 3
+    _name: 4
     _sprite: {fileID: 21300000, guid: ed2355fb9b5abb34f90ea3ebfeb7c8e4, type: 3}
     _description: "\uB0A0\uAC1C\uB97C \uD3B4\uBA74 \uBC84\uC2A4\uBCF4\uB2E4\uB3C4
       \uD070, \uD558\uB298\uC744 \uC9C0\uBC30\uD558\uB358 \uAC70\uB300\uD55C \uC775\uB8E1\uC774\uC5D0\uC694."
@@ -3132,7 +3132,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pointData:
-    _name: 7
+    _name: 6
     _sprite: {fileID: 21300000, guid: 8bc19c354adceb8449e9b05466214497, type: 3}
     _description: "\uBAB8 \uC804\uCCB4\uB97C \uAC11\uC637\uCC98\uB7FC \uB36E\uC740
       \uBF08\uB85C \uBCF4\uD638\uD558\uBA70 \uAF2C\uB9AC\uC758 \uB9DD\uCE58\uB85C
@@ -3539,7 +3539,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pointData:
-    _name: Ammonite
+    _name: 2
     _sprite: {fileID: 21300000, guid: e934e1ce2ff8c3441a06720b041774ef, type: 3}
     _description: "\uB098\uC120\uD615 \uAECD\uB370\uAE30\uB97C \uAC00\uC9C4 \uACE0\uB300
       \uBC14\uB2F7\uC18D \uC0DD\uBB3C\uB85C, \uC624\uC9D5\uC5B4\uCC98\uB7FC \uCD09\uC218\uAC00
@@ -3751,7 +3751,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pointData:
-    _name: Bronto
+    _name: 1
     _sprite: {fileID: 21300000, guid: 5e91cb23ad3ff3042ba8739ddf798703, type: 3}
     _description: "\uAE30\uB2E4\uB780 \uBAA9\uC73C\uB85C \uB192\uC740 \uB098\uBB47\uC78E\uC744
       \uBA39\uB358, \uAC70\uB300\uD55C \uCD08\uC2DD \uACF5\uB8E1\uC774\uC5D0\uC694. "
