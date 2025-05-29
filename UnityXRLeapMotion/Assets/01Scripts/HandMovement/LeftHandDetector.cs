@@ -41,10 +41,11 @@ public class LeftHandDetector
 
                 if (wasVisible && !isVisible)
                 {
-                    SoundManager.Instance.PlaySFX("Menu"); // UI 사라질 때도 소리
+                    SoundManager.Instance.PlaySFX("Menu");
                 }
             }
-            MoveCanvas(deltaTime); // 움직임 처리
+
+            MoveCanvas(deltaTime);
             return;
         }
 
@@ -62,25 +63,19 @@ public class LeftHandDetector
         {
             isVisible = true;
         }
-        else if (deltaX < hideThreshold && isVisible)
-        {
-            isVisible = false;
-        }
 
-        // ✅ 전환 시점에 사운드 재생
+        // ✅ 사운드 재생 시점 처리
         if (!wasVisible && isVisible)
         {
-            SoundManager.Instance.PlaySFX("Menu"); // UI 나타날 때 소리
+            SoundManager.Instance.PlaySFX("Menu");
         }
         else if (wasVisible && !isVisible)
         {
-            SoundManager.Instance.PlaySFX("Menu"); // UI 사라질 때 소리
+            SoundManager.Instance.PlaySFX("Menu");
         }
 
         MoveCanvas(deltaTime);
     }
-
-
 
     public bool IsLeftFist(Hand leftHand)
     {
@@ -89,11 +84,10 @@ public class LeftHandDetector
 
         foreach (var finger in leftHand.fingers)
         {
-            if (finger.IsExtended) return false; 
+            if (finger.IsExtended) return false;
         }
 
         return leftHand.GrabStrength > 0.9f;
-        // 또는 return currentLeftHand.GrabStrength > 0.9f;
     }
 
     private void MoveCanvas(float deltaTime)
