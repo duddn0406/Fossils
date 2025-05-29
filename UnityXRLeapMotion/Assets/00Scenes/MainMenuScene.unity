@@ -441,11 +441,11 @@ Transform:
   m_GameObject: {fileID: 133808058}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.02, y: -1.51, z: 0}
+  m_LocalPosition: {x: -2.38, y: 0.24, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1435347932}
+  m_Father: {fileID: 1898572167}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &133808060
 MonoBehaviour:
@@ -958,11 +958,11 @@ Transform:
   m_GameObject: {fileID: 398063754}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.02, y: -1.51, z: 0}
+  m_LocalPosition: {x: 0.42, y: -0.96, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1435347932}
+  m_Father: {fileID: 1898572167}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &398063756
 Animator:
@@ -1547,6 +1547,9 @@ MonoBehaviour:
   - {fileID: 1229082630}
   - {fileID: 288324582}
   - {fileID: 1225435109}
+  - {fileID: 1645696089}
+  - {fileID: 398063754}
+  - {fileID: 133808058}
   _startPos: {x: 0, y: 0, z: 0}
   _startSize: {x: 0, y: 0, z: 0}
   _targetPos: {x: 0.509, y: 1.5, z: 0}
@@ -2676,10 +2679,7 @@ Transform:
   m_LocalPosition: {x: 1.76, y: 0.81, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1645696090}
-  - {fileID: 398063755}
-  - {fileID: 133808059}
+  m_Children: []
   m_Father: {fileID: 1371111985}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1538840753
@@ -3025,11 +3025,11 @@ Transform:
   m_GameObject: {fileID: 1645696089}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.87, y: 0.76, z: 0}
+  m_LocalPosition: {x: -1.76, y: -1.68, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1435347932}
+  m_Father: {fileID: 1898572167}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1645696091
 Animator:
@@ -4228,6 +4228,9 @@ Transform:
   - {fileID: 1229082631}
   - {fileID: 288324583}
   - {fileID: 1225435110}
+  - {fileID: 1645696090}
+  - {fileID: 398063755}
+  - {fileID: 133808059}
   m_Father: {fileID: 571129701}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2032095717
