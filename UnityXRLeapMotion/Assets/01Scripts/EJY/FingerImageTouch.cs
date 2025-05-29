@@ -1,21 +1,21 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class FingerImageTouch : MonoBehaviour
 {
-    [Header("6°³ÀÇ ÀÌ¹ÌÁö ¿ÀºêÁ§Æ®")]
-    public Transform[] imageObjects = new Transform[6];  // ÀÌ¹ÌÁö 5°³
+    [Header("6ê°œì˜ ì´ë¯¸ì§€ ì˜¤ë¸Œì íŠ¸")]
+    public Transform[] imageObjects = new Transform[6];  // ì´ë¯¸ì§€ 5ê°œ
 
-    [Header("¼Õ°¡¶ô ³¡ À§Ä¡")]
+    [Header("ì†ê°€ë½ ë ìœ„ì¹˜")]
     public Transform indexTip;
 
-    [Header("ÅÍÄ¡ °Å¸® (´ÜÀ§: ¹ÌÅÍ)")]
+    [Header("í„°ì¹˜ ê±°ë¦¬ (ë‹¨ìœ„: ë¯¸í„°)")]
     public float touchDistance = 0.02f;
-    public float touchCooldown = 1.0f; // 1ÃÊ µ¿¾È ÀçÅÍÄ¡ ±İÁö
+    public float touchCooldown = 1.0f; // 1ì´ˆ ë™ì•ˆ ì¬í„°ì¹˜ ê¸ˆì§€
 
     private bool[] hasTriggered = new bool[7];
     private float[] lastTouchTime = new float[7];
 
-    public ObjectSpawner spawner; // Inspector¿¡¼­ ¿¬°á
+    public ObjectSpawner spawner; // Inspectorì—ì„œ ì—°ê²°
 
     void Update()
     {
@@ -27,14 +27,14 @@ public class FingerImageTouch : MonoBehaviour
 
             float distance = Vector3.Distance(imageObjects[i].position, indexTip.position);
 
-            // ÇöÀç ½Ã°£ - ¸¶Áö¸· ÅÍÄ¡ ½Ã°£ > ÄğÅ¸ÀÓÀÌ¾î¾ß¸¸ ÅÍÄ¡ ÀÎ½Ä
+            // í˜„ì¬ ì‹œê°„ - ë§ˆì§€ë§‰ í„°ì¹˜ ì‹œê°„ > ì¿¨íƒ€ì„ì´ì–´ì•¼ë§Œ í„°ì¹˜ ì¸ì‹
             if (distance < touchDistance && !hasTriggered[i] && Time.time - lastTouchTime[i] > touchCooldown)
             {
                 hasTriggered[i] = true;
                 lastTouchTime[i] = Time.time;
                 OnImageTouched(i);
             }
-            // ¼ÕÀÌ ÃæºĞÈ÷ ¸Ö¾îÁ³À» ¶§¸¸ ´Ù½Ã ÅÍÄ¡ °¡´ÉÇÏµµ·Ï ÃÊ±âÈ­
+            // ì†ì´ ì¶©ë¶„íˆ ë©€ì–´ì¡Œì„ ë•Œë§Œ ë‹¤ì‹œ í„°ì¹˜ ê°€ëŠ¥í•˜ë„ë¡ ì´ˆê¸°í™”
             else if (distance >= touchDistance * 1.5f)
             {
                 hasTriggered[i] = false;
@@ -44,7 +44,10 @@ public class FingerImageTouch : MonoBehaviour
 
     void OnImageTouched(int index)
     {
-        Debug.Log($"ÀÌ¹ÌÁö {index + 1} Å¬¸¯µÊ!");
+        Debug.Log($"ì´ë¯¸ì§€ {index + 1} í´ë¦­ë¨!");
+
+        // ğŸ”Š ë„êµ¬ í´ë¦­ ì‚¬ìš´ë“œ ì¬ìƒ
+        SoundManager.Instance.PlaySFX("Pick");
         spawner.SpawnObject(index);
     }
 }

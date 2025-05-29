@@ -25,6 +25,7 @@ public class CameraMoveController : MonoBehaviour
         transform.rotation = Quaternion.Euler(startRot);
 
         leapProvider = FindAnyObjectByType<LeapServiceProvider>();
+        SoundManager.Instance.PlayBGM("Wave"); // 🎵 파도소리 바로 재생!
     }
 
     void Update()

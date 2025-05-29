@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class PromptController : MonoBehaviour
 {
@@ -8,12 +8,12 @@ public class PromptController : MonoBehaviour
 
     public void ShowStampByLevel(int level)
     {
-        // ¸ğµç µµÀå ²ô±â
+        // ëª¨ë“  ë„ì¥ ë„ê¸°
         stampHigh.SetActive(false);
         stampMid.SetActive(false);
         stampLow.SetActive(false);
 
-        // Àü´Ş¹ŞÀº ÀÎÀÚ¿¡ µû¶ó µµÀå ÇÏ³ª¸¸ ÄÑ±â
+        // ì „ë‹¬ë°›ì€ ì¸ìì— ë”°ë¼ ë„ì¥ í•˜ë‚˜ë§Œ ì¼œê¸°
         switch (level)
         {
             case 0:
@@ -26,8 +26,11 @@ public class PromptController : MonoBehaviour
                 stampLow.SetActive(true);
                 break;
             default:
-                Debug.LogWarning("Àß¸øµÈ µµÀå µî±Ş ÀÎÀÚ!");
+                Debug.LogWarning("ì˜ëª»ëœ ë„ì¥ ë“±ê¸‰ ì¸ì!");
                 break;
         }
+
+        // ğŸ–‹ ë„ì¥ ì°ëŠ” ì†Œë¦¬ ì¬ìƒ!
+        SoundManager.Instance.PlaySFX("Dojang");
     }
 }
