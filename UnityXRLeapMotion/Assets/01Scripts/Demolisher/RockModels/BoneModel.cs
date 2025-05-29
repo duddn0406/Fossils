@@ -31,6 +31,7 @@ public class BoneModel : MonoBehaviour
                 OnBoneDestroyed?.Invoke(-1);
                 //Destroy(this.gameObject);
             }
+            SoundManager.Instance.PlaySFX("HitFossil");
         }
     }
 

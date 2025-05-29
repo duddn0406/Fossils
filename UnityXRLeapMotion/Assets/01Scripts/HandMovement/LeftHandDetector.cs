@@ -29,11 +29,23 @@ public class LeftHandDetector
 
     public void UpdateWithHand(Hand leftHand, float deltaTime)
     {
+        bool wasVisible = isVisible;
+
         if (leftHand == null)
         {
             initialized = false;
-            isVisible = false; // ✅ 손이 사라지면 UI 자동 off
-            MoveCanvas(deltaTime);
+
+            if (isVisible)
+            {
+                isVisible = false;
+
+                if (wasVisible && !isVisible)
+                {
+                    SoundManager.Instance.PlaySFX("Menu"); // UI 사라질 때도 소리
+                }
+
+                MoveCanvas(deltaTime); // 움직임 처리
+            }
             return;
         }
 
@@ -56,8 +68,20 @@ public class LeftHandDetector
             isVisible = false;
         }
 
+        // ✅ 전환 시점에 사운드 재생
+        if (!wasVisible && isVisible)
+        {
+            SoundManager.Instance.PlaySFX("Menu"); // UI 나타날 때 소리
+        }
+        else if (wasVisible && !isVisible)
+        {
+            SoundManager.Instance.PlaySFX("Menu"); // UI 사라질 때 소리
+        }
+
         MoveCanvas(deltaTime);
     }
+
+
 
     public bool IsLeftFist(Hand leftHand)
     {

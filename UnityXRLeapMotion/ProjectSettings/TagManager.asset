@@ -14,6 +14,7 @@ TagManager:
   - hammer
   - Rock5
   - Rock6
+  - Rock
   layers:
   - Default
   - TransparentFX

@@ -16,6 +16,14 @@ public class SoundManager : MonoBehaviour
     private Dictionary<string, AudioClip> bgmDict = new Dictionary<string, AudioClip>();
     private Dictionary<string, AudioClip> sfxDict = new Dictionary<string, AudioClip>();
 
+    private float _rockDestroyTimer;
+    private float _rockHitTimer;
+    private float _boneHitTimer;
+
+    private float _curRockDestroyTimer;
+    private float _curRockHitTimer;
+    private float _curBoneHitTimer;
+
     void Awake()
     {
         if (Instance == null)
@@ -28,6 +36,17 @@ public class SoundManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        _rockDestroyTimer = Random.Range(0.5f, 1f);
+        _rockHitTimer = Random.Range(0.5f, 1f);
+        _boneHitTimer = Random.Range(0.5f, 1f);
+    }
+
+    private void Update()
+    {
+        _curRockDestroyTimer += Time.deltaTime;
+        _curRockHitTimer += Time.deltaTime;
+        _curBoneHitTimer += Time.deltaTime;
     }
 
     private void InitDictionaries()
@@ -71,7 +90,37 @@ public class SoundManager : MonoBehaviour
     {
         if (sfxDict.TryGetValue(name, out var clip))
         {
-            sfxSource.PlayOneShot(clip);
+            if(name == "RockDestroy")
+            {
+                if (_curRockDestroyTimer > _rockDestroyTimer)
+                {
+                    _rockDestroyTimer = Random.Range(0.5f, 1f);
+                    _curRockDestroyTimer = 0;
+                    sfxSource.PlayOneShot(clip);
+                }
+            }
+            else if(name == "HitRock")
+            {
+                if (_curRockHitTimer > _rockHitTimer)
+                {
+                    _rockDestroyTimer = Random.Range(0.5f, 1f);
+                    _curRockHitTimer = 0;
+                    sfxSource.PlayOneShot(clip);
+                }
+            }
+            else if(name == "HitFossil")
+            {
+                if (_curBoneHitTimer > _boneHitTimer)
+                {
+                    _rockDestroyTimer = Random.Range(0.5f, 1f);
+                    _curBoneHitTimer = 0;
+                    sfxSource.PlayOneShot(clip);
+                }
+            }
+            else
+            {
+                sfxSource.PlayOneShot(clip);
+            }
         }
         else
         {

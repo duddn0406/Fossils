@@ -33,11 +33,13 @@ public class HardRockModel : MonoBehaviour
                 CreateSoils();
                 OnRockDestroyed?.Invoke(-1);
                 this.AddComponent<Rigidbody>();
+                SoundManager.Instance.PlaySFX("HitRock");
             }
             if (_breakHitCount > 4 && _destroyHitCount == 5)
             {
                 Destroy(this.gameObject);
                 CreateSoils();
+                SoundManager.Instance.PlaySFX("RockDestroy");
             }
         }
         else if(collisionObject.tag == "chisel") //끌
@@ -48,7 +50,8 @@ public class HardRockModel : MonoBehaviour
                 if (_destroyHitCount == 5)
                 {
                     Destroy(this.gameObject);
-                    CreateSoils();     
+                    CreateSoils();
+                    SoundManager.Instance.PlaySFX("RockDestroy");
                 }
             }
         }
@@ -60,6 +63,7 @@ public class HardRockModel : MonoBehaviour
                 CreateSoils();
                 OnRockDestroyed?.Invoke(-1);
                 this.AddComponent<Rigidbody>();
+                SoundManager.Instance.PlaySFX("HitRock");
             }
         }
     }
