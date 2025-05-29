@@ -16,7 +16,7 @@ public class CameraMoveController : MonoBehaviour
 
     private LeapServiceProvider leapProvider;
 
-    [SerializeField] private AudioSource audioSource; 
+    [SerializeField] private AudioSource audioSource;
 
     void Start()
     {
@@ -28,18 +28,18 @@ public class CameraMoveController : MonoBehaviour
 
     void Update()
     {
-        // 👉 트리거는 단 한 번
-        if (!hasMovedOnce && Input.GetKeyDown(KeyCode.Space))
-        //if (!hasMovedOnce && leapProvider.CurrentFrame.Hands.Count > 0) - 립모션 사용할때
+        Frame frame = leapProvider.CurrentFrame;
+
+        // 👋 손이 감지되고, 한 번도 이동한 적 없으면 이동 시작
+        if (!hasMovedOnce && frame.Hands.Count > 0)
         {
             isMoving = true;
             hasMovedOnce = true;
-            moveTimer = 0f; 
+            moveTimer = 0f;
 
-           
             if (audioSource != null)
             {
-                audioSource.pitch = 1f; // 혹시 pitch 문제 대비
+                audioSource.pitch = 1f;
                 audioSource.PlayOneShot(audioSource.clip);
                 Debug.Log("📢 효과음 재생!");
             }

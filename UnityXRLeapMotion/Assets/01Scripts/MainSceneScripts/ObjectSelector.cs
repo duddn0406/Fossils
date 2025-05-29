@@ -11,6 +11,8 @@ public class ObjectSelector : MonoBehaviour
     [SerializeField] private LayerMask selectableLayer;
     [SerializeField] private LeapServiceProvider leapProvider;
     [SerializeField] private CameraModel cameraModel;
+    [SerializeField] private ReturnToScene _returnToScene;
+
 
     [SerializeField] private GameObject[] ContinentObjects;
 
@@ -67,6 +69,7 @@ public class ObjectSelector : MonoBehaviour
                 {
                     if (hand.IsLeft && hand.GrabStrength > 0.8f && selectedContinent != null) //왼손 주먹 쥐었을 때
                     {
+                        _returnToScene.SetCurTime(0f); //타이머 초기화    
                         DeSelectPoint(); //핑 초기화 
                         _ = ResetObjectAsync(); //대륙 초기화
                         return;
@@ -81,12 +84,14 @@ public class ObjectSelector : MonoBehaviour
 
                     if (selectedContinent) //핑 선택
                     {
+                        _returnToScene.SetCurTime(0f); //타이머 초기화    
                         selectedPoint = hitObject;
                         SelectPoint();
                         _mainMenuSceneUI.ResetContinentView();
                     }
                     else //대륙 선택
                     {
+                        _returnToScene.SetCurTime(0f); //타이머 초기화    
                         _ = ResetObjectAsync();
                         selectedContinent = hitObject;
                         _ = SelectObjectAsync();
