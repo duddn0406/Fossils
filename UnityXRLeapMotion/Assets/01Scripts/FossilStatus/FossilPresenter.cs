@@ -25,7 +25,6 @@ public class FossilPresenter : MonoBehaviour
         if (GameManager.instance.GameOver)
             return;
         Image image = _view.GetImage((int)FossilView.Images.BoneStateImage);
-        Debug.Log($"뼈: {value}/{_model.BoneSize}");
         image.fillAmount = value / (float)_model.BoneSize;
         CheckForSceneMove();
     }
@@ -35,7 +34,6 @@ public class FossilPresenter : MonoBehaviour
         if (GameManager.instance.GameOver)
             return;
         Image image = _view.GetImage((int)FossilView.Images.RockStateImage);
-        Debug.Log($"돌: {value}/{_model.RockSize}");
         image.fillAmount = value / (float)_model.RockSize;
         CheckForSceneMove();
     }
@@ -45,7 +43,6 @@ public class FossilPresenter : MonoBehaviour
         if (GameManager.instance.GameOver)
             return;
         Image image = _view.GetImage((int)FossilView.Images.DirtStateImage);
-        Debug.Log($"흙: {value}/{_model.DirtSize}");
         image.fillAmount = value / (float)_model.DirtSize;
         CheckForSceneMove();
     }
@@ -99,7 +96,7 @@ public class FossilPresenter : MonoBehaviour
         }
     }
 
-    private void ShowResult()
+    public void ShowResult()
     {
         Image image = _view.GetImage((int)FossilView.Images.FossilStateImage);
 

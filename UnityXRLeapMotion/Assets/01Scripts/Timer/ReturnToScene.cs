@@ -27,7 +27,7 @@ public class ReturnToScene : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.S))
         {
             if (SceneManager.GetActiveScene().name == "GameScene")
-                _fossilPresenter.CheckForSceneMove();
+                _fossilPresenter.ShowResult();
         }
     }
     public void SetCurTime(float curTime)
