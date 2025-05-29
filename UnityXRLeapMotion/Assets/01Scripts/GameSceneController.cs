@@ -25,6 +25,7 @@ public class GameSceneController : MonoBehaviour
 
     private void Start()
     {
+        SoundManager.Instance.PlayBGM("gamebgm"); // ✅ 게임씬 진입 시 브금 재생
         Initialize();
     }
     public void Initialize()

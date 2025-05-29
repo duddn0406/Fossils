@@ -84,14 +84,18 @@ public class ObjectSelector : MonoBehaviour
 
                     if (selectedContinent) //핑 선택
                     {
-                        _returnToScene.SetCurTime(0f); //타이머 초기화    
+                        SoundManager.Instance.PlaySFX("Pick"); // ✅ 지도 핑 클릭 사운드 추가!
+
+                        _returnToScene.SetCurTime(0f);
                         selectedPoint = hitObject;
                         SelectPoint();
                         _mainMenuSceneUI.ResetContinentView();
                     }
                     else //대륙 선택
                     {
-                        _returnToScene.SetCurTime(0f); //타이머 초기화    
+                        SoundManager.Instance.PlaySFX("Pick"); // ✅ 대륙 클릭 사운드 추가!
+
+                        _returnToScene.SetCurTime(0f);
                         _ = ResetObjectAsync();
                         selectedContinent = hitObject;
                         _ = SelectObjectAsync();

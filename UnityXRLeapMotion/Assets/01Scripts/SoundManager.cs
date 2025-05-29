@@ -70,6 +70,7 @@ public class SoundManager : MonoBehaviour
         {
             if (bgmSource.clip != clip)
             {
+                bgmSource.Stop(); // ✅ 기존 BGM 강제 중지
                 bgmSource.clip = clip;
                 bgmSource.loop = true;
                 bgmSource.Play();
