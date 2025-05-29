@@ -19,10 +19,12 @@ public class SoundManager : MonoBehaviour
     private float _rockDestroyTimer;
     private float _rockHitTimer;
     private float _boneHitTimer;
+    private float _dirtHitTimer;
 
     private float _curRockDestroyTimer;
     private float _curRockHitTimer;
     private float _curBoneHitTimer;
+    private float _curDirtHitTimer;
 
     void Awake()
     {
@@ -40,6 +42,7 @@ public class SoundManager : MonoBehaviour
         _rockDestroyTimer = Random.Range(0.5f, 1f);
         _rockHitTimer = Random.Range(0.5f, 1f);
         _boneHitTimer = Random.Range(0.5f, 1f);
+        _dirtHitTimer = Random.Range(0.5f, 1f);
     }
 
     private void Update()
@@ -47,6 +50,7 @@ public class SoundManager : MonoBehaviour
         _curRockDestroyTimer += Time.deltaTime;
         _curRockHitTimer += Time.deltaTime;
         _curBoneHitTimer += Time.deltaTime;
+        _curDirtHitTimer += Time.deltaTime;
     }
 
     private void InitDictionaries()
@@ -115,6 +119,15 @@ public class SoundManager : MonoBehaviour
                 {
                     _rockDestroyTimer = Random.Range(0.5f, 1f);
                     _curBoneHitTimer = 0;
+                    sfxSource.PlayOneShot(clip);
+                }
+            }
+            else if(name == "Brush")
+            {
+                if (_curDirtHitTimer > _dirtHitTimer)
+                {
+                    _dirtHitTimer = Random.Range(0.5f, 1f);
+                    _curDirtHitTimer = 0;
                     sfxSource.PlayOneShot(clip);
                 }
             }

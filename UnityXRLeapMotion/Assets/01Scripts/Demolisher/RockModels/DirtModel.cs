@@ -16,6 +16,7 @@ public class DirtModel : MonoBehaviour
         if (collision.gameObject.tag == "sm_brush") //붓
         {
             GetDamage();
+            SoundManager.Instance.PlaySFX("Brush");
         }
        
         if(collision.gameObject.layer == LayerMask.NameToLayer("Rock"))
@@ -37,6 +38,7 @@ public class DirtModel : MonoBehaviour
         if (other.gameObject.tag == "sm_brush") //붓
         {
             GetDamage();
+            SoundManager.Instance.PlaySFX("Brush");
         }
 
         if (other.gameObject.layer == LayerMask.NameToLayer("Bone"))

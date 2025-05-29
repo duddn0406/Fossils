@@ -5,6 +5,7 @@ using System;
 public class HardRockModel : MonoBehaviour
 {
     [SerializeField] private GameObject _dirtParticlePrefab;
+    [SerializeField] private GameObject _dirtPrefab;
 
     private int _destroyHitCount;
     private int _breakHitCount;
@@ -76,19 +77,12 @@ public class HardRockModel : MonoBehaviour
         int randomSoilCount = UnityEngine.Random.Range(5, 20);
         for (int i = 0; i < randomSoilCount; i++)
         {
+            GameObject dirtClone = Instantiate(_dirtPrefab);
             float randomScale = UnityEngine.Random.Range(0.003f, 0.008f);
             Vector3 randomPos = this.transform.position + new Vector3(UnityEngine.Random.Range(-0.003f, 0.003f), UnityEngine.Random.Range(-0.003f, 0.003f), UnityEngine.Random.Range(-0.003f, 0.003f));
 
-            GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-
-            sphere.transform.position = randomPos;
-            sphere.transform.localScale = new Vector3(randomScale, randomScale, randomScale);
-            var rend = sphere.GetComponent<Renderer>();
-            rend.material = new Material(rend.material);
-            rend.material.color = new Color(153f / 255f, 102f / 255f, 51f / 255f);
-
-            sphere.AddComponent<Rigidbody>();
-            sphere.AddComponent<DirtModel>();
+            dirtClone.transform.position = randomPos;
+            dirtClone.transform.localScale = new Vector3(randomScale, randomScale, randomScale);
         }
     }
 }
