@@ -66,21 +66,27 @@ public class FossilPresenter : MonoBehaviour
         }
     }
 
-    private void CheckForSceneMove()
+    public void CheckForSceneMove()
     {
-        int endRock = _model.RockSize * 10 / 100;
-        int endDirt = _model.DirtSize * 10 / 100;
+        Image image = _view.GetImage((int)FossilView.Images.FossilStateImage);
+
+        int endRock = _model.RockSize * 5 / 100;
+        //int endDirt = _model.DirtSize * 10 / 100;
 
         int badEndDirt = _model.DirtSize * 90 / 100;
         int badEndBone = _model.BoneSize * 40 / 100;
 
-        if (_model.RockCount < endRock && _model.DirtCount < endDirt)
-            MoveToResultScene();
+        //if (_model.RockCount < endRock && _model.DirtCount < endDirt)
+        if (_model.RockCount < endRock)
+            ShowResult();
         if (_model.BoneCount < badEndBone || _model.DirtCount > badEndDirt)
-            MoveToResultScene();
+        {
+            image.sprite = _view.LowerFossilSprite;
+            ShowResult();
+        }
     }
 
-    private void MoveToResultScene()
+    private void ShowResult()
     {
         Image image = _view.GetImage((int)FossilView.Images.FossilStateImage);
 

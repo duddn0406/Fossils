@@ -22,16 +22,7 @@ public class BoneModel : MonoBehaviour
             || other.gameObject.tag == "chisel"
             || other.gameObject.tag == "trowel")
         {
-            _health++;
-            if (_health == 5)
-            {
-                Debug.Log("break");
-                _rigid.useGravity = true;
-                _col.isTrigger = false;
-                OnBoneDestroyed?.Invoke(-1);
-                //Destroy(this.gameObject);
-            }
-            SoundManager.Instance.PlaySFX("HitFossil");
+            GetDamage(other.gameObject);
         }
     }
 
@@ -51,8 +42,11 @@ public class BoneModel : MonoBehaviour
             _health-=3;
         }
 
+        SoundManager.Instance.PlaySFX("HitFossil");
+
         if (_health < 0)
         {
+            OnBoneDestroyed?.Invoke(-1);
             _rigid.useGravity = true;
             _col.isTrigger = false;
         }

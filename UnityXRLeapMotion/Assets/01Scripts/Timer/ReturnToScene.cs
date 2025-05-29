@@ -7,6 +7,8 @@ public class ReturnToScene : MonoBehaviour
 
     private float _curTime;
 
+    [SerializeField] private FossilPresenter _fossilPresenter;
+
     private void Update()
     {
         _curTime += Time.deltaTime;
@@ -21,10 +23,7 @@ public class ReturnToScene : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.S))
         {
-            if(SceneManager.GetActiveScene().name == "GameScene")
-            {
-                SceneManager.LoadScene("00Scenes/ResultScene");
-            }
+            _fossilPresenter.CheckForSceneMove();
         }
     }
     public void SetCurTime(float curTime)
