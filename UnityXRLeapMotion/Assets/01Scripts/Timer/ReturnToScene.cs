@@ -17,11 +17,13 @@ public class ReturnToScene : MonoBehaviour
         if(_curTime > _maxTime)
         {
             SceneManager.LoadScene("00Scenes/MainMenuScene");
+            GameManager.instance.GameOver = false;
         }
 
         if (Input.GetKeyDown(KeyCode.A))
         {
             _fadeManager.FadeOutAndLoadScene("00Scenes/MainMenuScene");
+            GameManager.instance.GameOver = false;
         }
 
         if(Input.GetKeyDown(KeyCode.S))

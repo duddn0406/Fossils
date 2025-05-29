@@ -69,6 +69,7 @@ public class CameraMoveController : MonoBehaviour
             {
                 isMoving = false;
                 _objectSelector.canAct = true;
+                GameManager.instance.GameOver = false;
             }
         }
     }
