@@ -4,35 +4,20 @@ using TMPro;
 
 public class ResultUI : MonoBehaviour
 {
+    public GameObject ResultGroup;
+
     public Image dinoImage;
     public TextMeshProUGUI dinoDescriptionText;
-    public int state; // 상태 텍스트 (또는 다른 UI)
     public Image stampImage;
-    public Sprite stampHigh;
-    public Sprite stampMid;
-    public Sprite stampLow;
 
-    void Start()
+    public void Initialize()
     {
-        // GameManager에서 값 받아오기
+        ResultGroup.SetActive(true);
+
         var gm = GameManager.instance;
 
-        // UI에 반영
         dinoImage.sprite = gm.PointData.ResultSprite;
         dinoDescriptionText.text = gm.PointData.ResultDescription;
         stampImage.sprite = gm.state;
-        // 상태에 따라 텍스트 또는 이미지 변경
-        //switch (gm.state)
-        //{
-        //    case 0: // 상
-        //        stampImage.sprite = stampHigh;
-        //        break;
-        //    case 1: // 중
-        //        stampImage.sprite = stampMid;
-        //        break;
-        //    case 2: // 하 
-        //        stampImage.sprite = stampLow;
-        //        break;
-        //}
     }
 }

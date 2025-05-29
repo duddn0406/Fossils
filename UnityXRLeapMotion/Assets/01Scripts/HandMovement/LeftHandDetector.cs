@@ -43,9 +43,8 @@ public class LeftHandDetector
                 {
                     SoundManager.Instance.PlaySFX("Menu"); // UI 사라질 때도 소리
                 }
-
-                MoveCanvas(deltaTime); // 움직임 처리
             }
+            MoveCanvas(deltaTime); // 움직임 처리
             return;
         }
 

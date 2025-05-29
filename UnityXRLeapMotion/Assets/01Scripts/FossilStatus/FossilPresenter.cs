@@ -10,7 +10,7 @@ public class FossilPresenter : MonoBehaviour
     [SerializeField] private FossilView _view;
     [SerializeField] private FossilModel _model;
 
-    [SerializeField] private FadeManager _fadeManager;
+    [SerializeField] private ResultUI _resultUi;
 
     private void Awake()
     {
@@ -85,6 +85,6 @@ public class FossilPresenter : MonoBehaviour
         Image image = _view.GetImage((int)FossilView.Images.FossilStateImage);
 
         GameManager.instance.state = image.sprite;
-        _fadeManager.FadeOutAndLoadScene("00Scenes/ResultScene");
+        _resultUi.Initialize();
     }
 }
