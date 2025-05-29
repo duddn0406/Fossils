@@ -16,8 +16,8 @@ public class ResultUI : MonoBehaviour
 
         var gm = GameManager.instance;
 
-        dinoImage.sprite = gm.PointData.ResultSprite;
-        dinoDescriptionText.text = gm.PointData.ResultDescription;
-        stampImage.sprite = gm.state;
+        dinoImage.sprite = gm.ResultSprite;
+        dinoDescriptionText.text = gm.ResultDescription;
+        stampImage.sprite = gm.State;
     }
 }

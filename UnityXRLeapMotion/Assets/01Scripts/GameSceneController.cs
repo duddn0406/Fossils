@@ -34,8 +34,7 @@ public class GameSceneController : MonoBehaviour
     }
     public void Initialize()
     {
-        switch(num)
-        //switch (GameManager.instance.PointData.Name)
+        switch (GameManager.instance.Name)
         {
             case "1":
                 _handController.Initialize(_animalBone);

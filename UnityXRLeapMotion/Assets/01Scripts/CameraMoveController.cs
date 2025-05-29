@@ -16,6 +16,7 @@ public class CameraMoveController : MonoBehaviour
 
     private LeapServiceProvider leapProvider;
 
+    [SerializeField] private ObjectSelector _objectSelector;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private GameObject titleTextObject; // ✅ 텍스트 오브젝트 연결
 
@@ -67,6 +68,7 @@ public class CameraMoveController : MonoBehaviour
             if (t >= 1f)
             {
                 isMoving = false;
+                _objectSelector.canAct = true;
             }
         }
     }

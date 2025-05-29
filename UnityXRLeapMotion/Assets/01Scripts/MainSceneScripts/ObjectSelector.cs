@@ -23,8 +23,12 @@ public class ObjectSelector : MonoBehaviour
     private float clapCooldown = 1f;
     private float lastClapTime = -10f;
 
+    public bool canAct;
+
     void Update()
     {
+        if (!canAct)
+            return;
         if (!isAnimating)
         {
             Frame frame = leapProvider.CurrentFrame;
@@ -56,12 +60,9 @@ public class ObjectSelector : MonoBehaviour
                     lastClapTime = Time.time;
                     if (selectedPoint != null)//씬으로 넘어가며 정보 전달.
                     {
-                        {
-                            PointModel pointModel = selectedPoint.GetComponent<PointModel>();
-                            GameManager.instance.PointData = pointModel.PointData;
-                            SceneManager.LoadScene("00Scenes/GameScene");
-                        }
-
+                        PointModel pointModel = selectedPoint.GetComponent<PointModel>();
+                        GameManager.instance.SetPointData(pointModel.PointData.Name, pointModel.PointData.ResultSprite, pointModel.PointData.ResultDescription);
+                        SceneManager.LoadScene("00Scenes/GameScene");
                     }
                 }
 
@@ -70,7 +71,6 @@ public class ObjectSelector : MonoBehaviour
                     if (hand.IsLeft && hand.GrabStrength > 0.8f && selectedContinent != null) //왼손 주먹 쥐었을 때
                     {
                         _returnToScene.SetCurTime(0f); //타이머 초기화    
-                        DeSelectPoint(); //핑 초기화 
                         _ = ResetObjectAsync(); //대륙 초기화
                         return;
                     }
@@ -84,11 +84,28 @@ public class ObjectSelector : MonoBehaviour
 
                     if (selectedContinent) //핑 선택
                     {
-                        SoundManager.Instance.PlaySFX("Pick"); // ✅ 지도 핑 클릭 사운드 추가!
-
                         _returnToScene.SetCurTime(0f);
-                        selectedPoint = hitObject;
-                        SelectPoint();
+
+                        if (selectedPoint == hitObject)
+                        {
+                            return;
+                        }
+                        else
+                        {                   
+                            SoundManager.Instance.PlaySFX("Pick");
+                            if (selectedPoint == null)
+                            {
+                                selectedPoint = hitObject;
+                                SelectPoint();
+                            }
+                            else
+                            {
+                                SpriteRenderer sprite = selectedPoint.GetComponent<SpriteRenderer>();
+                                sprite.color = Color.white;
+                                selectedPoint = hitObject;
+                                SelectPoint();
+                            }
+                        }
                         _mainMenuSceneUI.ResetContinentView();
                     }
                     else //대륙 선택
@@ -131,7 +148,7 @@ public class ObjectSelector : MonoBehaviour
 
             var targetContinentPosition = continentModel.transform.position;
             var camTask = cameraModel.MoveToTargetAsync(
-                 new Vector3(targetContinentPosition.x, 2.102f, targetContinentPosition.z),
+                 new Vector3(0.5f,2,0),
                 Quaternion.Euler(90f, 0f, 0f),
                 1f
             );
@@ -150,6 +167,8 @@ public class ObjectSelector : MonoBehaviour
         async Task ResetObjectAsync()
         {
             if (selectedContinent == null) return;
+
+            DeSelectPoint();
 
             isAnimating = true;
 

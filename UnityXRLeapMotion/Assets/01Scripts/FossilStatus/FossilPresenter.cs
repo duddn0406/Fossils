@@ -90,7 +90,7 @@ public class FossilPresenter : MonoBehaviour
     {
         Image image = _view.GetImage((int)FossilView.Images.FossilStateImage);
 
-        GameManager.instance.state = image.sprite;
+        GameManager.instance.SetState(image.sprite);
         _resultUi.Initialize();
     }
 }

@@ -7,6 +7,7 @@ public class ReturnToScene : MonoBehaviour
 
     private float _curTime;
 
+    [SerializeField] private FadeManager _fadeManager;
     [SerializeField] private FossilPresenter _fossilPresenter;
 
     private void Update()
@@ -19,11 +20,14 @@ public class ReturnToScene : MonoBehaviour
         }
 
         if (Input.GetKeyDown(KeyCode.A))
-            SceneManager.LoadScene("00Scenes/MainMenuScene");
+        {
+            _fadeManager.FadeOutAndLoadScene("00Scenes/MainMenuScene");
+        }
 
         if(Input.GetKeyDown(KeyCode.S))
         {
-            _fossilPresenter.CheckForSceneMove();
+            if (SceneManager.GetActiveScene().name == "GameScene")
+                _fossilPresenter.CheckForSceneMove();
         }
     }
     public void SetCurTime(float curTime)
