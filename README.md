@@ -23,3 +23,9 @@
 #### 2. 빌드 파일
 
 *  https://drive.google.com/file/d/1ELFYNVG8ibbLMKNjbVlJjh9IOX0ag-NZ/view
+
+
+
+### 3. 시연 영상
+
+* https://youtu.be/yH4TDtEPsMw
